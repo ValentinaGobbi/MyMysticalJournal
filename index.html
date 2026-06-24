@@ -2,7 +2,7 @@
 <html lang="it">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>MyMysticalJournal - Il Diario Incantato</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -12,7 +12,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
     
     <style>
-        /* Custom Theme Variables Defaults (Dream Sky) */
+        /* Variabili personalizzate dei temi (Default: Dream Sky) */
         :root {
             --bg-start: #e0c3fc;
             --bg-end: #8ec5fc;
@@ -30,6 +30,7 @@
             background: linear-gradient(135deg, var(--bg-start), var(--bg-end));
             color: var(--text-main);
             min-height: 100vh;
+            min-height: -webkit-fill-available;
             transition: all 0.5s ease;
         }
 
@@ -37,15 +38,18 @@
             font-family: 'Fredoka', sans-serif;
         }
 
-        /* Gummy active button effect */
+        /* Effetto pulsante gommoso potenziato */
         .btn-gummy {
-            transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.45), box-shadow 0.3s ease, border-color 0.3s ease;
+        }
+        .btn-gummy:hover {
+            transform: translateY(-4px) scale(1.03);
         }
         .btn-gummy:active {
-            transform: scale(0.92);
+            transform: translateY(2px) scale(0.90);
         }
 
-        /* Sparkle float animation */
+        /* Animazione fluttuante per stelline */
         @keyframes float {
             0% { transform: translateY(0px) rotate(0deg); opacity: 0.8; }
             50% { transform: translateY(-10px) rotate(10deg); opacity: 1; }
@@ -55,7 +59,7 @@
             animation: float 4s ease-in-out infinite;
         }
 
-        /* Magic Glow */
+        /* Glow Magico */
         .magic-glow {
             box-shadow: 0 0 15px var(--accent-glow);
         }
@@ -63,7 +67,7 @@
             box-shadow: 0 0 20px var(--accent-glow);
         }
 
-        /* Custom Scrollbar for Kawaii Aesthetic */
+        /* Scrollbar personalizzata stile Kawaii */
         ::-webkit-scrollbar {
             width: 8px;
         }
@@ -76,7 +80,7 @@
             border-radius: 10px;
         }
 
-        /* Breathing Circle Animation */
+        /* Animazione del cerchio di respirazione */
         @keyframes breathe {
             0%, 100% { transform: scale(1); background-color: rgba(177, 159, 251, 0.2); }
             40% { transform: scale(1.6); background-color: rgba(177, 159, 251, 0.5); }
@@ -89,8 +93,8 @@
 </head>
 <body class="p-0 m-0 overflow-x-hidden flex justify-center items-start md:py-8">
 
-    <!-- Container Smartphone Mockup per Desktop, Fluid su Mobile -->
-    <div id="app-container" class="w-full max-w-md min-h-screen md:min-h-[850px] md:rounded-[40px] md:shadow-2xl overflow-hidden flex flex-col relative border-4 border-white/40 backdrop-blur-md" style="background: linear-gradient(180deg, var(--bg-start), var(--bg-end));">
+    <!-- Container Smartphone Mockup per Desktop, Fluid su Mobile con altezza dinamica 100dvh -->
+    <div id="app-container" class="w-full max-w-md h-[100dvh] md:h-[850px] md:rounded-[40px] md:shadow-2xl overflow-hidden flex flex-col relative border-4 border-white/40 backdrop-blur-md" style="background: linear-gradient(180deg, var(--bg-start), var(--bg-end));">
         
         <!-- Sfondo con Stelline Decorative -->
         <div class="absolute inset-0 pointer-events-none overflow-hidden z-0 opacity-40">
@@ -103,7 +107,7 @@
         </div>
 
         <!-- HEADER MAGICO -->
-        <header class="relative z-10 px-6 pt-6 pb-4 flex justify-between items-center bg-white/25 backdrop-blur-md border-b border-white/20">
+        <header class="relative z-20 px-6 pt-6 pb-4 flex justify-between items-center bg-white/25 backdrop-blur-md border-b border-white/20 flex-none">
             <div class="flex items-center space-x-2" onclick="navigateTo('home')">
                 <span class="text-3xl animate-bounce">✨</span>
                 <div>
@@ -119,52 +123,52 @@
             </div>
         </header>
 
-        <!-- AREA CONTENUTO PRINCIPALE (Scorrevole) -->
-        <main class="flex-1 overflow-y-auto px-5 py-6 relative z-10" style="max-height: calc(100vh - 150px);">
+        <!-- AREA CONTENUTO PRINCIPALE (Scorrevole con padding ottimizzato per il footer fluttuante) -->
+        <main class="flex-1 overflow-y-auto px-5 py-6 relative z-10" style="padding-bottom: calc(86px + env(safe-area-inset-bottom, 16px));">
             
             <!-- SEZIONE: HOME -->
-            <div id="section-home" class="space-y-6">
+            <div id="section-home" class="space-y-5">
                 <!-- Benvenuto personalizzato -->
-                <div class="p-5 rounded-3xl text-center space-y-2 relative overflow-hidden" style="background-color: var(--card-bg); border: 2px solid var(--border-color);">
+                <div class="p-4 rounded-3xl text-center space-y-1 relative overflow-hidden" style="background-color: var(--card-bg); border: 2px solid var(--border-color);">
                     <div class="absolute -top-4 -right-4 text-4xl opacity-30">🌸</div>
-                    <h2 id="welcome-message" class="text-xl font-bold font-kawaii">Ciao, splendida stella!</h2>
-                    <p class="text-sm opacity-90">Cosa realizzeremo di magico oggi per il tuo benessere?</p>
+                    <h2 id="welcome-message" class="text-lg font-bold font-kawaii">Ciao, splendida stella!</h2>
+                    <p class="text-xs opacity-90">Cosa realizzeremo oggi di magico?</p>
                 </div>
 
-                <!-- Griglia dei Pulsanti Principali -->
-                <div class="grid grid-cols-2 gap-4">
+                <!-- Griglia dei Pulsanti Principali con SVG Doodle Extra-Compatti -->
+                <div class="grid grid-cols-2 gap-2">
                     <!-- Nuova Pagina -->
-                    <button onclick="navigateTo('new-page')" class="p-5 rounded-3xl flex flex-col items-center justify-center space-y-2 text-center btn-gummy magic-glow-hover border-2 border-transparent" style="background-color: var(--card-bg); border-color: var(--border-color);">
-                        <svg class="w-12 h-12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--text-main);">
+                    <button onclick="navigateTo('new-page')" class="p-2.5 rounded-2xl flex flex-col items-center justify-center space-y-1 text-center btn-gummy magic-glow-hover border-2 border-transparent" style="background-color: var(--card-bg); border-color: var(--border-color);">
+                        <svg class="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--text-main);">
                             <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
                             <path d="M7 6c.5-.5 1.5-.5 2 0" opacity="0.5" stroke-width="1.5"/>
                         </svg>
-                        <span class="font-bold text-sm" style="color: var(--text-main);">Nuova Pagina</span>
-                        <span class="text-2xl text-pink-300">✦</span>
+                        <span class="font-bold text-[10.5px] tracking-tight whitespace-nowrap overflow-hidden text-ellipsis w-full" style="color: var(--text-main);">Nuova Pagina</span>
+                        <span class="text-sm text-pink-300 leading-none">✦</span>
                     </button>
                     <!-- Diario Desideri -->
-                    <button onclick="navigateTo('diary')" class="p-5 rounded-3xl flex flex-col items-center justify-center space-y-2 text-center btn-gummy magic-glow-hover border-2 border-transparent" style="background-color: var(--card-bg); border-color: var(--border-color);">
-                        <svg class="w-12 h-12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--text-main);">
+                    <button onclick="navigateTo('diary')" class="p-2.5 rounded-2xl flex flex-col items-center justify-center space-y-1 text-center btn-gummy magic-glow-hover border-2 border-transparent" style="background-color: var(--card-bg); border-color: var(--border-color);">
+                        <svg class="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--text-main);">
                             <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
                             <path d="M11 7l1 2M13 15l1 2" stroke-width="1.5" opacity="0.5"/>
                         </svg>
-                        <span class="font-bold text-sm" style="color: var(--text-main);">I Desideri</span>
-                        <span class="text-2xl text-blue-300">✦</span>
+                        <span class="font-bold text-[10.5px] tracking-tight whitespace-nowrap overflow-hidden text-ellipsis w-full" style="color: var(--text-main);">I Desideri</span>
+                        <span class="text-sm text-blue-300 leading-none">✦</span>
                     </button>
                     <!-- Incantesimi -->
-                    <button onclick="navigateTo('spells')" class="p-5 rounded-3xl flex flex-col items-center justify-center space-y-2 text-center btn-gummy magic-glow-hover border-2 border-transparent" style="background-color: var(--card-bg); border-color: var(--border-color);">
-                        <svg class="w-12 h-12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--text-main);">
+                    <button onclick="navigateTo('spells')" class="p-2.5 rounded-2xl flex flex-col items-center justify-center space-y-1 text-center btn-gummy magic-glow-hover border-2 border-transparent" style="background-color: var(--card-bg); border-color: var(--border-color);">
+                        <svg class="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--text-main);">
                             <line x1="5" y1="19" x2="15" y2="9" />
                             <path d="M19 3l1 2-2 1-1-2z" fill="currentColor"/>
                             <path d="M14 2c.2.8.8 1.4 1.6 1.6-.8.2-1.4.8-1.6 1.6-.2-.8-.8-1.4-1.6-1.6.8-.2 1.4-.8 1.6-1.6z" fill="currentColor" stroke="none"/>
                             <path d="M20 9c.2.5.5.8 1 .9-.5.1-.8.4-.9.9-.1-.5-.4-.8-.9-.9.5-.1.8-.4.9-.9z" fill="currentColor" stroke="none"/>
                         </svg>
-                        <span class="font-bold text-sm" style="color: var(--text-main);">Incantesimi</span>
-                        <span class="text-2xl text-purple-300">✦</span>
+                        <span class="font-bold text-[10.5px] tracking-tight whitespace-nowrap overflow-hidden text-ellipsis w-full" style="color: var(--text-main);">Incantesimi</span>
+                        <span class="text-sm text-purple-300 leading-none">✦</span>
                     </button>
                     <!-- Calendario -->
-                    <button onclick="navigateTo('calendar')" class="p-5 rounded-3xl flex flex-col items-center justify-center space-y-2 text-center btn-gummy magic-glow-hover border-2 border-transparent" style="background-color: var(--card-bg); border-color: var(--border-color);">
-                        <svg class="w-12 h-12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--text-main);">
+                    <button onclick="navigateTo('calendar')" class="p-2.5 rounded-2xl flex flex-col items-center justify-center space-y-1 text-center btn-gummy magic-glow-hover border-2 border-transparent" style="background-color: var(--card-bg); border-color: var(--border-color);">
+                        <svg class="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--text-main);">
                             <rect x="3" y="4" width="18" height="18" rx="4" />
                             <line x1="3" y1="10" x2="21" y2="10" />
                             <path d="M8 2v4M16 2v4" />
@@ -172,70 +176,76 @@
                             <circle cx="16" cy="14" r="1" fill="currentColor"/>
                             <circle cx="12" cy="15" r="1.5" fill="currentColor"/>
                         </svg>
-                        <span class="font-bold text-sm" style="color: var(--text-main);">Calendario</span>
-                        <span class="text-2xl text-indigo-300">✦</span>
+                        <span class="font-bold text-[10.5px] tracking-tight whitespace-nowrap overflow-hidden text-ellipsis w-full" style="color: var(--text-main);">Calendario</span>
+                        <span class="text-sm text-indigo-300 leading-none">✦</span>
                     </button>
                     <!-- Benessere & Statistiche -->
-                    <button onclick="navigateTo('stats')" class="p-5 rounded-3xl flex flex-col items-center justify-center space-y-2 text-center btn-gummy magic-glow-hover border-2 border-transparent col-span-2" style="background-color: var(--card-bg); border-color: var(--border-color);">
-                        <div class="flex items-center space-x-3">
-                            <span class="text-4xl">📊</span>
-                            <div class="text-left">
-                                <span class="block font-bold text-sm" style="color: var(--text-main);">Benessere & Collezione</span>
-                                <span class="text-xs opacity-75">Statistiche e oggetti magici sbloccati</span>
+                    <button onclick="navigateTo('stats')" class="p-2.5 rounded-2xl flex flex-col items-center justify-center space-y-1 text-center btn-gummy magic-glow-hover col-span-2 border-2 border-transparent animate-pulse-slow" style="background-color: var(--card-bg); border-color: var(--border-color);">
+                        <div class="flex items-center space-x-2.5 w-full justify-center">
+                            <svg class="w-8 h-8 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--text-main);">
+                                <path d="M4 17c4-4 8-6 13-3" opacity="0.6" stroke-dasharray="2 2" />
+                                <rect x="4" y="13" width="3" height="7" rx="1.5" />
+                                <rect x="9.5" y="8" width="3" height="12" rx="1.5" />
+                                <rect x="15" y="11" width="3" height="9" rx="1.5" />
+                                <path d="M17 3l1 1.5 1.5.5-1.1.9.3 1.6-1.7-.8-1.7.8.3-1.6-1.1-.9 1.5-.5z" fill="currentColor" stroke="none" />
+                            </svg>
+                            <div class="text-left overflow-hidden">
+                                <span class="block font-bold text-[10.5px] tracking-tight whitespace-nowrap overflow-hidden text-ellipsis" style="color: var(--text-main);">Benessere & Collezione</span>
+                                <span class="text-[8.5px] opacity-75 block whitespace-nowrap overflow-hidden text-ellipsis">Statistiche e oggetti sbloccati</span>
                             </div>
                         </div>
                     </button>
                 </div>
 
                 <!-- Piccolo Consiglio di Self-Care -->
-                <div class="p-4 rounded-2xl bg-white/40 border border-white/30 text-center text-xs italic">
-                    "Prenditi un bel respiro profondo. Questo è il tuo spazio sicuro, custodito nel palmo della tua mano."
+                <div class="p-3.5 rounded-2xl bg-white/40 border border-white/30 text-center text-[11px] italic">
+                    "Prenditi un bel respiro profondo. Questo è il tuo spazio sicuro."
                 </div>
             </div>
 
             <!-- SEZIONE: NUOVA PAGINA DEL CUORE -->
             <div id="section-new-page" class="hidden space-y-5">
                 <div class="flex items-center justify-between mb-2">
-                    <button onclick="navigateTo('home')" class="text-sm btn-gummy">⬅️ Indietro</button>
-                    <h2 class="text-lg font-bold font-kawaii">Pagina del Cuore</h2>
-                    <span class="text-xs opacity-75" id="current-date-display">--/--/----</span>
+                    <button onclick="navigateTo('home')" class="text-xs bg-white/40 px-3 py-1.5 rounded-full font-bold btn-gummy">⬅️ Indietro</button>
+                    <h2 class="text-md font-bold font-kawaii">Pagina del Cuore</h2>
+                    <span class="text-[11px] opacity-75" id="current-date-display">--/--/----</span>
                 </div>
 
-                <div class="p-5 rounded-3xl space-y-6" style="background-color: var(--card-bg); border: 2px solid var(--border-color);">
+                <div class="p-5 rounded-3xl space-y-5" style="background-color: var(--card-bg); border: 2px solid var(--border-color);">
                     <!-- Umore -->
-                    <div class="space-y-2">
-                        <label class="block text-sm font-bold">Come ti senti adesso? 💖</label>
-                        <div class="grid grid-cols-5 gap-2" id="mood-picker">
-                            <button onclick="selectMood(1, '😄')" class="mood-btn text-2xl p-2 rounded-xl bg-white/40 hover:bg-white/80 border border-transparent transition-all btn-gummy">😄</button>
-                            <button onclick="selectMood(2, '😊')" class="mood-btn text-2xl p-2 rounded-xl bg-white/40 hover:bg-white/80 border border-transparent transition-all btn-gummy">😊</button>
-                            <button onclick="selectMood(3, '🥰')" class="mood-btn text-2xl p-2 rounded-xl bg-white/40 hover:bg-white/80 border border-transparent transition-all btn-gummy">🥰</button>
-                            <button onclick="selectMood(4, '🦄')" class="mood-btn text-2xl p-2 rounded-xl bg-white/40 hover:bg-white/80 border border-transparent transition-all btn-gummy">🦄</button>
-                            <button onclick="selectMood(5, '🤔')" class="mood-btn text-2xl p-2 rounded-xl bg-white/40 hover:bg-white/80 border border-transparent transition-all btn-gummy">🤔</button>
-                            <button onclick="selectMood(6, '🥺')" class="mood-btn text-2xl p-2 rounded-xl bg-white/40 hover:bg-white/80 border border-transparent transition-all btn-gummy">🥺</button>
-                            <button onclick="selectMood(7, '😴')" class="mood-btn text-2xl p-2 rounded-xl bg-white/40 hover:bg-white/80 border border-transparent transition-all btn-gummy">😴</button>
-                            <button onclick="selectMood(8, '😢')" class="mood-btn text-2xl p-2 rounded-xl bg-white/40 hover:bg-white/80 border border-transparent transition-all btn-gummy">😢</button>
-                            <button onclick="selectMood(9, '🤯')" class="mood-btn text-2xl p-2 rounded-xl bg-white/40 hover:bg-white/80 border border-transparent transition-all btn-gummy">🤯</button>
-                            <button onclick="selectMood(10, '😡')" class="mood-btn text-2xl p-2 rounded-xl bg-white/40 hover:bg-white/80 border border-transparent transition-all btn-gummy">😡</button>
+                    <div class="space-y-1.5">
+                        <label class="block text-xs font-bold">Come ti senti adesso? 💖</label>
+                        <div class="grid grid-cols-5 gap-1.5" id="mood-picker">
+                            <button onclick="selectMood(1, '😄')" class="mood-btn text-xl p-1.5 rounded-xl bg-white/40 hover:bg-white/80 border border-transparent transition-all btn-gummy">😄</button>
+                            <button onclick="selectMood(2, '😊')" class="mood-btn text-xl p-1.5 rounded-xl bg-white/40 hover:bg-white/80 border border-transparent transition-all btn-gummy">😊</button>
+                            <button onclick="selectMood(3, '🥰')" class="mood-btn text-xl p-1.5 rounded-xl bg-white/40 hover:bg-white/80 border border-transparent transition-all btn-gummy">🥰</button>
+                            <button onclick="selectMood(4, '🦄')" class="mood-btn text-xl p-1.5 rounded-xl bg-white/40 hover:bg-white/80 border border-transparent transition-all btn-gummy">🦄</button>
+                            <button onclick="selectMood(5, '🤔')" class="mood-btn text-xl p-1.5 rounded-xl bg-white/40 hover:bg-white/80 border border-transparent transition-all btn-gummy">🤔</button>
+                            <button onclick="selectMood(6, '🥺')" class="mood-btn text-xl p-1.5 rounded-xl bg-white/40 hover:bg-white/80 border border-transparent transition-all btn-gummy">🥺</button>
+                            <button onclick="selectMood(7, '😴')" class="mood-btn text-xl p-1.5 rounded-xl bg-white/40 hover:bg-white/80 border border-transparent transition-all btn-gummy">😴</button>
+                            <button onclick="selectMood(8, '😢')" class="mood-btn text-xl p-1.5 rounded-xl bg-white/40 hover:bg-white/80 border border-transparent transition-all btn-gummy">😢</button>
+                            <button onclick="selectMood(9, '🤯')" class="mood-btn text-xl p-1.5 rounded-xl bg-white/40 hover:bg-white/80 border border-transparent transition-all btn-gummy">🤯</button>
+                            <button onclick="selectMood(10, '😡')" class="mood-btn text-xl p-1.5 rounded-xl bg-white/40 hover:bg-white/80 border border-transparent transition-all btn-gummy">😡</button>
                         </div>
                         <input type="hidden" id="input-mood-val" value="😄">
                     </div>
 
                     <!-- Energia Slider -->
-                    <div class="space-y-2">
-                        <div class="flex justify-between items-center text-sm font-bold">
+                    <div class="space-y-1.5">
+                        <div class="flex justify-between items-center text-xs font-bold">
                             <span>Livello di Energia 🔋</span>
                             <span id="energy-val">50%</span>
                         </div>
                         <div class="flex items-center space-x-3">
-                            <span id="energy-battery-icon" class="text-2xl">🔋</span>
-                            <input type="range" id="input-energy" min="0" max="100" value="50" oninput="updateEnergyDisplay(this.value)" class="w-full h-2 rounded-lg appearance-none cursor-pointer" style="background-color: var(--accent);">
+                            <span id="energy-battery-icon" class="text-xl">🔋</span>
+                            <input type="range" id="input-energy" min="0" max="100" value="50" oninput="updateEnergyDisplay(this.value)" class="w-full h-1.5 rounded-lg appearance-none cursor-pointer" style="background-color: var(--accent);">
                         </div>
                     </div>
 
                     <!-- Stato del Cuore -->
-                    <div class="space-y-2">
-                        <label class="block text-sm font-bold">In quale stato si trova il tuo Cuore oggi?</label>
-                        <select id="input-heart-state" class="w-full p-3 rounded-2xl border text-sm font-medium" style="background-color: var(--input-bg); border-color: var(--border-color); color: var(--text-main);">
+                    <div class="space-y-1.5">
+                        <label class="block text-xs font-bold">In quale stato si trova il tuo Cuore oggi?</label>
+                        <select id="input-heart-state" class="w-full p-2.5 rounded-xl border text-xs font-semibold" style="background-color: var(--input-bg); border-color: var(--border-color); color: var(--text-main);">
                             <option value="❤️ Leggero">❤️ Leggero</option>
                             <option value="💛 Felice">💛 Felice</option>
                             <option value="💚 Sereno">💚 Sereno</option>
@@ -247,42 +257,42 @@
                     </div>
 
                     <!-- Livello di Stress -->
-                    <div class="space-y-2">
-                        <div class="flex justify-between items-center text-sm font-bold">
+                    <div class="space-y-1.5">
+                        <div class="flex justify-between items-center text-xs font-bold">
                             <span>Livello di Stress 🌪️</span>
                             <span id="stress-val">Calmo (20%)</span>
                         </div>
-                        <input type="range" id="input-stress" min="0" max="100" value="20" oninput="updateStressDisplay(this.value)" class="w-full h-2 rounded-lg appearance-none cursor-pointer" style="background-color: var(--accent);">
+                        <input type="range" id="input-stress" min="0" max="100" value="20" oninput="updateStressDisplay(this.value)" class="w-full h-1.5 rounded-lg appearance-none cursor-pointer" style="background-color: var(--accent);">
                     </div>
 
                     <!-- Gratitudine -->
-                    <div class="space-y-3">
-                        <label class="block text-sm font-bold">Tre cose belle di oggi ✨</label>
-                        <input type="text" id="gratitude-1" placeholder="1. Una tazza di tè caldo..." class="w-full p-2.5 rounded-xl border text-sm" style="background-color: var(--input-bg); border-color: var(--border-color);">
-                        <input type="text" id="gratitude-2" placeholder="2. Un sorriso ricevuto..." class="w-full p-2.5 rounded-xl border text-sm" style="background-color: var(--input-bg); border-color: var(--border-color);">
-                        <input type="text" id="gratitude-3" placeholder="3. Ho ascoltato la mia canzone preferita..." class="w-full p-2.5 rounded-xl border text-sm" style="background-color: var(--input-bg); border-color: var(--border-color);">
+                    <div class="space-y-2">
+                        <label class="block text-xs font-bold">Tre cose belle di oggi ✨</label>
+                        <input type="text" id="gratitude-1" placeholder="1. Una tazza di tè caldo..." class="w-full p-2 rounded-xl border text-xs" style="background-color: var(--input-bg); border-color: var(--border-color);">
+                        <input type="text" id="gratitude-2" placeholder="2. Un sorriso ricevuto..." class="w-full p-2 rounded-xl border text-xs" style="background-color: var(--input-bg); border-color: var(--border-color);">
+                        <input type="text" id="gratitude-3" placeholder="3. Ho ascoltato la mia canzone preferita..." class="w-full p-2 rounded-xl border text-xs" style="background-color: var(--input-bg); border-color: var(--border-color);">
                     </div>
 
                     <!-- Pensiero Libero -->
-                    <div class="space-y-2">
-                        <label class="block text-sm font-bold">Pensiero Libero ✍️</label>
-                        <textarea id="input-thought" rows="3" placeholder="Scrivi liberamente tutto quello che passa per la testa, senza giudicarti..." class="w-full p-3 rounded-2xl border text-sm" style="background-color: var(--input-bg); border-color: var(--border-color);"></textarea>
+                    <div class="space-y-1.5">
+                        <label class="block text-xs font-bold">Pensiero Libero ✍️</label>
+                        <textarea id="input-thought" rows="2" placeholder="Scrivi liberamente tutto quello che passa per la testa..." class="w-full p-2.5 rounded-xl border text-xs" style="background-color: var(--input-bg); border-color: var(--border-color);"></textarea>
                     </div>
 
                     <!-- Piccola Vittoria -->
-                    <div class="space-y-2">
-                        <label class="block text-sm font-bold">La mia piccola vittoria di oggi 🏆</label>
-                        <input type="text" id="input-victory" placeholder="Oggi ho detto un no gentile..." class="w-full p-3 rounded-xl border text-sm" style="background-color: var(--input-bg); border-color: var(--border-color);">
+                    <div class="space-y-1.5">
+                        <label class="block text-xs font-bold">La mia piccola vittoria di oggi 🏆</label>
+                        <input type="text" id="input-victory" placeholder="Oggi ho detto un no gentile..." class="w-full p-2.5 rounded-xl border text-xs" style="background-color: var(--input-bg); border-color: var(--border-color);">
                     </div>
 
                     <!-- Gesto Gentile -->
-                    <div class="space-y-2">
-                        <label class="block text-sm font-bold">Un gesto gentile fatto oggi 🤝</label>
-                        <input type="text" id="input-kindness" placeholder="Ho annaffiato le piante o inviato un messaggio d'affetto..." class="w-full p-3 rounded-xl border text-sm" style="background-color: var(--input-bg); border-color: var(--border-color);">
+                    <div class="space-y-1.5">
+                        <label class="block text-xs font-bold">Un gesto gentile fatto oggi 🤝</label>
+                        <input type="text" id="input-kindness" placeholder="Ho inviato un messaggio d'affetto..." class="w-full p-2.5 rounded-xl border text-xs" style="background-color: var(--input-bg); border-color: var(--border-color);">
                     </div>
 
                     <!-- Pulsante Salva -->
-                    <button onclick="saveHeartPage()" class="w-full py-4 rounded-3xl font-bold btn-gummy text-white text-lg magic-glow hover:opacity-90" style="background-color: var(--accent);">
+                    <button onclick="saveHeartPage()" class="w-full py-3.5 rounded-2xl font-bold btn-gummy text-white text-md magic-glow hover:opacity-90 animate-pulse-slow" style="background-color: var(--accent);">
                         ✨ Sigilla questa Pagina ✨
                     </button>
                 </div>
@@ -291,26 +301,26 @@
             <!-- SEZIONE: DIARIO DEI DESIDERI -->
             <div id="section-diary" class="hidden space-y-5">
                 <div class="flex items-center justify-between mb-2">
-                    <button onclick="navigateTo('home')" class="text-sm btn-gummy">⬅️ Indietro</button>
-                    <h2 class="text-lg font-bold font-kawaii">I Desideri del Cuore</h2>
-                    <button onclick="toggleNewWishForm()" class="text-xs bg-white/60 p-2 rounded-xl btn-gummy font-bold">⭐ Nuovo Desiderio</button>
+                    <button onclick="navigateTo('home')" class="text-xs bg-white/40 px-3 py-1.5 rounded-full font-bold btn-gummy">⬅️ Indietro</button>
+                    <h2 class="text-md font-bold font-kawaii">I Desideri del Cuore</h2>
+                    <button onclick="toggleNewWishForm()" class="text-[10px] bg-white/60 p-2 rounded-xl btn-gummy font-bold">⭐ Nuovo</button>
                 </div>
 
-                <!-- Form Nuovo Desiderio (Hidden by Default) -->
-                <div id="new-wish-form" class="hidden p-5 rounded-3xl space-y-4 border-2" style="background-color: var(--card-bg); border-color: var(--border-color);">
-                    <h3 class="font-bold text-sm">Affida un nuovo desiderio alle stelle 🌌</h3>
-                    <div class="space-y-2">
-                        <label class="text-xs font-bold block">Cosa desideri?</label>
-                        <input type="text" id="wish-title" placeholder="Es. Trovare tempo per dipingere" class="w-full p-2.5 rounded-xl border text-sm" style="background-color: var(--input-bg); border-color: var(--border-color);">
+                <!-- Form Nuovo Desiderio (Nascosto di default) -->
+                <div id="new-wish-form" class="hidden p-4 rounded-3xl space-y-3.5 border-2" style="background-color: var(--card-bg); border-color: var(--border-color);">
+                    <h3 class="font-bold text-xs">Affida un nuovo desiderio alle stelle 🌌</h3>
+                    <div class="space-y-1">
+                        <label class="text-[10px] font-bold block">Cosa desideri?</label>
+                        <input type="text" id="wish-title" placeholder="Es. Trovare tempo per dipingere" class="w-full p-2 rounded-xl border text-xs" style="background-color: var(--input-bg); border-color: var(--border-color);">
                     </div>
-                    <div class="space-y-2">
-                        <label class="text-xs font-bold block">Raccontalo brevemente</label>
-                        <textarea id="wish-description" rows="2" placeholder="Perché è importante per te?" class="w-full p-2.5 rounded-xl border text-sm" style="background-color: var(--input-bg); border-color: var(--border-color);"></textarea>
+                    <div class="space-y-1">
+                        <label class="text-[10px] font-bold block">Raccontalo brevemente</label>
+                        <textarea id="wish-description" rows="2" placeholder="Perché è importante per te?" class="w-full p-2 rounded-xl border text-xs" style="background-color: var(--input-bg); border-color: var(--border-color);"></textarea>
                     </div>
                     <div class="grid grid-cols-2 gap-2">
                         <div>
-                            <label class="text-xs font-bold block mb-1">Categoria</label>
-                            <select id="wish-category" class="w-full p-2 rounded-xl border text-xs" style="background-color: var(--input-bg); border-color: var(--border-color);">
+                            <label class="text-[10px] font-bold block mb-0.5">Categoria</label>
+                            <select id="wish-category" class="w-full p-2 rounded-xl border text-[11px]" style="background-color: var(--input-bg); border-color: var(--border-color);">
                                 <option value="❤️ Amore">❤️ Amore</option>
                                 <option value="🌱 Crescita">🌱 Crescita</option>
                                 <option value="💼 Lavoro">💼 Lavoro</option>
@@ -324,23 +334,23 @@
                             </select>
                         </div>
                         <div>
-                            <label class="text-xs font-bold block mb-1">Priorità del Cuore</label>
-                            <select id="wish-priority" class="w-full p-2 rounded-xl border text-xs" style="background-color: var(--input-bg); border-color: var(--border-color);">
+                            <label class="text-[10px] font-bold block mb-0.5">Priorità del Cuore</label>
+                            <select id="wish-priority" class="w-full p-2 rounded-xl border text-[11px]" style="background-color: var(--input-bg); border-color: var(--border-color);">
                                 <option value="⭐ Essenziale">⭐ Essenziale</option>
                                 <option value="💫 Desiderio Dolce">💫 Desiderio Dolce</option>
                                 <option value="🌙 Sogno nel Cassetto">🌙 Sogno nel Cassetto</option>
                             </select>
                         </div>
                     </div>
-                    <button onclick="saveWish()" class="w-full py-2.5 rounded-2xl font-bold btn-gummy text-white text-sm" style="background-color: var(--accent);">
+                    <button onclick="saveWish()" class="w-full py-2 rounded-xl font-bold btn-gummy text-white text-xs" style="background-color: var(--accent);">
                         ✨ Lancia il Desiderio nel Cielo ✨
                     </button>
                 </div>
 
                 <!-- Lista dei Desideri / Costellazione Stellare -->
                 <div class="space-y-3">
-                    <p class="text-xs text-center opacity-75">Tocca una stella per visualizzare, modificare o realizzare i desideri del tuo cuore.</p>
-                    <div id="wishes-grid" class="grid grid-cols-2 gap-3">
+                    <p class="text-[10px] text-center opacity-75">Tocca una stella per visualizzare, modificare o realizzare i desideri del tuo cuore.</p>
+                    <div id="wishes-grid" class="grid grid-cols-2 gap-2.5">
                         <!-- Generato dinamicamente con JS -->
                     </div>
                 </div>
@@ -349,18 +359,18 @@
             <!-- SEZIONE: GLI INCANTESIMI (RITUALI MINDFULNESS) -->
             <div id="section-spells" class="hidden space-y-5">
                 <div class="flex items-center justify-between mb-2">
-                    <button onclick="navigateTo('home')" class="text-sm btn-gummy">⬅️ Indietro</button>
-                    <h2 class="text-lg font-bold font-kawaii">Rituali Simbolici</h2>
+                    <button onclick="navigateTo('home')" class="text-xs bg-white/40 px-3 py-1.5 rounded-full font-bold btn-gummy">⬅️ Indietro</button>
+                    <h2 class="text-md font-bold font-kawaii">Rituali Simbolici</h2>
                     <span>🧘‍♀️</span>
                 </div>
 
                 <!-- Descrizione -->
-                <div class="p-4 rounded-2xl bg-white/40 border border-white/20 text-xs text-center">
+                <div class="p-4 rounded-2xl bg-white/40 border border-white/20 text-[11px] text-center leading-relaxed">
                     Gli incantesimi sono piccoli rituali di <strong>mindfulness e crescita personale</strong>. Ti aiutano a staccare dalla routine quotidiana e a ritrovare il tuo centro.
                 </div>
 
                 <!-- Lista di Incantesimi -->
-                <div class="grid grid-cols-2 gap-3" id="spells-list">
+                <div class="grid grid-cols-2 gap-2.5" id="spells-list">
                     <!-- Spells generati tramite JS -->
                 </div>
             </div>
@@ -368,35 +378,35 @@
             <!-- MODALE / SCREEN RITUALE ATTIVO -->
             <div id="ritual-active-screen" class="hidden fixed inset-0 z-50 flex flex-col justify-between p-6 overflow-y-auto" style="background: linear-gradient(135deg, var(--bg-start), var(--bg-end));">
                 <div class="flex justify-between items-center">
-                    <span class="text-sm">Rituale in corso... ✨</span>
+                    <span class="text-xs font-semibold opacity-75">Rituale in corso... ✨</span>
                     <button onclick="closeRitual()" class="text-xs bg-white/40 px-3 py-1.5 rounded-full font-bold btn-gummy">Chiudi</button>
                 </div>
 
                 <div class="flex-1 flex flex-col items-center justify-center space-y-6 my-4 text-center">
                     <span id="active-spell-emoji" class="text-5xl animate-bounce">🌱</span>
-                    <h2 id="active-spell-title" class="text-2xl font-bold font-kawaii">Semi di Fiducia</h2>
-                    <p id="active-spell-formula" class="text-sm italic opacity-90 px-4">"Nel silenzio pianto un seme speciale, crescerà forte per non farsi del male."</p>
+                    <h2 id="active-spell-title" class="text-xl font-bold font-kawaii">Semi di Fiducia</h2>
+                    <p id="active-spell-formula" class="text-xs italic opacity-90 px-4">"Nel silenzio pianto un seme speciale, crescerà forte per non farsi del male."</p>
                     
                     <!-- Box Scrittura Intenzione -->
                     <div id="ritual-intent-box" class="w-full max-w-sm p-4 rounded-3xl space-y-3" style="background-color: var(--card-bg); border: 2px solid var(--border-color);">
-                        <label class="text-xs font-bold block text-left">Fissa un'intenzione positiva prima di iniziare il respiro:</label>
-                        <input type="text" id="ritual-intention" placeholder="Cosa desideri coltivare in questo momento?" class="w-full p-2.5 rounded-xl border text-sm" style="background-color: var(--input-bg); border-color: var(--border-color);">
-                        <button onclick="startBreathingExercise()" id="btn-start-breath" class="w-full py-2 rounded-xl text-white font-bold text-sm btn-gummy" style="background-color: var(--accent);">
+                        <label class="text-[10px] font-bold block text-left">Fissa un'intenzione positiva prima di iniziare il respiro:</label>
+                        <input type="text" id="ritual-intention" placeholder="Cosa desideri coltivare in questo momento?" class="w-full p-2.5 rounded-xl border text-xs" style="background-color: var(--input-bg); border-color: var(--border-color);">
+                        <button onclick="startBreathingExercise()" id="btn-start-breath" class="w-full py-2 rounded-xl text-white font-bold text-xs btn-gummy" style="background-color: var(--accent);">
                             Inizia Respirazione Guidata
                         </button>
                     </div>
 
                     <!-- Cerchio di Respirazione (Invisibile finché non si avvia) -->
                     <div id="breathing-container" class="hidden flex flex-col items-center space-y-4">
-                        <div class="w-32 h-32 rounded-full border-4 border-white/50 flex items-center justify-center relative">
+                        <div class="w-28 h-28 rounded-full border-4 border-white/50 flex items-center justify-center relative">
                             <div class="absolute inset-0 rounded-full breathing-core"></div>
-                            <span id="breathing-status" class="relative z-10 font-bold text-sm">Pronto...</span>
+                            <span id="breathing-status" class="relative z-10 font-bold text-xs">Pronto...</span>
                         </div>
-                        <p class="text-xs opacity-75">Segui l'animazione del cerchio: inala quando si espande, espira quando si restringe.</p>
+                        <p class="text-[10px] opacity-75 max-w-xs leading-relaxed">Segui l'animazione del cerchio: inala quando si espande, espira quando si restringe.</p>
                     </div>
                 </div>
 
-                <div class="text-center pb-4 text-xs opacity-60">
+                <div class="text-center pb-4 text-[11px] opacity-60">
                     Prenditi questo istante solo per te.
                 </div>
             </div>
@@ -404,35 +414,35 @@
             <!-- SEZIONE: CALENDARIO -->
             <div id="section-calendar" class="hidden space-y-4">
                 <div class="flex items-center justify-between">
-                    <button onclick="navigateTo('home')" class="text-sm btn-gummy">⬅️ Indietro</button>
-                    <h2 class="text-lg font-bold font-kawaii">Calendario Magico</h2>
-                    <span class="text-xs bg-white/50 px-2 py-1 rounded-lg" id="calendar-month-year">Mese Anno</span>
+                    <button onclick="navigateTo('home')" class="text-xs bg-white/40 px-3 py-1.5 rounded-full font-bold btn-gummy">⬅️ Indietro</button>
+                    <h2 class="text-md font-bold font-kawaii">Calendario Magico</h2>
+                    <span class="text-[10px] bg-white/50 px-2 py-1 rounded-lg" id="calendar-month-year">Mese Anno</span>
                 </div>
 
                 <!-- Griglia del Calendario -->
-                <div class="p-4 rounded-3xl space-y-3" style="background-color: var(--card-bg); border: 2px solid var(--border-color);">
+                <div class="p-3.5 rounded-3xl space-y-2.5" style="background-color: var(--card-bg); border: 2px solid var(--border-color);">
                     <!-- Navigazione Mese -->
-                    <div class="flex justify-between items-center text-xs font-bold px-2">
-                        <button onclick="prevMonth()" class="btn-gummy p-1">◀️ Mese Prec.</button>
-                        <span id="calendar-current-month-lbl" class="text-sm font-kawaii">Novembre</span>
-                        <button onclick="nextMonth()" class="btn-gummy p-1">Mese Succ. ▶️</button>
+                    <div class="flex justify-between items-center text-[10px] font-bold px-1">
+                        <button onclick="prevMonth()" class="btn-gummy p-1">◀️ Prec.</button>
+                        <span id="calendar-current-month-lbl" class="text-xs font-kawaii">Novembre</span>
+                        <button onclick="nextMonth()" class="btn-gummy p-1">Succ. ▶️</button>
                     </div>
 
-                    <div class="grid grid-cols-7 gap-1 text-center font-bold text-xs opacity-75 border-b pb-2">
+                    <div class="grid grid-cols-7 gap-1 text-center font-bold text-[9px] opacity-75 border-b pb-1.5">
                         <div>Dom</div><div>Lun</div><div>Mar</div><div>Mer</div><div>Gio</div><div>Ven</div><div>Sab</div>
                     </div>
-                    <div id="calendar-days" class="grid grid-cols-7 gap-1.5 text-center text-xs">
+                    <div id="calendar-days" class="grid grid-cols-7 gap-1 text-center text-xs">
                         <!-- Generato con JS -->
                     </div>
                 </div>
 
                 <!-- Box Dettaglio del Giorno Selezionato -->
-                <div id="day-detail-box" class="hidden p-4 rounded-3xl space-y-3 border-2" style="background-color: var(--card-bg); border-color: var(--border-color);">
-                    <div class="flex justify-between items-center border-b pb-2">
+                <div id="day-detail-box" class="hidden p-4 rounded-3xl space-y-2.5 border-2" style="background-color: var(--card-bg); border-color: var(--border-color);">
+                    <div class="flex justify-between items-center border-b pb-1.5">
                         <h3 id="detail-date" class="font-bold text-xs">Ricordi del --/--/----</h3>
                         <button onclick="closeDetailBox()" class="text-xs opacity-60">Chiudi ❌</button>
                     </div>
-                    <div id="detail-content" class="text-xs space-y-2">
+                    <div id="detail-content" class="text-[11px] space-y-1.5">
                         <!-- Popolato dinamicamente -->
                     </div>
                 </div>
@@ -441,51 +451,51 @@
             <!-- SEZIONE: BENESSERE & COLLEZIONE -->
             <div id="section-stats" class="hidden space-y-5">
                 <div class="flex items-center justify-between mb-2">
-                    <button onclick="navigateTo('home')" class="text-sm btn-gummy">⬅️ Indietro</button>
-                    <h2 class="text-lg font-bold font-kawaii">Il Tuo Benessere</h2>
+                    <button onclick="navigateTo('home')" class="text-xs bg-white/40 px-3 py-1.5 rounded-full font-bold btn-gummy">⬅️ Indietro</button>
+                    <h2 class="text-md font-bold font-kawaii">Il Tuo Benessere</h2>
                     <span>🔮</span>
                 </div>
 
                 <!-- Stats Principali -->
-                <div class="p-5 rounded-3xl space-y-4" style="background-color: var(--card-bg); border: 2px solid var(--border-color);">
-                    <h3 class="text-sm font-bold border-b pb-2">I Numeri del Cuore</h3>
+                <div class="p-4 rounded-3xl space-y-3.5" style="background-color: var(--card-bg); border: 2px solid var(--border-color);">
+                    <h3 class="text-xs font-bold border-b pb-1.5">I Numeri del Cuore</h3>
                     
-                    <div class="grid grid-cols-3 gap-3 text-center">
-                        <div class="p-3 bg-white/40 rounded-2xl">
-                            <span class="block text-xl">🔥</span>
-                            <span class="block font-bold text-sm" id="stat-streak">0</span>
-                            <span class="text-[10px] opacity-75">Giorni di fila</span>
+                    <div class="grid grid-cols-3 gap-2">
+                        <div class="p-2.5 bg-white/40 rounded-2xl text-center">
+                            <span class="block text-lg">🔥</span>
+                            <span class="block font-bold text-xs" id="stat-streak">0</span>
+                            <span class="text-[9px] opacity-75 whitespace-nowrap">Giorni di fila</span>
                         </div>
-                        <div class="p-3 bg-white/40 rounded-2xl">
-                            <span class="block text-xl">💫</span>
-                            <span class="block font-bold text-sm" id="stat-rituals">0</span>
-                            <span class="text-[10px] opacity-75">Incantesimi</span>
+                        <div class="p-2.5 bg-white/40 rounded-2xl text-center">
+                            <span class="block text-lg">💫</span>
+                            <span class="block font-bold text-xs" id="stat-rituals">0</span>
+                            <span class="text-[9px] opacity-75 whitespace-nowrap">Incantesimi</span>
                         </div>
-                        <div class="p-3 bg-white/40 rounded-2xl">
-                            <span class="block text-xl">⭐</span>
-                            <span class="block font-bold text-sm" id="stat-wishes">0</span>
-                            <span class="text-[10px] opacity-75">Desideri creati</span>
+                        <div class="p-2.5 bg-white/40 rounded-2xl text-center">
+                            <span class="block text-lg">⭐</span>
+                            <span class="block font-bold text-xs" id="stat-wishes">0</span>
+                            <span class="text-[9px] opacity-75 whitespace-nowrap">Sogni creati</span>
                         </div>
                     </div>
 
                     <!-- Bar Chart CSS per Medie -->
-                    <div class="space-y-3 pt-2">
-                        <div class="space-y-1">
-                            <div class="flex justify-between text-xs font-bold">
+                    <div class="space-y-2 pt-1">
+                        <div class="space-y-0.5">
+                            <div class="flex justify-between text-[10px] font-bold">
                                 <span>Energia Media</span>
                                 <span id="bar-energy-text">0%</span>
                             </div>
-                            <div class="w-full bg-slate-200/50 rounded-full h-2.5 overflow-hidden">
+                            <div class="w-full bg-slate-200/50 rounded-full h-2 overflow-hidden">
                                 <div id="bar-energy-fill" class="h-full rounded-full transition-all duration-500" style="width: 0%; background-color: var(--accent);"></div>
                             </div>
                         </div>
 
-                        <div class="space-y-1">
-                            <div class="flex justify-between text-xs font-bold">
+                        <div class="space-y-0.5">
+                            <div class="flex justify-between text-[10px] font-bold">
                                 <span>Stress Medio (Calma)</span>
                                 <span id="bar-stress-text">0%</span>
                             </div>
-                            <div class="w-full bg-slate-200/50 rounded-full h-2.5 overflow-hidden">
+                            <div class="w-full bg-slate-200/50 rounded-full h-2 overflow-hidden">
                                 <div id="bar-stress-fill" class="h-full rounded-full transition-all duration-500" style="width: 0%; background-color: var(--accent);"></div>
                             </div>
                         </div>
@@ -493,13 +503,13 @@
                 </div>
 
                 <!-- Collezione Kawaii -->
-                <div class="p-5 rounded-3xl space-y-4" style="background-color: var(--card-bg); border: 2px solid var(--border-color);">
-                    <div class="border-b pb-2">
-                        <h3 class="text-sm font-bold">Collezione degli Oggetti Kawaii</h3>
-                        <p class="text-[10px] opacity-75">Completa pagine e rituali per sbloccare le decorazioni nel tuo grimorio.</p>
+                <div class="p-4 rounded-3xl space-y-3" style="background-color: var(--card-bg); border: 2px solid var(--border-color);">
+                    <div class="border-b pb-1.5">
+                        <h3 class="text-xs font-bold">Collezione degli Oggetti Kawaii</h3>
+                        <p class="text-[9px] opacity-75">Completa pagine e rituali per sbloccare le decorazioni nel tuo grimorio.</p>
                     </div>
                     
-                    <div class="grid grid-cols-4 gap-3 text-center" id="collection-grid">
+                    <div class="grid grid-cols-4 gap-2 text-center" id="collection-grid">
                         <!-- Popolato dinamicamente da JS -->
                     </div>
                 </div>
@@ -508,41 +518,41 @@
             <!-- SEZIONE: IMPOSTAZIONI & PERSONALIZZAZIONE -->
             <div id="section-settings" class="hidden space-y-5">
                 <div class="flex items-center justify-between mb-2">
-                    <button onclick="navigateTo('home')" class="text-sm btn-gummy">⬅️ Indietro</button>
-                    <h2 class="text-lg font-bold font-kawaii">Personalizza</h2>
+                    <button onclick="navigateTo('home')" class="text-xs bg-white/40 px-3 py-1.5 rounded-full font-bold btn-gummy">⬅️ Indietro</button>
+                    <h2 class="text-md font-bold font-kawaii">Personalizza</h2>
                     <span>🎨</span>
                 </div>
 
                 <!-- Selettore Temi -->
-                <div class="p-5 rounded-3xl space-y-4" style="background-color: var(--card-bg); border: 2px solid var(--border-color);">
-                    <h3 class="text-sm font-bold border-b pb-2">Scegli la tua Palette</h3>
+                <div class="p-4 rounded-3xl space-y-3" style="background-color: var(--card-bg); border: 2px solid var(--border-color);">
+                    <h3 class="text-xs font-bold border-b pb-1.5">Scegli la tua Palette</h3>
                     
-                    <div class="space-y-2.5">
-                        <button onclick="changeTheme('dream-sky')" class="w-full p-3 rounded-2xl flex justify-between items-center text-xs font-bold border btn-gummy" style="background: linear-gradient(90deg, #e0c3fc, #8ec5fc); color: #4a3f75;">
+                    <div class="space-y-2">
+                        <button onclick="changeTheme('dream-sky')" class="w-full p-2.5 rounded-2xl flex justify-between items-center text-[11px] font-bold border btn-gummy" style="background: linear-gradient(90deg, #e0c3fc, #8ec5fc); color: #4a3f75;">
                             <span>Dream Sky 🌌 (Cielo Pastello)</span>
                             <span>✨ Attivo</span>
                         </button>
-                        <button onclick="changeTheme('sakura')" class="w-full p-3 rounded-2xl flex justify-between items-center text-xs font-bold border btn-gummy" style="background: linear-gradient(90deg, #ffd1ff, #fbd0c6); color: #6c3f4e;">
+                        <button onclick="changeTheme('sakura')" class="w-full p-2.5 rounded-2xl flex justify-between items-center text-[11px] font-bold border btn-gummy" style="background: linear-gradient(90deg, #ffd1ff, #fbd0c6); color: #6c3f4e;">
                             <span>Sakura 🌸 (Petali di Ciliegio)</span>
                             <span>🌸 Scegli</span>
                         </button>
-                        <button onclick="changeTheme('moon-garden')" class="w-full p-3 rounded-2xl flex justify-between items-center text-xs font-bold border btn-gummy" style="background: linear-gradient(90deg, #1e1e38, #3b3b6d); color: #f5f3f7;">
+                        <button onclick="changeTheme('moon-garden')" class="w-full p-2.5 rounded-2xl flex justify-between items-center text-[11px] font-bold border btn-gummy" style="background: linear-gradient(90deg, #1e1e38, #3b3b6d); color: #f5f3f7;">
                             <span>Moon Garden 🌙 (Giardino Lunare)</span>
                             <span>🌙 Scegli</span>
                         </button>
-                        <button onclick="changeTheme('magic-library')" class="w-full p-3 rounded-2xl flex justify-between items-center text-xs font-bold border btn-gummy" style="background: linear-gradient(90deg, #fbf5eb, #e8d8c8); color: #5c4033;">
+                        <button onclick="changeTheme('magic-library')" class="w-full p-2.5 rounded-2xl flex justify-between items-center text-[11px] font-bold border btn-gummy" style="background: linear-gradient(90deg, #fbf5eb, #e8d8c8); color: #5c4033;">
                             <span>Magic Library 📚 (Grimorio Antico)</span>
                             <span>📚 Scegli</span>
                         </button>
-                        <button onclick="changeTheme('candy-clouds')" class="w-full p-3 rounded-2xl flex justify-between items-center text-xs font-bold border btn-gummy" style="background: linear-gradient(90deg, #ffc6ff, #bdb2ff); color: #543d75;">
+                        <button onclick="changeTheme('candy-clouds')" class="w-full p-2.5 rounded-2xl flex justify-between items-center text-[11px] font-bold border btn-gummy" style="background: linear-gradient(90deg, #ffc6ff, #bdb2ff); color: #543d75;">
                             <span>Candy Clouds 🍬 (Nuvole Dolci)</span>
                             <span>🍬 Scegli</span>
                         </button>
-                        <button onclick="changeTheme('lavender-night')" class="w-full p-3 rounded-2xl flex justify-between items-center text-xs font-bold border btn-gummy" style="background: linear-gradient(90deg, #2c1a4d, #513b8c); color: #f0e6ff;">
+                        <button onclick="changeTheme('lavender-night')" class="w-full p-2.5 rounded-2xl flex justify-between items-center text-[11px] font-bold border btn-gummy" style="background: linear-gradient(90deg, #2c1a4d, #513b8c); color: #f0e6ff;">
                             <span>Lavender Night 🪻 (Sogno Viola)</span>
                             <span>🪻 Scegli</span>
                         </button>
-                        <button onclick="changeTheme('mint-leaves')" class="w-full p-3 rounded-2xl flex justify-between items-center text-xs font-bold border btn-gummy" style="background: linear-gradient(90deg, #e8f5e9, #c8e6c9); color: #2e7d32;">
+                        <button onclick="changeTheme('mint-leaves')" class="w-full p-2.5 rounded-2xl flex justify-between items-center text-[11px] font-bold border btn-gummy" style="background: linear-gradient(90deg, #e8f5e9, #c8e6c9); color: #2e7d32;">
                             <span>Mint Leaves 🌿 (Menta Fresca)</span>
                             <span>🌿 Scegli</span>
                         </button>
@@ -550,15 +560,15 @@
                 </div>
 
                 <!-- Gestione Dati -->
-                <div class="p-5 rounded-3xl space-y-4" style="background-color: var(--card-bg); border: 2px solid var(--border-color);">
-                    <h3 class="text-sm font-bold border-b pb-2 text-rose-500">Custodia della Memoria</h3>
-                    <p class="text-xs opacity-75">I tuoi dati vengono custoditi solo all'interno del tuo dispositivo in modo sicuro e anonimo.</p>
+                <div class="p-4 rounded-3xl space-y-3.5" style="background-color: var(--card-bg); border: 2px solid var(--border-color);">
+                    <h3 class="text-xs font-bold border-b pb-1.5 text-rose-500">Custodia della Memoria</h3>
+                    <p class="text-[10px] opacity-75 leading-relaxed">I tuoi dati vengono custoditi solo all'interno del tuo dispositivo in modo sicuro e anonimo.</p>
                     
                     <div class="flex space-x-2">
-                        <button onclick="exportJSON()" class="flex-1 py-2 rounded-xl border text-xs font-bold bg-white/40 hover:bg-white/80 btn-gummy">
+                        <button onclick="exportJSON()" class="flex-1 py-2 rounded-xl border text-[10px] font-bold bg-white/40 hover:bg-white/80 btn-gummy">
                             Salva Copia 📥
                         </button>
-                        <button onclick="clearAllDataPrompt()" class="flex-1 py-2 rounded-xl border text-xs font-bold bg-rose-100 hover:bg-rose-200 text-rose-700 btn-gummy">
+                        <button onclick="clearAllDataPrompt()" class="flex-1 py-2 rounded-xl border text-[10px] font-bold bg-rose-100 hover:bg-rose-200 text-rose-700 btn-gummy">
                             Cancella Tutto ⚠️
                         </button>
                     </div>
@@ -567,26 +577,26 @@
 
         </main>
 
-        <!-- FOOTER DI NAVIGAZIONE COMPATTO -->
-        <footer class="relative z-10 px-4 py-3 bg-white/20 backdrop-blur-md border-t border-white/20 flex justify-around items-center">
+        <!-- FOOTER DI NAVIGAZIONE COMPATTO (Ancorato in modo assoluto/adattivo al fondo del contenitore principale, con gestione safe-area) -->
+        <footer class="absolute bottom-0 left-0 right-0 z-30 bg-white/20 backdrop-blur-md border-t border-white/20 flex justify-around items-center flex-none" style="padding-top: 10px; padding-bottom: calc(12px + env(safe-area-inset-bottom, 12px));">
             <button onclick="navigateTo('home')" class="flex flex-col items-center justify-center p-1.5 btn-gummy opacity-70 hover:opacity-100 focus:opacity-100 transition-opacity">
                 <svg class="w-6 h-6 mb-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--text-main);">
                     <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
                     <polyline points="9 22 9 12 15 12 15 22"/>
                 </svg>
-                <span class="text-[9px] font-bold">Home</span>
+                <span class="text-[9px] font-bold tracking-tight">Home</span>
             </button>
             <button onclick="navigateTo('new-page')" class="flex flex-col items-center justify-center p-1.5 btn-gummy opacity-70 hover:opacity-100 focus:opacity-100 transition-opacity">
                 <svg class="w-6 h-6 mb-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--text-main);">
                     <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
                 </svg>
-                <span class="text-[9px] font-bold">Scrivi</span>
+                <span class="text-[9px] font-bold tracking-tight">Scrivi</span>
             </button>
             <button onclick="navigateTo('diary')" class="flex flex-col items-center justify-center p-1.5 btn-gummy opacity-70 hover:opacity-100 focus:opacity-100 transition-opacity">
                 <svg class="w-6 h-6 mb-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--text-main);">
                     <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
                 </svg>
-                <span class="text-[9px] font-bold">Sogni</span>
+                <span class="text-[9px] font-bold tracking-tight">Sogni</span>
             </button>
             <button onclick="navigateTo('calendar')" class="flex flex-col items-center justify-center p-1.5 btn-gummy opacity-70 hover:opacity-100 focus:opacity-100 transition-opacity">
                 <svg class="w-6 h-6 mb-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--text-main);">
@@ -595,7 +605,7 @@
                     <line x1="8" y1="2" x2="8" y2="6"/>
                     <line x1="16" y1="2" x2="16" y2="6"/>
                 </svg>
-                <span class="text-[9px] font-bold">Calendario</span>
+                <span class="text-[9px] font-bold tracking-tight">Calendario</span>
             </button>
             <button onclick="navigateTo('stats')" class="flex flex-col items-center justify-center p-1.5 btn-gummy opacity-70 hover:opacity-100 focus:opacity-100 transition-opacity">
                 <svg class="w-6 h-6 mb-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--text-main);">
@@ -603,13 +613,13 @@
                     <path d="M11 3 L7 9 L12 21 L17 9 L13 3"/>
                     <path d="M2 9h20"/>
                 </svg>
-                <span class="text-[9px] font-bold">Collezione</span>
+                <span class="text-[9px] font-bold tracking-tight">Collezione</span>
             </button>
         </footer>
 
         <!-- POPUP DI NOTIFICA PERSONALIZZATO (Sostituto di alert) -->
-        <div id="mystical-toast" class="hidden fixed bottom-20 left-1/2 transform -translate-x-1/2 z-50 w-11/12 max-w-sm p-4 rounded-3xl shadow-xl text-center border-2 transition-all duration-300" style="background-color: var(--card-bg); border-color: var(--accent);">
-            <p id="toast-message" class="text-sm font-semibold"></p>
+        <div id="mystical-toast" class="hidden fixed bottom-24 left-1/2 transform -translate-x-1/2 z-50 w-11/12 max-w-sm p-4 rounded-3xl shadow-xl text-center border-2 transition-all duration-300" style="background-color: var(--card-bg); border-color: var(--accent);">
+            <p id="toast-message" class="text-xs font-semibold"></p>
         </div>
 
         <!-- POPUP COMPLETAMENTO RITUALE -->
@@ -623,6 +633,21 @@
                 <button onclick="closeRitualCompletePopup()" class="w-full py-2.5 rounded-2xl text-white font-bold text-sm btn-gummy" style="background-color: var(--accent);">
                     Concludi con un Sorriso ⭐
                 </button>
+            </div>
+        </div>
+
+        <!-- MODALE DI CONFERMA CANCELLAZIONE CUSTODIA (Sostituisce il confirm nativo di sistema) -->
+        <div id="custom-confirm-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-6 bg-slate-900/40 backdrop-blur-sm">
+            <div class="w-full max-w-xs p-5 rounded-[32px] text-center space-y-3.5 border-2 shadow-2xl bg-white/95 border-rose-300" style="background-color: var(--card-bg); border-color: var(--border-color);">
+                <span class="text-4xl block">⚠️</span>
+                <h3 class="font-bold text-md font-kawaii text-rose-500">Purificare il grimorio?</h3>
+                <p class="text-[11px] text-slate-700 px-2 leading-relaxed">
+                    Sei sicura di voler cancellare tutta la memoria del tuo diario? Questa azione eliminerà per sempre le tue pagine, desideri e collezione.
+                </p>
+                <div class="flex space-x-2 pt-1.5">
+                    <button onclick="closeConfirmModal()" class="flex-1 py-2 rounded-xl border text-xs font-bold bg-white/40 hover:bg-white/80 btn-gummy">Annulla</button>
+                    <button onclick="executeClearAllData()" class="flex-1 py-2 rounded-xl text-white font-bold text-xs bg-rose-500 hover:bg-rose-600 btn-gummy">Purifica 🧼</button>
+                </div>
             </div>
         </div>
     </div>
@@ -753,7 +778,7 @@
             renderSpells();
             checkAndUnlockItems();
             
-            // Set input data odierna per nuova pagina
+            // Imposta data odierna per nuova pagina
             const today = new Date().toLocaleDateString('it-IT');
             document.getElementById('current-date-display').textContent = today;
         });
@@ -764,18 +789,18 @@
             if (saved) {
                 try {
                     appState = JSON.parse(saved);
-                    // Sanitizzazioni per retrocompatibilità o array mancanti
                     if (!appState.entries) appState.entries = [];
                     if (!appState.wishes) appState.wishes = [];
                     if (!appState.unlockedItems) appState.unlockedItems = [];
                     if (!appState.ritualsCompleted) appState.ritualsCompleted = 0;
                     if (!appState.activeTheme) appState.activeTheme = 'dream-sky';
                 } catch (e) {
-                    console.error("Errore di parsing dei dati salvati, resetto stato.", e);
+                    console.error("Errore di parsing dei dati salvati, resetto lo stato.", e);
                 }
             }
         }
 
+        // --- FUNZIONE SALVATAGGIO ---
         function saveData() {
             localStorage.setItem('my_mystical_journal_data', JSON.stringify(appState));
             checkAndUnlockItems();
@@ -789,10 +814,10 @@
             });
             document.getElementById(`section-${sectionId}`).classList.remove('hidden');
 
-            // Scroll in cima
+            // Riporta lo scroll in cima
             document.querySelector('main').scrollTop = 0;
 
-            // Logica specifica quando si apre una sezione
+            // Logica specifica per ciascuna sezione
             if (sectionId === 'diary') {
                 renderWishes();
             } else if (sectionId === 'calendar') {
@@ -802,7 +827,7 @@
             }
         }
 
-        // --- WELCOME MSG DINAMICO ---
+        // --- WELCOME MESSAGGIO DINAMICO ---
         function setWelcomeMessage() {
             const hrs = new Date().getHours();
             const el = document.getElementById('welcome-message');
@@ -815,12 +840,12 @@
             }
         }
 
-        // --- TOAST NOTIFICATION ---
+        // --- NOTIFICHE TOAST ---
         function showToast(message, colorClass = '') {
             const toast = document.getElementById('mystical-toast');
             const toastMsg = document.getElementById('toast-message');
             toastMsg.textContent = message;
-            toast.className = `fixed bottom-20 left-1/2 transform -translate-x-1/2 z-50 w-11/12 max-w-sm p-4 rounded-3xl shadow-xl text-center border-2 transition-all duration-300 ${colorClass}`;
+            toast.className = `fixed bottom-24 left-1/2 transform -translate-x-1/2 z-50 w-11/12 max-w-sm p-4 rounded-3xl shadow-xl text-center border-2 transition-all duration-300 ${colorClass}`;
             toast.style.backgroundColor = "var(--card-bg)";
             toast.style.borderColor = "var(--accent)";
             toast.classList.remove('hidden');
@@ -829,11 +854,10 @@
             }, 3000);
         }
 
-        // --- TRACCIAMENTO STREAK (GIORNI CONSECUTIVI) ---
+        // --- TRACCIAMENTO STREAK ---
         function calculateStreak() {
             if (appState.entries.length === 0) return 0;
             
-            // Ordina le date in ordine decrescente
             const dates = appState.entries.map(e => e.date).sort().reverse();
             let streak = 0;
             let expectedDate = new Date(); // Oggi
@@ -842,7 +866,6 @@
                 const entryDateStr = dates[i];
                 const expectedDateStr = formatDateKey(expectedDate);
                 
-                // Ieri
                 const yesterday = new Date(expectedDate);
                 yesterday.setDate(yesterday.getDate() - 1);
                 const yesterdayStr = formatDateKey(yesterday);
@@ -855,12 +878,11 @@
                     expectedDate = new Date(yesterday);
                     expectedDate.setDate(expectedDate.getDate() - 1);
                 } else if (i === 0) {
-                    // Controlla se l'ultima voce risale a ieri
                     const lastEntryDate = new Date(dates[0]);
                     const differenceInTime = new Date().getTime() - lastEntryDate.getTime();
                     const differenceInDays = differenceInTime / (1000 * 3600 * 24);
                     if (differenceInDays > 1.5) {
-                        return 0; // Streak rotto
+                        return 0; // Streak interrotto
                     }
                 } else {
                     break;
@@ -921,7 +943,6 @@
                 kindness: document.getElementById('input-kindness').value.trim()
             };
 
-            // Controlla se esiste già una pagina per oggi e sovrascrivi
             const existingIdx = appState.entries.findIndex(e => e.date === todayStr);
             if (existingIdx !== -1) {
                 appState.entries[existingIdx] = entry;
@@ -981,7 +1002,6 @@
             saveData();
             renderWishes();
 
-            // Pulisci e nascondi
             document.getElementById('wish-title').value = '';
             document.getElementById('wish-description').value = '';
             document.getElementById('new-wish-form').classList.add('hidden');
@@ -1045,7 +1065,7 @@
             });
         }
 
-        // --- SEZIONE: INCANTESIMI (MINDFULNESS RITUALS) ---
+        // --- SEZIONE: INCANTESIMI ---
         let currentActiveSpell = null;
         let breathingTimer = null;
 
@@ -1076,7 +1096,6 @@
             document.getElementById('active-spell-formula').textContent = spell.formula;
             document.getElementById('ritual-intention').value = '';
 
-            // Reset UI respirazione
             document.getElementById('ritual-intent-box').classList.remove('hidden');
             document.getElementById('breathing-container').classList.add('hidden');
             document.getElementById('btn-start-breath').disabled = false;
@@ -1101,7 +1120,6 @@
 
             const statusTxt = document.getElementById('breathing-status');
             
-            // Loop respirazione (12 secondi totali per ciclo: 4s Inala, 4s Trattieni, 4s Esala)
             let seconds = 0;
             statusTxt.textContent = "Inspira...";
             
@@ -1116,7 +1134,6 @@
                 }
             }, 1000);
 
-            // Rituale dura 24 secondi (due respiri completi)
             setTimeout(() => {
                 clearInterval(breathingTimer);
                 completeRitual();
@@ -1128,7 +1145,6 @@
             saveData();
             closeRitual();
 
-            // Sblocca pop-up finale
             document.getElementById('ritual-complete-popup').classList.remove('hidden');
         }
 
@@ -1152,14 +1168,12 @@
             const firstDayIndex = new Date(calCurrentYear, calCurrentMonth, 1).getDay();
             const totalDays = new Date(calCurrentYear, calCurrentMonth + 1, 0).getDate();
 
-            // Giorni vuoti prima del primo giorno del mese
             for (let i = 0; i < firstDayIndex; i++) {
                 const emptyCell = document.createElement('div');
                 emptyCell.className = "py-3";
                 daysContainer.appendChild(emptyCell);
             }
 
-            // Popola i giorni del mese
             for (let day = 1; day <= totalDays; day++) {
                 const dayBtn = document.createElement('button');
                 dayBtn.className = "py-2.5 rounded-full btn-gummy transition-all flex flex-col items-center justify-center relative hover:bg-white/40";
@@ -1167,7 +1181,6 @@
                 
                 const dayStr = `${calCurrentYear}-${String(calCurrentMonth + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
                 
-                // Cerca se c'è un'entrata per questo giorno
                 const entry = appState.entries.find(e => e.date === dayStr);
 
                 if (entry) {
@@ -1254,7 +1267,6 @@
 
         // --- SEZIONE: STATISTICHE & COLLEZIONE ---
         function renderStatsAndCollection() {
-            // Calcola medie
             const total = appState.entries.length;
             let avgEnergy = 0;
             let avgStress = 0;
@@ -1271,19 +1283,16 @@
 
             const streak = calculateStreak();
 
-            // Aggiorna Numeri
             document.getElementById('stat-streak').textContent = streak;
             document.getElementById('stat-rituals').textContent = appState.ritualsCompleted || 0;
             document.getElementById('stat-wishes').textContent = appState.wishes.length || 0;
 
-            // Aggiorna Grafici CSS
             document.getElementById('bar-energy-text').textContent = `${finalAvgEnergy}%`;
             document.getElementById('bar-energy-fill').style.width = `${finalAvgEnergy}%`;
 
             document.getElementById('bar-stress-text').textContent = `${finalAvgStress}%`;
             document.getElementById('bar-stress-fill').style.width = `${finalAvgStress}%`;
 
-            // Render Collezione Kawaii
             renderCollectionGrid(streak, total);
         }
 
@@ -1342,7 +1351,7 @@
             showToast("🎨 Palette magica aggiornata!", "text-indigo-600");
         }
 
-        // --- EXPORT / IMPORT / RESET ---
+        // --- ESPORTAZIONE / IMPORTAZIONE / RESET ---
         function exportJSON() {
             const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(appState, null, 2));
             const downloadAnchor = document.createElement('a');
@@ -1354,20 +1363,26 @@
         }
 
         function clearAllDataPrompt() {
-            const isConfirmed = confirm("⚠️ Sei sicura di voler cancellare tutta la memoria del tuo diario? Questa azione eliminerà per sempre le tue pagine, desideri e collezione.");
-            if (isConfirmed) {
-                localStorage.removeItem('my_mystical_journal_data');
-                appState = {
-                    entries: [],
-                    wishes: [],
-                    ritualsCompleted: 0,
-                    activeTheme: 'dream-sky',
-                    unlockedItems: []
-                };
-                applyTheme('dream-sky');
-                showToast("Il grimorio è stato purificato. Tutti i dati sono stati cancellati.", "text-rose-600");
-                navigateTo('home');
-            }
+            document.getElementById('custom-confirm-modal').classList.remove('hidden');
+        }
+
+        function closeConfirmModal() {
+            document.getElementById('custom-confirm-modal').classList.add('hidden');
+        }
+
+        function executeClearAllData() {
+            localStorage.removeItem('my_mystical_journal_data');
+            appState = {
+                entries: [],
+                wishes: [],
+                ritualsCompleted: 0,
+                activeTheme: 'dream-sky',
+                unlockedItems: []
+            };
+            applyTheme('dream-sky');
+            closeConfirmModal();
+            showToast("Il grimorio è stato purificato. Tutti i dati sono stati cancellati.", "text-rose-600");
+            navigateTo('home');
         }
     </script>
 </body>
