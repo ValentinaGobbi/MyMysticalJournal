@@ -116,9 +116,12 @@
                 </div>
             </div>
             <div class="flex space-x-2">
-                <!-- Bottone Impostazioni / Temi -->
-                <button onclick="navigateTo('settings')" class="p-2 rounded-full bg-white/60 hover:bg-white/90 text-slate-700 hover:text-slate-900 transition-all btn-gummy shadow-sm" title="Personalizzazione">
-                    ⚙️
+                <!-- Bottone Impostazioni / Temi con Rotellina Doodle SVG -->
+                <button onclick="navigateTo('settings')" class="p-2.5 rounded-full bg-white/60 hover:bg-white/90 transition-all btn-gummy shadow-sm flex items-center justify-center" title="Personalizzazione">
+                    <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--text-main);">
+                        <circle cx="12" cy="12" r="3" />
+                        <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z" />
+                    </svg>
                 </button>
             </div>
         </header>
@@ -137,8 +140,8 @@
 
                 <!-- Griglia dei Pulsanti Principali con SVG Doodle Extra-Compatti -->
                 <div class="grid grid-cols-2 gap-2">
-                    <!-- Nuova Pagina -->
-                    <button onclick="navigateTo('new-page')" class="p-2.5 rounded-2xl flex flex-col items-center justify-center space-y-1 text-center btn-gummy magic-glow-hover border-2 border-transparent" style="background-color: var(--card-bg); border-color: var(--border-color);">
+                    <!-- Nuova Pagina (Richiama startNewPageOrEditToday) -->
+                    <button onclick="startNewPageOrEditToday()" class="p-2.5 rounded-2xl flex flex-col items-center justify-center space-y-1 text-center btn-gummy magic-glow-hover border-2 border-transparent" style="background-color: var(--card-bg); border-color: var(--border-color);">
                         <svg class="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--text-main);">
                             <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
                             <path d="M7 6c.5-.5 1.5-.5 2 0" opacity="0.5" stroke-width="1.5"/>
@@ -436,10 +439,19 @@
                     </div>
                 </div>
 
-                <!-- Box Dettaglio del Giorno Selezionato -->
+                <!-- Box Dettaglio del Giorno Selezionato con Bottone Modifica Pencil -->
                 <div id="day-detail-box" class="hidden p-4 rounded-3xl space-y-2.5 border-2" style="background-color: var(--card-bg); border-color: var(--border-color);">
                     <div class="flex justify-between items-center border-b pb-1.5">
-                        <h3 id="detail-date" class="font-bold text-xs">Ricordi del --/--/----</h3>
+                        <div class="flex items-center space-x-2">
+                            <h3 id="detail-date" class="font-bold text-xs">Ricordi del --/--/----</h3>
+                            <!-- Tasto matita doodle per la modifica diretta -->
+                            <button id="detail-edit-btn" onclick="" class="btn-gummy p-1 rounded-lg bg-white/40 hover:bg-white/80 transition-all flex items-center justify-center" title="Modifica questa pagina">
+                                <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--text-main);">
+                                    <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
+                                    <path d="M18.5 2.5a2.121 2.121 0 1 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
+                                </svg>
+                            </button>
+                        </div>
                         <button onclick="closeDetailBox()" class="text-xs opacity-60">Chiudi ❌</button>
                     </div>
                     <div id="detail-content" class="text-[11px] space-y-1.5">
@@ -586,7 +598,7 @@
                 </svg>
                 <span class="text-[9px] font-bold tracking-tight">Home</span>
             </button>
-            <button onclick="navigateTo('new-page')" class="flex flex-col items-center justify-center p-1.5 btn-gummy opacity-70 hover:opacity-100 focus:opacity-100 transition-opacity">
+            <button onclick="startNewPageOrEditToday()" class="flex flex-col items-center justify-center p-1.5 btn-gummy opacity-70 hover:opacity-100 focus:opacity-100 transition-opacity">
                 <svg class="w-6 h-6 mb-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--text-main);">
                     <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
                 </svg>
@@ -662,6 +674,9 @@
             activeTheme: 'dream-sky',
             unlockedItems: []
         };
+
+        // Traccia quale data stiamo compilando o modificando
+        let currentEditingDate = null;
 
         // --- OGGETTI DA COLLEZIONE DISPONIBILI ---
         const COLLECTION_ITEMS = [
@@ -778,7 +793,7 @@
             renderSpells();
             checkAndUnlockItems();
             
-            // Imposta data odierna per nuova pagina
+            // Imposta data odierna come default iniziale
             const today = new Date().toLocaleDateString('it-IT');
             document.getElementById('current-date-display').textContent = today;
         });
@@ -898,6 +913,105 @@
             return `${y}-${m}-${d}`;
         }
 
+        // --- LOGICA DI ACCESSO / INIZIALIZZAZIONE FORM SCRITTURA ---
+        function startNewPageOrEditToday() {
+            const todayStr = formatDateKey(new Date());
+            const existingEntry = appState.entries.find(e => e.date === todayStr);
+            if (existingEntry) {
+                editHeartPage(todayStr);
+            } else {
+                currentEditingDate = todayStr;
+                resetNewPageFields();
+                const todayFormatted = new Date().toLocaleDateString('it-IT');
+                document.getElementById('current-date-display').textContent = todayFormatted;
+                navigateTo('new-page');
+            }
+        }
+
+        function startRetroactivePage(dateStr) {
+            currentEditingDate = dateStr;
+            resetNewPageFields();
+            const [y, m, d] = dateStr.split('-');
+            document.getElementById('current-date-display').textContent = `${d}/${m}/${y}`;
+            navigateTo('new-page');
+            closeDetailBox();
+        }
+
+        function resetNewPageFields() {
+            document.getElementById('input-mood-val').value = '😄';
+            document.querySelectorAll('.mood-btn').forEach(btn => {
+                if (btn.textContent === '😄') {
+                    btn.classList.add('border-pink-400', 'bg-white/95');
+                    btn.classList.remove('border-transparent');
+                } else {
+                    btn.classList.remove('border-pink-400', 'bg-white/95');
+                    btn.classList.add('border-transparent');
+                }
+            });
+            document.getElementById('input-energy').value = 50;
+            updateEnergyDisplay(50);
+            document.getElementById('input-heart-state').value = '❤️ Leggero';
+            document.getElementById('input-stress').value = 20;
+            updateStressDisplay(20);
+            document.getElementById('gratitude-1').value = '';
+            document.getElementById('gratitude-2').value = '';
+            document.getElementById('gratitude-3').value = '';
+            document.getElementById('input-thought').value = '';
+            document.getElementById('input-victory').value = '';
+            document.getElementById('input-kindness').value = '';
+        }
+
+        // Carica un'entrata esistente e avvia la schermata di editing
+        function editHeartPage(dateStr) {
+            const entry = appState.entries.find(e => e.date === dateStr);
+            if (!entry) return;
+
+            currentEditingDate = dateStr;
+
+            // Carica l'umore
+            document.getElementById('input-mood-val').value = entry.mood;
+            document.querySelectorAll('.mood-btn').forEach(btn => {
+                if (btn.textContent === entry.mood) {
+                    btn.classList.add('border-pink-400', 'bg-white/95');
+                    btn.classList.remove('border-transparent');
+                } else {
+                    btn.classList.remove('border-pink-400', 'bg-white/95');
+                    btn.classList.add('border-transparent');
+                }
+            });
+
+            // Carica energia
+            const energyVal = entry.energy !== undefined ? entry.energy : 50;
+            document.getElementById('input-energy').value = energyVal;
+            updateEnergyDisplay(energyVal);
+
+            // Carica lo stato del cuore
+            document.getElementById('input-heart-state').value = entry.heart || '❤️ Leggero';
+
+            // Carica lo stress
+            const stressVal = entry.stress !== undefined ? entry.stress : 20;
+            document.getElementById('input-stress').value = stressVal;
+            updateStressDisplay(stressVal);
+
+            // Carica le tre cose belle (con tutele se l'array è vuoto o incompleto)
+            const grat = entry.gratitude || [];
+            document.getElementById('gratitude-1').value = grat[0] || '';
+            document.getElementById('gratitude-2').value = grat[1] || '';
+            document.getElementById('gratitude-3').value = grat[2] || '';
+
+            // Carica il pensiero libero, la piccola vittoria e il gesto gentile
+            document.getElementById('input-thought').value = entry.thought || '';
+            document.getElementById('input-victory').value = entry.victory || '';
+            document.getElementById('input-kindness').value = entry.kindness || '';
+
+            // Aggiorna la data mostrata a schermo
+            const [y, m, d] = dateStr.split('-');
+            document.getElementById('current-date-display').textContent = `${d}/${m}/${y}`;
+
+            navigateTo('new-page');
+            closeDetailBox();
+        }
+
         // --- SEZIONE: NUOVA PAGINA DEL CUORE ---
         function selectMood(num, emoji) {
             document.querySelectorAll('.mood-btn').forEach(btn => {
@@ -925,10 +1039,10 @@
         }
 
         function saveHeartPage() {
-            const todayStr = formatDateKey(new Date());
+            const targetDateStr = currentEditingDate || formatDateKey(new Date());
             
             const entry = {
-                date: todayStr,
+                date: targetDateStr,
                 mood: document.getElementById('input-mood-val').value,
                 energy: parseInt(document.getElementById('input-energy').value),
                 heart: document.getElementById('input-heart-state').value,
@@ -943,7 +1057,7 @@
                 kindness: document.getElementById('input-kindness').value.trim()
             };
 
-            const existingIdx = appState.entries.findIndex(e => e.date === todayStr);
+            const existingIdx = appState.entries.findIndex(e => e.date === targetDateStr);
             if (existingIdx !== -1) {
                 appState.entries[existingIdx] = entry;
             } else {
@@ -953,18 +1067,7 @@
             saveData();
             showToast("✨ La pagina del tuo cuore è stata sigillata con affetto nel grimorio. ✨", "text-pink-600");
             
-            // Pulisci i campi
-            document.getElementById('gratitude-1').value = '';
-            document.getElementById('gratitude-2').value = '';
-            document.getElementById('gratitude-3').value = '';
-            document.getElementById('input-thought').value = '';
-            document.getElementById('input-victory').value = '';
-            document.getElementById('input-kindness').value = '';
-            document.getElementById('input-energy').value = 50;
-            document.getElementById('input-stress').value = 20;
-            updateEnergyDisplay(50);
-            updateStressDisplay(20);
-
+            resetNewPageFields();
             navigateTo('home');
         }
 
@@ -1005,7 +1108,7 @@
             document.getElementById('wish-title').value = '';
             document.getElementById('wish-description').value = '';
             document.getElementById('new-wish-form').classList.add('hidden');
-            showToast("⭐ Il tuo desiderio fluttua nel cielo del tuo diario! ⭐", "text-purple-600");
+            showToast("⭐ Il tuo desiderio fluttua nel cielo del tuo diari! ⭐", "text-purple-600");
         }
 
         function realizeWish(wishId) {
@@ -1224,6 +1327,11 @@
             const [y, m, d] = entry.date.split('-');
             document.getElementById('detail-date').textContent = `Ricordi del ${d}/${m}/${y} ✨`;
 
+            // Configura il tasto modifica matita per questo giorno
+            const editBtn = document.getElementById('detail-edit-btn');
+            editBtn.classList.remove('hidden');
+            editBtn.onclick = () => editHeartPage(entry.date);
+
             let gratHtml = '';
             if (entry.gratitude && entry.gratitude.length > 0) {
                 gratHtml = '<ul class="list-disc pl-4 space-y-0.5 mt-1">';
@@ -1254,9 +1362,13 @@
             const detailBox = document.getElementById('day-detail-box');
             const [y, m, d] = dayStr.split('-');
             document.getElementById('detail-date').textContent = `${d}/${m}/${y}`;
+            
+            // Nasconde il tasto matita perché la pagina non è ancora stata creata
+            document.getElementById('detail-edit-btn').classList.add('hidden');
+
             document.getElementById('detail-content').innerHTML = `
                 <p class="text-center py-2 opacity-75">Nessuna pagina registrata per questo giorno. Vuoi scriverne una adesso?</p>
-                <button onclick="navigateTo('new-page')" class="w-full py-1.5 bg-white/60 hover:bg-white/90 border rounded-xl font-bold btn-gummy">Scrivi Ora</button>
+                <button onclick="startRetroactivePage('${dayStr}')" class="w-full py-1.5 bg-white/60 hover:bg-white/90 border rounded-xl font-bold btn-gummy text-xs">Scrivi Ora</button>
             `;
             detailBox.classList.remove('hidden');
         }
@@ -1344,6 +1456,7 @@
             }
         }
 
+        // Modifica del tema
         function changeTheme(themeName) {
             appState.activeTheme = themeName;
             applyTheme(themeName);
