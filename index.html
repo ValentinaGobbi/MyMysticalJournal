@@ -1,0 +1,1374 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyMysticalJournal - Il Diario Incantato</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts for Kawaii Style (Fredoka and Nunito) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Custom Theme Variables Defaults (Dream Sky) */
+        :root {
+            --bg-start: #e0c3fc;
+            --bg-end: #8ec5fc;
+            --card-bg: rgba(255, 255, 255, 0.85);
+            --accent: #b19ffb;
+            --accent-glow: rgba(177, 159, 251, 0.4);
+            --text-main: #4a3f75;
+            --text-muted: #6c5e9c;
+            --border-color: rgba(177, 159, 251, 0.3);
+            --input-bg: rgba(255, 255, 255, 0.9);
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            background: linear-gradient(135deg, var(--bg-start), var(--bg-end));
+            color: var(--text-main);
+            min-height: 100vh;
+            transition: all 0.5s ease;
+        }
+
+        h1, h2, h3, .font-kawaii {
+            font-family: 'Fredoka', sans-serif;
+        }
+
+        /* Gummy active button effect */
+        .btn-gummy {
+            transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .btn-gummy:active {
+            transform: scale(0.92);
+        }
+
+        /* Sparkle float animation */
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg); opacity: 0.8; }
+            50% { transform: translateY(-10px) rotate(10deg); opacity: 1; }
+            100% { transform: translateY(0px) rotate(0deg); opacity: 0.8; }
+        }
+        .floating-sparkle {
+            animation: float 4s ease-in-out infinite;
+        }
+
+        /* Magic Glow */
+        .magic-glow {
+            box-shadow: 0 0 15px var(--accent-glow);
+        }
+        .magic-glow-hover:hover {
+            box-shadow: 0 0 20px var(--accent-glow);
+        }
+
+        /* Custom Scrollbar for Kawaii Aesthetic */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--accent);
+            border-radius: 10px;
+        }
+
+        /* Breathing Circle Animation */
+        @keyframes breathe {
+            0%, 100% { transform: scale(1); background-color: rgba(177, 159, 251, 0.2); }
+            40% { transform: scale(1.6); background-color: rgba(177, 159, 251, 0.5); }
+            60% { transform: scale(1.6); background-color: rgba(177, 159, 251, 0.5); }
+        }
+        .breathing-core {
+            animation: breathe 12s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body class="p-0 m-0 overflow-x-hidden flex justify-center items-start md:py-8">
+
+    <!-- Container Smartphone Mockup per Desktop, Fluid su Mobile -->
+    <div id="app-container" class="w-full max-w-md min-h-screen md:min-h-[850px] md:rounded-[40px] md:shadow-2xl overflow-hidden flex flex-col relative border-4 border-white/40 backdrop-blur-md" style="background: linear-gradient(180deg, var(--bg-start), var(--bg-end));">
+        
+        <!-- Sfondo con Stelline Decorative -->
+        <div class="absolute inset-0 pointer-events-none overflow-hidden z-0 opacity-40">
+            <svg class="absolute top-12 left-8 w-6 h-6 floating-sparkle" viewBox="0 0 24 24" fill="currentColor" style="color: var(--accent);"><path d="M12 2l2.4 7.2L22 12l-7.6 2.8L12 22l-2.4-7.2L2 12l7.6-2.8z"/></svg>
+            <svg class="absolute top-48 right-12 w-8 h-8 floating-sparkle" style="animation-delay: 1s; color: var(--accent);" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 7.2L22 12l-7.6 2.8L12 22l-2.4-7.2L2 12l7.6-2.8z"/></svg>
+            <svg class="absolute bottom-32 left-16 w-5 h-5 floating-sparkle" style="animation-delay: 2s; color: var(--accent);" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 7.2L22 12l-7.6 2.8L12 22l-2.4-7.2L2 12l7.6-2.8z"/></svg>
+            <svg class="absolute bottom-64 right-10 w-7 h-7 floating-sparkle" style="animation-delay: 1.5s; color: var(--accent);" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 7.2L22 12l-7.6 2.8L12 22l-2.4-7.2L2 12l7.6-2.8z"/></svg>
+            <span class="absolute top-1/3 left-4 text-2xl floating-sparkle" style="animation-delay: 0.5s;">☁️</span>
+            <span class="absolute bottom-1/4 right-4 text-2xl floating-sparkle" style="animation-delay: 2.5s;">🌙</span>
+        </div>
+
+        <!-- HEADER MAGICO -->
+        <header class="relative z-10 px-6 pt-6 pb-4 flex justify-between items-center bg-white/25 backdrop-blur-md border-b border-white/20">
+            <div class="flex items-center space-x-2" onclick="navigateTo('home')">
+                <span class="text-3xl animate-bounce">✨</span>
+                <div>
+                    <h1 class="text-xl font-bold tracking-tight text-pink-600/90 font-kawaii" style="color: var(--text-main);">MyMystical</h1>
+                    <p class="text-xs tracking-widest uppercase font-semibold opacity-75" style="color: var(--text-muted);">Journal</p>
+                </div>
+            </div>
+            <div class="flex space-x-2">
+                <!-- Bottone Impostazioni / Temi -->
+                <button onclick="navigateTo('settings')" class="p-2 rounded-full bg-white/60 hover:bg-white/90 text-slate-700 hover:text-slate-900 transition-all btn-gummy shadow-sm" title="Personalizzazione">
+                    ⚙️
+                </button>
+            </div>
+        </header>
+
+        <!-- AREA CONTENUTO PRINCIPALE (Scorrevole) -->
+        <main class="flex-1 overflow-y-auto px-5 py-6 relative z-10" style="max-height: calc(100vh - 150px);">
+            
+            <!-- SEZIONE: HOME -->
+            <div id="section-home" class="space-y-6">
+                <!-- Benvenuto personalizzato -->
+                <div class="p-5 rounded-3xl text-center space-y-2 relative overflow-hidden" style="background-color: var(--card-bg); border: 2px solid var(--border-color);">
+                    <div class="absolute -top-4 -right-4 text-4xl opacity-30">🌸</div>
+                    <h2 id="welcome-message" class="text-xl font-bold font-kawaii">Ciao, splendida stella!</h2>
+                    <p class="text-sm opacity-90">Cosa realizzeremo di magico oggi per il tuo benessere?</p>
+                </div>
+
+                <!-- Griglia dei Pulsanti Principali -->
+                <div class="grid grid-cols-2 gap-4">
+                    <!-- Nuova Pagina -->
+                    <button onclick="navigateTo('new-page')" class="p-5 rounded-3xl flex flex-col items-center justify-center space-y-2 text-center btn-gummy magic-glow-hover border-2 border-transparent" style="background-color: var(--card-bg); border-color: var(--border-color);">
+                        <svg class="w-12 h-12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--text-main);">
+                            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                            <path d="M7 6c.5-.5 1.5-.5 2 0" opacity="0.5" stroke-width="1.5"/>
+                        </svg>
+                        <span class="font-bold text-sm" style="color: var(--text-main);">Nuova Pagina</span>
+                        <span class="text-2xl text-pink-300">✦</span>
+                    </button>
+                    <!-- Diario Desideri -->
+                    <button onclick="navigateTo('diary')" class="p-5 rounded-3xl flex flex-col items-center justify-center space-y-2 text-center btn-gummy magic-glow-hover border-2 border-transparent" style="background-color: var(--card-bg); border-color: var(--border-color);">
+                        <svg class="w-12 h-12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--text-main);">
+                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                            <path d="M11 7l1 2M13 15l1 2" stroke-width="1.5" opacity="0.5"/>
+                        </svg>
+                        <span class="font-bold text-sm" style="color: var(--text-main);">I Desideri</span>
+                        <span class="text-2xl text-blue-300">✦</span>
+                    </button>
+                    <!-- Incantesimi -->
+                    <button onclick="navigateTo('spells')" class="p-5 rounded-3xl flex flex-col items-center justify-center space-y-2 text-center btn-gummy magic-glow-hover border-2 border-transparent" style="background-color: var(--card-bg); border-color: var(--border-color);">
+                        <svg class="w-12 h-12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--text-main);">
+                            <line x1="5" y1="19" x2="15" y2="9" />
+                            <path d="M19 3l1 2-2 1-1-2z" fill="currentColor"/>
+                            <path d="M14 2c.2.8.8 1.4 1.6 1.6-.8.2-1.4.8-1.6 1.6-.2-.8-.8-1.4-1.6-1.6.8-.2 1.4-.8 1.6-1.6z" fill="currentColor" stroke="none"/>
+                            <path d="M20 9c.2.5.5.8 1 .9-.5.1-.8.4-.9.9-.1-.5-.4-.8-.9-.9.5-.1.8-.4.9-.9z" fill="currentColor" stroke="none"/>
+                        </svg>
+                        <span class="font-bold text-sm" style="color: var(--text-main);">Incantesimi</span>
+                        <span class="text-2xl text-purple-300">✦</span>
+                    </button>
+                    <!-- Calendario -->
+                    <button onclick="navigateTo('calendar')" class="p-5 rounded-3xl flex flex-col items-center justify-center space-y-2 text-center btn-gummy magic-glow-hover border-2 border-transparent" style="background-color: var(--card-bg); border-color: var(--border-color);">
+                        <svg class="w-12 h-12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--text-main);">
+                            <rect x="3" y="4" width="18" height="18" rx="4" />
+                            <line x1="3" y1="10" x2="21" y2="10" />
+                            <path d="M8 2v4M16 2v4" />
+                            <circle cx="8" cy="14" r="1" fill="currentColor"/>
+                            <circle cx="16" cy="14" r="1" fill="currentColor"/>
+                            <circle cx="12" cy="15" r="1.5" fill="currentColor"/>
+                        </svg>
+                        <span class="font-bold text-sm" style="color: var(--text-main);">Calendario</span>
+                        <span class="text-2xl text-indigo-300">✦</span>
+                    </button>
+                    <!-- Benessere & Statistiche -->
+                    <button onclick="navigateTo('stats')" class="p-5 rounded-3xl flex flex-col items-center justify-center space-y-2 text-center btn-gummy magic-glow-hover border-2 border-transparent col-span-2" style="background-color: var(--card-bg); border-color: var(--border-color);">
+                        <div class="flex items-center space-x-3">
+                            <span class="text-4xl">📊</span>
+                            <div class="text-left">
+                                <span class="block font-bold text-sm" style="color: var(--text-main);">Benessere & Collezione</span>
+                                <span class="text-xs opacity-75">Statistiche e oggetti magici sbloccati</span>
+                            </div>
+                        </div>
+                    </button>
+                </div>
+
+                <!-- Piccolo Consiglio di Self-Care -->
+                <div class="p-4 rounded-2xl bg-white/40 border border-white/30 text-center text-xs italic">
+                    "Prenditi un bel respiro profondo. Questo è il tuo spazio sicuro, custodito nel palmo della tua mano."
+                </div>
+            </div>
+
+            <!-- SEZIONE: NUOVA PAGINA DEL CUORE -->
+            <div id="section-new-page" class="hidden space-y-5">
+                <div class="flex items-center justify-between mb-2">
+                    <button onclick="navigateTo('home')" class="text-sm btn-gummy">⬅️ Indietro</button>
+                    <h2 class="text-lg font-bold font-kawaii">Pagina del Cuore</h2>
+                    <span class="text-xs opacity-75" id="current-date-display">--/--/----</span>
+                </div>
+
+                <div class="p-5 rounded-3xl space-y-6" style="background-color: var(--card-bg); border: 2px solid var(--border-color);">
+                    <!-- Umore -->
+                    <div class="space-y-2">
+                        <label class="block text-sm font-bold">Come ti senti adesso? 💖</label>
+                        <div class="grid grid-cols-5 gap-2" id="mood-picker">
+                            <button onclick="selectMood(1, '😄')" class="mood-btn text-2xl p-2 rounded-xl bg-white/40 hover:bg-white/80 border border-transparent transition-all btn-gummy">😄</button>
+                            <button onclick="selectMood(2, '😊')" class="mood-btn text-2xl p-2 rounded-xl bg-white/40 hover:bg-white/80 border border-transparent transition-all btn-gummy">😊</button>
+                            <button onclick="selectMood(3, '🥰')" class="mood-btn text-2xl p-2 rounded-xl bg-white/40 hover:bg-white/80 border border-transparent transition-all btn-gummy">🥰</button>
+                            <button onclick="selectMood(4, '🦄')" class="mood-btn text-2xl p-2 rounded-xl bg-white/40 hover:bg-white/80 border border-transparent transition-all btn-gummy">🦄</button>
+                            <button onclick="selectMood(5, '🤔')" class="mood-btn text-2xl p-2 rounded-xl bg-white/40 hover:bg-white/80 border border-transparent transition-all btn-gummy">🤔</button>
+                            <button onclick="selectMood(6, '🥺')" class="mood-btn text-2xl p-2 rounded-xl bg-white/40 hover:bg-white/80 border border-transparent transition-all btn-gummy">🥺</button>
+                            <button onclick="selectMood(7, '😴')" class="mood-btn text-2xl p-2 rounded-xl bg-white/40 hover:bg-white/80 border border-transparent transition-all btn-gummy">😴</button>
+                            <button onclick="selectMood(8, '😢')" class="mood-btn text-2xl p-2 rounded-xl bg-white/40 hover:bg-white/80 border border-transparent transition-all btn-gummy">😢</button>
+                            <button onclick="selectMood(9, '🤯')" class="mood-btn text-2xl p-2 rounded-xl bg-white/40 hover:bg-white/80 border border-transparent transition-all btn-gummy">🤯</button>
+                            <button onclick="selectMood(10, '😡')" class="mood-btn text-2xl p-2 rounded-xl bg-white/40 hover:bg-white/80 border border-transparent transition-all btn-gummy">😡</button>
+                        </div>
+                        <input type="hidden" id="input-mood-val" value="😄">
+                    </div>
+
+                    <!-- Energia Slider -->
+                    <div class="space-y-2">
+                        <div class="flex justify-between items-center text-sm font-bold">
+                            <span>Livello di Energia 🔋</span>
+                            <span id="energy-val">50%</span>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <span id="energy-battery-icon" class="text-2xl">🔋</span>
+                            <input type="range" id="input-energy" min="0" max="100" value="50" oninput="updateEnergyDisplay(this.value)" class="w-full h-2 rounded-lg appearance-none cursor-pointer" style="background-color: var(--accent);">
+                        </div>
+                    </div>
+
+                    <!-- Stato del Cuore -->
+                    <div class="space-y-2">
+                        <label class="block text-sm font-bold">In quale stato si trova il tuo Cuore oggi?</label>
+                        <select id="input-heart-state" class="w-full p-3 rounded-2xl border text-sm font-medium" style="background-color: var(--input-bg); border-color: var(--border-color); color: var(--text-main);">
+                            <option value="❤️ Leggero">❤️ Leggero</option>
+                            <option value="💛 Felice">💛 Felice</option>
+                            <option value="💚 Sereno">💚 Sereno</option>
+                            <option value="💙 Speranzoso">💙 Speranzoso</option>
+                            <option value="💜 Confuso">💜 Confuso</option>
+                            <option value="🖤 Triste">🖤 Triste</option>
+                            <option value="🧡 Affaticato">🧡 Affaticato</option>
+                        </select>
+                    </div>
+
+                    <!-- Livello di Stress -->
+                    <div class="space-y-2">
+                        <div class="flex justify-between items-center text-sm font-bold">
+                            <span>Livello di Stress 🌪️</span>
+                            <span id="stress-val">Calmo (20%)</span>
+                        </div>
+                        <input type="range" id="input-stress" min="0" max="100" value="20" oninput="updateStressDisplay(this.value)" class="w-full h-2 rounded-lg appearance-none cursor-pointer" style="background-color: var(--accent);">
+                    </div>
+
+                    <!-- Gratitudine -->
+                    <div class="space-y-3">
+                        <label class="block text-sm font-bold">Tre cose belle di oggi ✨</label>
+                        <input type="text" id="gratitude-1" placeholder="1. Una tazza di tè caldo..." class="w-full p-2.5 rounded-xl border text-sm" style="background-color: var(--input-bg); border-color: var(--border-color);">
+                        <input type="text" id="gratitude-2" placeholder="2. Un sorriso ricevuto..." class="w-full p-2.5 rounded-xl border text-sm" style="background-color: var(--input-bg); border-color: var(--border-color);">
+                        <input type="text" id="gratitude-3" placeholder="3. Ho ascoltato la mia canzone preferita..." class="w-full p-2.5 rounded-xl border text-sm" style="background-color: var(--input-bg); border-color: var(--border-color);">
+                    </div>
+
+                    <!-- Pensiero Libero -->
+                    <div class="space-y-2">
+                        <label class="block text-sm font-bold">Pensiero Libero ✍️</label>
+                        <textarea id="input-thought" rows="3" placeholder="Scrivi liberamente tutto quello che passa per la testa, senza giudicarti..." class="w-full p-3 rounded-2xl border text-sm" style="background-color: var(--input-bg); border-color: var(--border-color);"></textarea>
+                    </div>
+
+                    <!-- Piccola Vittoria -->
+                    <div class="space-y-2">
+                        <label class="block text-sm font-bold">La mia piccola vittoria di oggi 🏆</label>
+                        <input type="text" id="input-victory" placeholder="Oggi ho detto un no gentile..." class="w-full p-3 rounded-xl border text-sm" style="background-color: var(--input-bg); border-color: var(--border-color);">
+                    </div>
+
+                    <!-- Gesto Gentile -->
+                    <div class="space-y-2">
+                        <label class="block text-sm font-bold">Un gesto gentile fatto oggi 🤝</label>
+                        <input type="text" id="input-kindness" placeholder="Ho annaffiato le piante o inviato un messaggio d'affetto..." class="w-full p-3 rounded-xl border text-sm" style="background-color: var(--input-bg); border-color: var(--border-color);">
+                    </div>
+
+                    <!-- Pulsante Salva -->
+                    <button onclick="saveHeartPage()" class="w-full py-4 rounded-3xl font-bold btn-gummy text-white text-lg magic-glow hover:opacity-90" style="background-color: var(--accent);">
+                        ✨ Sigilla questa Pagina ✨
+                    </button>
+                </div>
+            </div>
+
+            <!-- SEZIONE: DIARIO DEI DESIDERI -->
+            <div id="section-diary" class="hidden space-y-5">
+                <div class="flex items-center justify-between mb-2">
+                    <button onclick="navigateTo('home')" class="text-sm btn-gummy">⬅️ Indietro</button>
+                    <h2 class="text-lg font-bold font-kawaii">I Desideri del Cuore</h2>
+                    <button onclick="toggleNewWishForm()" class="text-xs bg-white/60 p-2 rounded-xl btn-gummy font-bold">⭐ Nuovo Desiderio</button>
+                </div>
+
+                <!-- Form Nuovo Desiderio (Hidden by Default) -->
+                <div id="new-wish-form" class="hidden p-5 rounded-3xl space-y-4 border-2" style="background-color: var(--card-bg); border-color: var(--border-color);">
+                    <h3 class="font-bold text-sm">Affida un nuovo desiderio alle stelle 🌌</h3>
+                    <div class="space-y-2">
+                        <label class="text-xs font-bold block">Cosa desideri?</label>
+                        <input type="text" id="wish-title" placeholder="Es. Trovare tempo per dipingere" class="w-full p-2.5 rounded-xl border text-sm" style="background-color: var(--input-bg); border-color: var(--border-color);">
+                    </div>
+                    <div class="space-y-2">
+                        <label class="text-xs font-bold block">Raccontalo brevemente</label>
+                        <textarea id="wish-description" rows="2" placeholder="Perché è importante per te?" class="w-full p-2.5 rounded-xl border text-sm" style="background-color: var(--input-bg); border-color: var(--border-color);"></textarea>
+                    </div>
+                    <div class="grid grid-cols-2 gap-2">
+                        <div>
+                            <label class="text-xs font-bold block mb-1">Categoria</label>
+                            <select id="wish-category" class="w-full p-2 rounded-xl border text-xs" style="background-color: var(--input-bg); border-color: var(--border-color);">
+                                <option value="❤️ Amore">❤️ Amore</option>
+                                <option value="🌱 Crescita">🌱 Crescita</option>
+                                <option value="💼 Lavoro">💼 Lavoro</option>
+                                <option value="🎨 Creatività">🎨 Creatività</option>
+                                <option value="🏠 Casa">🏠 Casa</option>
+                                <option value="✈️ Viaggi">✈️ Viaggi</option>
+                                <option value="👨‍👩‍👧‍👦 Famiglia">👨‍👩‍👧‍👦 Famiglia</option>
+                                <option value="🐱 Animali">🐱 Animali</option>
+                                <option value="🧘‍♀️ Benessere">🧘‍♀️ Benessere</option>
+                                <option value="✨ Altro">✨ Altro</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="text-xs font-bold block mb-1">Priorità del Cuore</label>
+                            <select id="wish-priority" class="w-full p-2 rounded-xl border text-xs" style="background-color: var(--input-bg); border-color: var(--border-color);">
+                                <option value="⭐ Essenziale">⭐ Essenziale</option>
+                                <option value="💫 Desiderio Dolce">💫 Desiderio Dolce</option>
+                                <option value="🌙 Sogno nel Cassetto">🌙 Sogno nel Cassetto</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button onclick="saveWish()" class="w-full py-2.5 rounded-2xl font-bold btn-gummy text-white text-sm" style="background-color: var(--accent);">
+                        ✨ Lancia il Desiderio nel Cielo ✨
+                    </button>
+                </div>
+
+                <!-- Lista dei Desideri / Costellazione Stellare -->
+                <div class="space-y-3">
+                    <p class="text-xs text-center opacity-75">Tocca una stella per visualizzare, modificare o realizzare i desideri del tuo cuore.</p>
+                    <div id="wishes-grid" class="grid grid-cols-2 gap-3">
+                        <!-- Generato dinamicamente con JS -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- SEZIONE: GLI INCANTESIMI (RITUALI MINDFULNESS) -->
+            <div id="section-spells" class="hidden space-y-5">
+                <div class="flex items-center justify-between mb-2">
+                    <button onclick="navigateTo('home')" class="text-sm btn-gummy">⬅️ Indietro</button>
+                    <h2 class="text-lg font-bold font-kawaii">Rituali Simbolici</h2>
+                    <span>🧘‍♀️</span>
+                </div>
+
+                <!-- Descrizione -->
+                <div class="p-4 rounded-2xl bg-white/40 border border-white/20 text-xs text-center">
+                    Gli incantesimi sono piccoli rituali di <strong>mindfulness e crescita personale</strong>. Ti aiutano a staccare dalla routine quotidiana e a ritrovare il tuo centro.
+                </div>
+
+                <!-- Lista di Incantesimi -->
+                <div class="grid grid-cols-2 gap-3" id="spells-list">
+                    <!-- Spells generati tramite JS -->
+                </div>
+            </div>
+
+            <!-- MODALE / SCREEN RITUALE ATTIVO -->
+            <div id="ritual-active-screen" class="hidden fixed inset-0 z-50 flex flex-col justify-between p-6 overflow-y-auto" style="background: linear-gradient(135deg, var(--bg-start), var(--bg-end));">
+                <div class="flex justify-between items-center">
+                    <span class="text-sm">Rituale in corso... ✨</span>
+                    <button onclick="closeRitual()" class="text-xs bg-white/40 px-3 py-1.5 rounded-full font-bold btn-gummy">Chiudi</button>
+                </div>
+
+                <div class="flex-1 flex flex-col items-center justify-center space-y-6 my-4 text-center">
+                    <span id="active-spell-emoji" class="text-5xl animate-bounce">🌱</span>
+                    <h2 id="active-spell-title" class="text-2xl font-bold font-kawaii">Semi di Fiducia</h2>
+                    <p id="active-spell-formula" class="text-sm italic opacity-90 px-4">"Nel silenzio pianto un seme speciale, crescerà forte per non farsi del male."</p>
+                    
+                    <!-- Box Scrittura Intenzione -->
+                    <div id="ritual-intent-box" class="w-full max-w-sm p-4 rounded-3xl space-y-3" style="background-color: var(--card-bg); border: 2px solid var(--border-color);">
+                        <label class="text-xs font-bold block text-left">Fissa un'intenzione positiva prima di iniziare il respiro:</label>
+                        <input type="text" id="ritual-intention" placeholder="Cosa desideri coltivare in questo momento?" class="w-full p-2.5 rounded-xl border text-sm" style="background-color: var(--input-bg); border-color: var(--border-color);">
+                        <button onclick="startBreathingExercise()" id="btn-start-breath" class="w-full py-2 rounded-xl text-white font-bold text-sm btn-gummy" style="background-color: var(--accent);">
+                            Inizia Respirazione Guidata
+                        </button>
+                    </div>
+
+                    <!-- Cerchio di Respirazione (Invisibile finché non si avvia) -->
+                    <div id="breathing-container" class="hidden flex flex-col items-center space-y-4">
+                        <div class="w-32 h-32 rounded-full border-4 border-white/50 flex items-center justify-center relative">
+                            <div class="absolute inset-0 rounded-full breathing-core"></div>
+                            <span id="breathing-status" class="relative z-10 font-bold text-sm">Pronto...</span>
+                        </div>
+                        <p class="text-xs opacity-75">Segui l'animazione del cerchio: inala quando si espande, espira quando si restringe.</p>
+                    </div>
+                </div>
+
+                <div class="text-center pb-4 text-xs opacity-60">
+                    Prenditi questo istante solo per te.
+                </div>
+            </div>
+
+            <!-- SEZIONE: CALENDARIO -->
+            <div id="section-calendar" class="hidden space-y-4">
+                <div class="flex items-center justify-between">
+                    <button onclick="navigateTo('home')" class="text-sm btn-gummy">⬅️ Indietro</button>
+                    <h2 class="text-lg font-bold font-kawaii">Calendario Magico</h2>
+                    <span class="text-xs bg-white/50 px-2 py-1 rounded-lg" id="calendar-month-year">Mese Anno</span>
+                </div>
+
+                <!-- Griglia del Calendario -->
+                <div class="p-4 rounded-3xl space-y-3" style="background-color: var(--card-bg); border: 2px solid var(--border-color);">
+                    <!-- Navigazione Mese -->
+                    <div class="flex justify-between items-center text-xs font-bold px-2">
+                        <button onclick="prevMonth()" class="btn-gummy p-1">◀️ Mese Prec.</button>
+                        <span id="calendar-current-month-lbl" class="text-sm font-kawaii">Novembre</span>
+                        <button onclick="nextMonth()" class="btn-gummy p-1">Mese Succ. ▶️</button>
+                    </div>
+
+                    <div class="grid grid-cols-7 gap-1 text-center font-bold text-xs opacity-75 border-b pb-2">
+                        <div>Dom</div><div>Lun</div><div>Mar</div><div>Mer</div><div>Gio</div><div>Ven</div><div>Sab</div>
+                    </div>
+                    <div id="calendar-days" class="grid grid-cols-7 gap-1.5 text-center text-xs">
+                        <!-- Generato con JS -->
+                    </div>
+                </div>
+
+                <!-- Box Dettaglio del Giorno Selezionato -->
+                <div id="day-detail-box" class="hidden p-4 rounded-3xl space-y-3 border-2" style="background-color: var(--card-bg); border-color: var(--border-color);">
+                    <div class="flex justify-between items-center border-b pb-2">
+                        <h3 id="detail-date" class="font-bold text-xs">Ricordi del --/--/----</h3>
+                        <button onclick="closeDetailBox()" class="text-xs opacity-60">Chiudi ❌</button>
+                    </div>
+                    <div id="detail-content" class="text-xs space-y-2">
+                        <!-- Popolato dinamicamente -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- SEZIONE: BENESSERE & COLLEZIONE -->
+            <div id="section-stats" class="hidden space-y-5">
+                <div class="flex items-center justify-between mb-2">
+                    <button onclick="navigateTo('home')" class="text-sm btn-gummy">⬅️ Indietro</button>
+                    <h2 class="text-lg font-bold font-kawaii">Il Tuo Benessere</h2>
+                    <span>🔮</span>
+                </div>
+
+                <!-- Stats Principali -->
+                <div class="p-5 rounded-3xl space-y-4" style="background-color: var(--card-bg); border: 2px solid var(--border-color);">
+                    <h3 class="text-sm font-bold border-b pb-2">I Numeri del Cuore</h3>
+                    
+                    <div class="grid grid-cols-3 gap-3 text-center">
+                        <div class="p-3 bg-white/40 rounded-2xl">
+                            <span class="block text-xl">🔥</span>
+                            <span class="block font-bold text-sm" id="stat-streak">0</span>
+                            <span class="text-[10px] opacity-75">Giorni di fila</span>
+                        </div>
+                        <div class="p-3 bg-white/40 rounded-2xl">
+                            <span class="block text-xl">💫</span>
+                            <span class="block font-bold text-sm" id="stat-rituals">0</span>
+                            <span class="text-[10px] opacity-75">Incantesimi</span>
+                        </div>
+                        <div class="p-3 bg-white/40 rounded-2xl">
+                            <span class="block text-xl">⭐</span>
+                            <span class="block font-bold text-sm" id="stat-wishes">0</span>
+                            <span class="text-[10px] opacity-75">Desideri creati</span>
+                        </div>
+                    </div>
+
+                    <!-- Bar Chart CSS per Medie -->
+                    <div class="space-y-3 pt-2">
+                        <div class="space-y-1">
+                            <div class="flex justify-between text-xs font-bold">
+                                <span>Energia Media</span>
+                                <span id="bar-energy-text">0%</span>
+                            </div>
+                            <div class="w-full bg-slate-200/50 rounded-full h-2.5 overflow-hidden">
+                                <div id="bar-energy-fill" class="h-full rounded-full transition-all duration-500" style="width: 0%; background-color: var(--accent);"></div>
+                            </div>
+                        </div>
+
+                        <div class="space-y-1">
+                            <div class="flex justify-between text-xs font-bold">
+                                <span>Stress Medio (Calma)</span>
+                                <span id="bar-stress-text">0%</span>
+                            </div>
+                            <div class="w-full bg-slate-200/50 rounded-full h-2.5 overflow-hidden">
+                                <div id="bar-stress-fill" class="h-full rounded-full transition-all duration-500" style="width: 0%; background-color: var(--accent);"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Collezione Kawaii -->
+                <div class="p-5 rounded-3xl space-y-4" style="background-color: var(--card-bg); border: 2px solid var(--border-color);">
+                    <div class="border-b pb-2">
+                        <h3 class="text-sm font-bold">Collezione degli Oggetti Kawaii</h3>
+                        <p class="text-[10px] opacity-75">Completa pagine e rituali per sbloccare le decorazioni nel tuo grimorio.</p>
+                    </div>
+                    
+                    <div class="grid grid-cols-4 gap-3 text-center" id="collection-grid">
+                        <!-- Popolato dinamicamente da JS -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- SEZIONE: IMPOSTAZIONI & PERSONALIZZAZIONE -->
+            <div id="section-settings" class="hidden space-y-5">
+                <div class="flex items-center justify-between mb-2">
+                    <button onclick="navigateTo('home')" class="text-sm btn-gummy">⬅️ Indietro</button>
+                    <h2 class="text-lg font-bold font-kawaii">Personalizza</h2>
+                    <span>🎨</span>
+                </div>
+
+                <!-- Selettore Temi -->
+                <div class="p-5 rounded-3xl space-y-4" style="background-color: var(--card-bg); border: 2px solid var(--border-color);">
+                    <h3 class="text-sm font-bold border-b pb-2">Scegli la tua Palette</h3>
+                    
+                    <div class="space-y-2.5">
+                        <button onclick="changeTheme('dream-sky')" class="w-full p-3 rounded-2xl flex justify-between items-center text-xs font-bold border btn-gummy" style="background: linear-gradient(90deg, #e0c3fc, #8ec5fc); color: #4a3f75;">
+                            <span>Dream Sky 🌌 (Cielo Pastello)</span>
+                            <span>✨ Attivo</span>
+                        </button>
+                        <button onclick="changeTheme('sakura')" class="w-full p-3 rounded-2xl flex justify-between items-center text-xs font-bold border btn-gummy" style="background: linear-gradient(90deg, #ffd1ff, #fbd0c6); color: #6c3f4e;">
+                            <span>Sakura 🌸 (Petali di Ciliegio)</span>
+                            <span>🌸 Scegli</span>
+                        </button>
+                        <button onclick="changeTheme('moon-garden')" class="w-full p-3 rounded-2xl flex justify-between items-center text-xs font-bold border btn-gummy" style="background: linear-gradient(90deg, #1e1e38, #3b3b6d); color: #f5f3f7;">
+                            <span>Moon Garden 🌙 (Giardino Lunare)</span>
+                            <span>🌙 Scegli</span>
+                        </button>
+                        <button onclick="changeTheme('magic-library')" class="w-full p-3 rounded-2xl flex justify-between items-center text-xs font-bold border btn-gummy" style="background: linear-gradient(90deg, #fbf5eb, #e8d8c8); color: #5c4033;">
+                            <span>Magic Library 📚 (Grimorio Antico)</span>
+                            <span>📚 Scegli</span>
+                        </button>
+                        <button onclick="changeTheme('candy-clouds')" class="w-full p-3 rounded-2xl flex justify-between items-center text-xs font-bold border btn-gummy" style="background: linear-gradient(90deg, #ffc6ff, #bdb2ff); color: #543d75;">
+                            <span>Candy Clouds 🍬 (Nuvole Dolci)</span>
+                            <span>🍬 Scegli</span>
+                        </button>
+                        <button onclick="changeTheme('lavender-night')" class="w-full p-3 rounded-2xl flex justify-between items-center text-xs font-bold border btn-gummy" style="background: linear-gradient(90deg, #2c1a4d, #513b8c); color: #f0e6ff;">
+                            <span>Lavender Night 🪻 (Sogno Viola)</span>
+                            <span>🪻 Scegli</span>
+                        </button>
+                        <button onclick="changeTheme('mint-leaves')" class="w-full p-3 rounded-2xl flex justify-between items-center text-xs font-bold border btn-gummy" style="background: linear-gradient(90deg, #e8f5e9, #c8e6c9); color: #2e7d32;">
+                            <span>Mint Leaves 🌿 (Menta Fresca)</span>
+                            <span>🌿 Scegli</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Gestione Dati -->
+                <div class="p-5 rounded-3xl space-y-4" style="background-color: var(--card-bg); border: 2px solid var(--border-color);">
+                    <h3 class="text-sm font-bold border-b pb-2 text-rose-500">Custodia della Memoria</h3>
+                    <p class="text-xs opacity-75">I tuoi dati vengono custoditi solo all'interno del tuo dispositivo in modo sicuro e anonimo.</p>
+                    
+                    <div class="flex space-x-2">
+                        <button onclick="exportJSON()" class="flex-1 py-2 rounded-xl border text-xs font-bold bg-white/40 hover:bg-white/80 btn-gummy">
+                            Salva Copia 📥
+                        </button>
+                        <button onclick="clearAllDataPrompt()" class="flex-1 py-2 rounded-xl border text-xs font-bold bg-rose-100 hover:bg-rose-200 text-rose-700 btn-gummy">
+                            Cancella Tutto ⚠️
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+
+        <!-- FOOTER DI NAVIGAZIONE COMPATTO -->
+        <footer class="relative z-10 px-4 py-3 bg-white/20 backdrop-blur-md border-t border-white/20 flex justify-around items-center">
+            <button onclick="navigateTo('home')" class="flex flex-col items-center justify-center p-1.5 btn-gummy opacity-70 hover:opacity-100 focus:opacity-100 transition-opacity">
+                <svg class="w-6 h-6 mb-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--text-main);">
+                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                    <polyline points="9 22 9 12 15 12 15 22"/>
+                </svg>
+                <span class="text-[9px] font-bold">Home</span>
+            </button>
+            <button onclick="navigateTo('new-page')" class="flex flex-col items-center justify-center p-1.5 btn-gummy opacity-70 hover:opacity-100 focus:opacity-100 transition-opacity">
+                <svg class="w-6 h-6 mb-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--text-main);">
+                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                </svg>
+                <span class="text-[9px] font-bold">Scrivi</span>
+            </button>
+            <button onclick="navigateTo('diary')" class="flex flex-col items-center justify-center p-1.5 btn-gummy opacity-70 hover:opacity-100 focus:opacity-100 transition-opacity">
+                <svg class="w-6 h-6 mb-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--text-main);">
+                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                </svg>
+                <span class="text-[9px] font-bold">Sogni</span>
+            </button>
+            <button onclick="navigateTo('calendar')" class="flex flex-col items-center justify-center p-1.5 btn-gummy opacity-70 hover:opacity-100 focus:opacity-100 transition-opacity">
+                <svg class="w-6 h-6 mb-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--text-main);">
+                    <rect x="3" y="4" width="18" height="18" rx="2"/>
+                    <line x1="3" y1="10" x2="21" y2="10"/>
+                    <line x1="8" y1="2" x2="8" y2="6"/>
+                    <line x1="16" y1="2" x2="16" y2="6"/>
+                </svg>
+                <span class="text-[9px] font-bold">Calendario</span>
+            </button>
+            <button onclick="navigateTo('stats')" class="flex flex-col items-center justify-center p-1.5 btn-gummy opacity-70 hover:opacity-100 focus:opacity-100 transition-opacity">
+                <svg class="w-6 h-6 mb-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--text-main);">
+                    <path d="M6 3h12l4 6-10 12L2 9z"/>
+                    <path d="M11 3 L7 9 L12 21 L17 9 L13 3"/>
+                    <path d="M2 9h20"/>
+                </svg>
+                <span class="text-[9px] font-bold">Collezione</span>
+            </button>
+        </footer>
+
+        <!-- POPUP DI NOTIFICA PERSONALIZZATO (Sostituto di alert) -->
+        <div id="mystical-toast" class="hidden fixed bottom-20 left-1/2 transform -translate-x-1/2 z-50 w-11/12 max-w-sm p-4 rounded-3xl shadow-xl text-center border-2 transition-all duration-300" style="background-color: var(--card-bg); border-color: var(--accent);">
+            <p id="toast-message" class="text-sm font-semibold"></p>
+        </div>
+
+        <!-- POPUP COMPLETAMENTO RITUALE -->
+        <div id="ritual-complete-popup" class="hidden fixed inset-0 z-50 flex items-center justify-center p-6 bg-slate-900/40 backdrop-blur-sm">
+            <div class="w-full max-w-xs p-6 rounded-[32px] text-center space-y-4 border-2 shadow-2xl animate-bounce" style="background-color: var(--card-bg); border-color: var(--accent);">
+                <span class="text-5xl block animate-pulse">🌟</span>
+                <h3 class="font-bold text-lg font-kawaii">Rituale Concluso</h3>
+                <p class="text-xs italic text-slate-700 font-medium px-2">
+                    "Che questo momento ti ricordi la direzione che desideri dare ai tuoi passi."
+                </p>
+                <button onclick="closeRitualCompletePopup()" class="w-full py-2.5 rounded-2xl text-white font-bold text-sm btn-gummy" style="background-color: var(--accent);">
+                    Concludi con un Sorriso ⭐
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCRIPT APPLICAZIONE -->
+    <script>
+        // --- STATO DELL'APPLICAZIONE (IN-MEMORY + LOCALSTORAGE) ---
+        let appState = {
+            entries: [],
+            wishes: [],
+            ritualsCompleted: 0,
+            activeTheme: 'dream-sky',
+            unlockedItems: []
+        };
+
+        // --- OGGETTI DA COLLEZIONE DISPONIBILI ---
+        const COLLECTION_ITEMS = [
+            { key: 'star_1', name: 'Stella Scintillante', emoji: '⭐', desc: 'Raggiungi 1 giorno di fila.', reqType: 'streak', reqValue: 1 },
+            { key: 'crystal_1', name: 'Cristallo di Luna', emoji: '🔮', desc: 'Registra 1 pagina del cuore.', reqType: 'entries', reqValue: 1 },
+            { key: 'potion_1', name: 'Elisir di Felicità', emoji: '🧪', desc: 'Completa il tuo primo rituale.', reqType: 'rituals', reqValue: 1 },
+            { key: 'cat_1', name: 'Gattino Custode', emoji: '🐱', desc: 'Registra 3 pagine del cuore.', reqType: 'entries', reqValue: 3 },
+            { key: 'spellbook', name: 'Libro Incantato', emoji: '📖', desc: 'Completa 3 rituali mindfulness.', reqType: 'rituals', reqValue: 3 },
+            { key: 'potion_2', name: 'Pozione del Sonno', emoji: '🌌', desc: 'Scrivi 5 desideri nel cielo.', reqType: 'wishes', reqValue: 5 },
+            { key: 'wings', name: 'Ali d\'Angelo', emoji: '🪽', desc: 'Fai registrare 5 giorni di fila.', reqType: 'streak', reqValue: 5 },
+            { key: 'constellation', name: 'Costellazione Magica', emoji: '✨', desc: 'Completa 5 rituali in totale.', reqType: 'rituals', reqValue: 5 }
+        ];
+
+        // --- INCANTESIMI (MINDFULNESS) ---
+        const MINDFUL_SPELLS = [
+            { id: 'fiducia', title: 'Semi di Fiducia', emoji: '🌱', formula: '"Nel silenzio pianto un seme speciale, crescerà forte per non farsi del male."' },
+            { id: 'coraggio', title: 'Fiore del Coraggio', emoji: '🌸', formula: '"Apro i petali davanti al timore, trovo risorsa dentro al mio cuore."' },
+            { id: 'luna', title: 'Luna Serena', emoji: '🌙', formula: '"Mentre la notte cancella i rumori, cullo la mente spegnendo i pensieri."' },
+            { id: 'gratitudine', title: 'Stella Grata', emoji: '⭐', formula: '"Riconosco le cose brillanti e vicine, sono farfalle che volano in rime."' },
+            { id: 'cuore', title: 'Cuore Aperto', emoji: '💖', formula: '"Lascio fluire il calore che porto, guarisco il buio trovando conforto."' },
+            { id: 'fortuna', title: 'Piccola Fortuna', emoji: '🍀', formula: '"Attiro sorrisi, abbraccio la via, sblocco nei passi la mia allegria."' }
+        ];
+
+        // --- PALETTE DEI TEMI CONFIGURATI ---
+        const THEMES_CONFIG = {
+            'dream-sky': {
+                '--bg-start': '#e0c3fc',
+                '--bg-end': '#8ec5fc',
+                '--card-bg': 'rgba(255, 255, 255, 0.85)',
+                '--accent': '#b19ffb',
+                '--accent-glow': 'rgba(177, 159, 251, 0.4)',
+                '--text-main': '#4a3f75',
+                '--text-muted': '#6c5e9c',
+                '--border-color': 'rgba(177, 159, 251, 0.3)',
+                '--input-bg': 'rgba(255, 255, 255, 0.9)'
+            },
+            'sakura': {
+                '--bg-start': '#ffd1ff',
+                '--bg-end': '#fbd0c6',
+                '--card-bg': 'rgba(255, 255, 255, 0.85)',
+                '--accent': '#ff9ebb',
+                '--accent-glow': 'rgba(255, 158, 187, 0.4)',
+                '--text-main': '#6c3f4e',
+                '--text-muted': '#8c5e6d',
+                '--border-color': 'rgba(255, 158, 187, 0.3)',
+                '--input-bg': 'rgba(255, 255, 255, 0.9)'
+            },
+            'moon-garden': {
+                '--bg-start': '#1e1e38',
+                '--bg-end': '#3b3b6d',
+                '--card-bg': 'rgba(255, 255, 255, 0.12)',
+                '--accent': '#b39ddb',
+                '--accent-glow': 'rgba(179, 157, 219, 0.4)',
+                '--text-main': '#f5f3f7',
+                '--text-muted': '#c5b3e6',
+                '--border-color': 'rgba(179, 157, 219, 0.2)',
+                '--input-bg': 'rgba(255, 255, 255, 0.15)'
+            },
+            'magic-library': {
+                '--bg-start': '#fbf5eb',
+                '--bg-end': '#e8d8c8',
+                '--card-bg': 'rgba(255, 255, 255, 0.8)',
+                '--accent': '#d4a373',
+                '--accent-glow': 'rgba(212, 163, 115, 0.4)',
+                '--text-main': '#5c4033',
+                '--text-muted': '#8c6d58',
+                '--border-color': 'rgba(212, 163, 115, 0.3)',
+                '--input-bg': 'rgba(255, 255, 255, 0.9)'
+            },
+            'candy-clouds': {
+                '--bg-start': '#ffc6ff',
+                '--bg-end': '#bdb2ff',
+                '--card-bg': 'rgba(255, 255, 255, 0.85)',
+                '--accent': '#ffadad',
+                '--accent-glow': 'rgba(255, 173, 173, 0.4)',
+                '--text-main': '#543d75',
+                '--text-muted': '#745b96',
+                '--border-color': 'rgba(255, 173, 173, 0.3)',
+                '--input-bg': 'rgba(255, 255, 255, 0.9)'
+            },
+            'lavender-night': {
+                '--bg-start': '#2c1a4d',
+                '--bg-end': '#513b8c',
+                '--card-bg': 'rgba(255, 255, 255, 0.1)',
+                '--accent': '#d1b3ff',
+                '--accent-glow': 'rgba(209, 179, 255, 0.4)',
+                '--text-main': '#f0e6ff',
+                '--text-muted': '#cfa8ff',
+                '--border-color': 'rgba(209, 179, 255, 0.2)',
+                '--input-bg': 'rgba(255, 255, 255, 0.15)'
+            },
+            'mint-leaves': {
+                '--bg-start': '#e8f5e9',
+                '--bg-end': '#c8e6c9',
+                '--card-bg': 'rgba(255, 255, 255, 0.85)',
+                '--accent': '#81c784',
+                '--accent-glow': 'rgba(129, 199, 132, 0.4)',
+                '--text-main': '#2e7d32',
+                '--text-muted': '#4caf50',
+                '--border-color': 'rgba(129, 199, 132, 0.3)',
+                '--input-bg': 'rgba(255, 255, 255, 0.9)'
+            }
+        };
+
+        // --- STATO CALENDARIO ATTIVO ---
+        let calCurrentYear = new Date().getFullYear();
+        let calCurrentMonth = new Date().getMonth(); // 0-11
+
+        // --- INIZIALIZZAZIONE ---
+        window.addEventListener('DOMContentLoaded', () => {
+            loadSavedData();
+            applyTheme(appState.activeTheme);
+            setWelcomeMessage();
+            renderSpells();
+            checkAndUnlockItems();
+            
+            // Set input data odierna per nuova pagina
+            const today = new Date().toLocaleDateString('it-IT');
+            document.getElementById('current-date-display').textContent = today;
+        });
+
+        // --- SALVATAGGIO / CARICAMENTO DATI ---
+        function loadSavedData() {
+            const saved = localStorage.getItem('my_mystical_journal_data');
+            if (saved) {
+                try {
+                    appState = JSON.parse(saved);
+                    // Sanitizzazioni per retrocompatibilità o array mancanti
+                    if (!appState.entries) appState.entries = [];
+                    if (!appState.wishes) appState.wishes = [];
+                    if (!appState.unlockedItems) appState.unlockedItems = [];
+                    if (!appState.ritualsCompleted) appState.ritualsCompleted = 0;
+                    if (!appState.activeTheme) appState.activeTheme = 'dream-sky';
+                } catch (e) {
+                    console.error("Errore di parsing dei dati salvati, resetto stato.", e);
+                }
+            }
+        }
+
+        function saveData() {
+            localStorage.setItem('my_mystical_journal_data', JSON.stringify(appState));
+            checkAndUnlockItems();
+        }
+
+        // --- NAVIGAZIONE PAGINE (SPA) ---
+        function navigateTo(sectionId) {
+            const sections = ['home', 'new-page', 'diary', 'spells', 'calendar', 'stats', 'settings'];
+            sections.forEach(s => {
+                document.getElementById(`section-${s}`).classList.add('hidden');
+            });
+            document.getElementById(`section-${sectionId}`).classList.remove('hidden');
+
+            // Scroll in cima
+            document.querySelector('main').scrollTop = 0;
+
+            // Logica specifica quando si apre una sezione
+            if (sectionId === 'diary') {
+                renderWishes();
+            } else if (sectionId === 'calendar') {
+                renderCalendar();
+            } else if (sectionId === 'stats') {
+                renderStatsAndCollection();
+            }
+        }
+
+        // --- WELCOME MSG DINAMICO ---
+        function setWelcomeMessage() {
+            const hrs = new Date().getHours();
+            const el = document.getElementById('welcome-message');
+            if (hrs < 12) {
+                el.innerHTML = "Buongiorno, magica stella! ☀️";
+            } else if (hrs < 18) {
+                el.innerHTML = "Pomeriggio sereno, piccola luna! ☁️";
+            } else {
+                el.innerHTML = "Notte magica, anima saggia! 🌙";
+            }
+        }
+
+        // --- TOAST NOTIFICATION ---
+        function showToast(message, colorClass = '') {
+            const toast = document.getElementById('mystical-toast');
+            const toastMsg = document.getElementById('toast-message');
+            toastMsg.textContent = message;
+            toast.className = `fixed bottom-20 left-1/2 transform -translate-x-1/2 z-50 w-11/12 max-w-sm p-4 rounded-3xl shadow-xl text-center border-2 transition-all duration-300 ${colorClass}`;
+            toast.style.backgroundColor = "var(--card-bg)";
+            toast.style.borderColor = "var(--accent)";
+            toast.classList.remove('hidden');
+            setTimeout(() => {
+                toast.classList.add('hidden');
+            }, 3000);
+        }
+
+        // --- TRACCIAMENTO STREAK (GIORNI CONSECUTIVI) ---
+        function calculateStreak() {
+            if (appState.entries.length === 0) return 0;
+            
+            // Ordina le date in ordine decrescente
+            const dates = appState.entries.map(e => e.date).sort().reverse();
+            let streak = 0;
+            let expectedDate = new Date(); // Oggi
+            
+            for (let i = 0; i < dates.length; i++) {
+                const entryDateStr = dates[i];
+                const expectedDateStr = formatDateKey(expectedDate);
+                
+                // Ieri
+                const yesterday = new Date(expectedDate);
+                yesterday.setDate(yesterday.getDate() - 1);
+                const yesterdayStr = formatDateKey(yesterday);
+
+                if (entryDateStr === expectedDateStr) {
+                    streak++;
+                    expectedDate = yesterday;
+                } else if (entryDateStr === yesterdayStr) {
+                    streak++;
+                    expectedDate = new Date(yesterday);
+                    expectedDate.setDate(expectedDate.getDate() - 1);
+                } else if (i === 0) {
+                    // Controlla se l'ultima voce risale a ieri
+                    const lastEntryDate = new Date(dates[0]);
+                    const differenceInTime = new Date().getTime() - lastEntryDate.getTime();
+                    const differenceInDays = differenceInTime / (1000 * 3600 * 24);
+                    if (differenceInDays > 1.5) {
+                        return 0; // Streak rotto
+                    }
+                } else {
+                    break;
+                }
+            }
+            return streak;
+        }
+
+        function formatDateKey(dateObj) {
+            const y = dateObj.getFullYear();
+            const m = String(dateObj.getMonth() + 1).padStart(2, '0');
+            const d = String(dateObj.getDate()).padStart(2, '0');
+            return `${y}-${m}-${d}`;
+        }
+
+        // --- SEZIONE: NUOVA PAGINA DEL CUORE ---
+        function selectMood(num, emoji) {
+            document.querySelectorAll('.mood-btn').forEach(btn => {
+                btn.classList.remove('border-pink-400', 'bg-white/95');
+                btn.classList.add('border-transparent');
+            });
+            event.currentTarget.classList.add('border-pink-400', 'bg-white/95');
+            document.getElementById('input-mood-val').value = emoji;
+        }
+
+        function updateEnergyDisplay(val) {
+            document.getElementById('energy-val').textContent = `${val}%`;
+            const icon = document.getElementById('energy-battery-icon');
+            if (val < 20) icon.textContent = '🪫';
+            else if (val < 70) icon.textContent = '🔋';
+            else icon.textContent = '⚡';
+        }
+
+        function updateStressDisplay(val) {
+            let label = "Calmo";
+            if (val > 75) label = "Turbinoso";
+            else if (val > 45) label = "Agitato";
+            else if (val > 20) label = "Pensieroso";
+            document.getElementById('stress-val').textContent = `${label} (${val}%)`;
+        }
+
+        function saveHeartPage() {
+            const todayStr = formatDateKey(new Date());
+            
+            const entry = {
+                date: todayStr,
+                mood: document.getElementById('input-mood-val').value,
+                energy: parseInt(document.getElementById('input-energy').value),
+                heart: document.getElementById('input-heart-state').value,
+                stress: parseInt(document.getElementById('input-stress').value),
+                gratitude: [
+                    document.getElementById('gratitude-1').value.trim(),
+                    document.getElementById('gratitude-2').value.trim(),
+                    document.getElementById('gratitude-3').value.trim()
+                ].filter(Boolean),
+                thought: document.getElementById('input-thought').value.trim(),
+                victory: document.getElementById('input-victory').value.trim(),
+                kindness: document.getElementById('input-kindness').value.trim()
+            };
+
+            // Controlla se esiste già una pagina per oggi e sovrascrivi
+            const existingIdx = appState.entries.findIndex(e => e.date === todayStr);
+            if (existingIdx !== -1) {
+                appState.entries[existingIdx] = entry;
+            } else {
+                appState.entries.push(entry);
+            }
+
+            saveData();
+            showToast("✨ La pagina del tuo cuore è stata sigillata con affetto nel grimorio. ✨", "text-pink-600");
+            
+            // Pulisci i campi
+            document.getElementById('gratitude-1').value = '';
+            document.getElementById('gratitude-2').value = '';
+            document.getElementById('gratitude-3').value = '';
+            document.getElementById('input-thought').value = '';
+            document.getElementById('input-victory').value = '';
+            document.getElementById('input-kindness').value = '';
+            document.getElementById('input-energy').value = 50;
+            document.getElementById('input-stress').value = 20;
+            updateEnergyDisplay(50);
+            updateStressDisplay(20);
+
+            navigateTo('home');
+        }
+
+        // --- SEZIONE: DIARIO DEI DESIDERI ---
+        function toggleNewWishForm() {
+            const form = document.getElementById('new-wish-form');
+            form.classList.toggle('hidden');
+        }
+
+        function saveWish() {
+            const title = document.getElementById('wish-title').value.trim();
+            const desc = document.getElementById('wish-description').value.trim();
+            const cat = document.getElementById('wish-category').value;
+            const priority = document.getElementById('wish-priority').value;
+
+            if (!title) {
+                showToast("Dai un nome al tuo desiderio!", "text-amber-600");
+                return;
+            }
+
+            const emoji = cat.split(' ')[0] || '⭐';
+
+            const newWish = {
+                id: crypto.randomUUID(),
+                title: title,
+                description: desc,
+                category: cat,
+                priority: priority,
+                emoji: emoji,
+                date: new Date().toLocaleDateString('it-IT'),
+                status: 'attivo' // attivo, realizzato
+            };
+
+            appState.wishes.push(newWish);
+            saveData();
+            renderWishes();
+
+            // Pulisci e nascondi
+            document.getElementById('wish-title').value = '';
+            document.getElementById('wish-description').value = '';
+            document.getElementById('new-wish-form').classList.add('hidden');
+            showToast("⭐ Il tuo desiderio fluttua nel cielo del tuo diario! ⭐", "text-purple-600");
+        }
+
+        function realizeWish(wishId) {
+            const wish = appState.wishes.find(w => w.id === wishId);
+            if (wish) {
+                wish.status = 'realizzato';
+                saveData();
+                renderWishes();
+                showToast("✨ Splendido! Che la felicità riempia il tuo cuore per questo passo compiuto. ✨", "text-pink-600");
+            }
+        }
+
+        function deleteWish(wishId) {
+            appState.wishes = appState.wishes.filter(w => w.id !== wishId);
+            saveData();
+            renderWishes();
+            showToast("Il desiderio è tornato polvere di stelle.", "text-slate-600");
+        }
+
+        function renderWishes() {
+            const container = document.getElementById('wishes-grid');
+            container.innerHTML = '';
+
+            if (appState.wishes.length === 0) {
+                container.innerHTML = `
+                    <div class="col-span-2 text-center p-8 text-xs opacity-70">
+                        Nessun desiderio attivo nel cielo. Affida la tua prima stella usando il bottone in alto! 🌌
+                    </div>
+                `;
+                return;
+            }
+
+            appState.wishes.forEach(wish => {
+                const isRealized = wish.status === 'realizzato';
+                const card = document.createElement('div');
+                card.className = `p-4 rounded-3xl relative flex flex-col justify-between space-y-2 transition-all border ${isRealized ? 'opacity-65 scale-95 border-emerald-300' : 'border-white/40 magic-glow-hover'}`;
+                card.style.backgroundColor = "var(--card-bg)";
+                
+                card.innerHTML = `
+                    <div class="space-y-1">
+                        <div class="flex justify-between items-start">
+                            <span class="text-2xl">${wish.emoji}</span>
+                            <span class="text-[10px] uppercase font-bold opacity-75">${wish.priority.split(' ')[0]}</span>
+                        </div>
+                        <h4 class="font-bold text-sm leading-tight ${isRealized ? 'line-through text-emerald-800' : ''}" style="color: var(--text-main);">${wish.title}</h4>
+                        <p class="text-[11px] opacity-80 line-clamp-3">${wish.description || 'Nessuna descrizione'}</p>
+                    </div>
+                    <div class="pt-2 border-t border-dashed border-slate-300/40 flex justify-between items-center text-[10px] opacity-70">
+                        <span>${wish.date}</span>
+                        <div class="flex space-x-1.5">
+                            ${!isRealized ? `<button onclick="realizeWish('${wish.id}')" class="text-xs bg-emerald-100 hover:bg-emerald-200 text-emerald-800 p-1 rounded-lg font-bold" title="Realizzato">💖 Realizza</button>` : '<span class="text-emerald-600 font-bold">✨ Realizzato</span>'}
+                            <button onclick="deleteWish('${wish.id}')" class="text-xs bg-rose-100 hover:bg-rose-200 text-rose-800 p-1 rounded-lg" title="Rimuovi">🗑️</button>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        // --- SEZIONE: INCANTESIMI (MINDFULNESS RITUALS) ---
+        let currentActiveSpell = null;
+        let breathingTimer = null;
+
+        function renderSpells() {
+            const container = document.getElementById('spells-list');
+            container.innerHTML = '';
+
+            MINDFUL_SPELLS.forEach(spell => {
+                const button = document.createElement('button');
+                button.className = "p-4 rounded-3xl flex flex-col items-center justify-center space-y-2 text-center btn-gummy magic-glow-hover border-2 border-transparent";
+                button.style.backgroundColor = "var(--card-bg)";
+                button.style.borderColor = "var(--border-color)";
+                button.onclick = () => openRitual(spell);
+
+                button.innerHTML = `
+                    <span class="text-3xl">${spell.emoji}</span>
+                    <span class="font-bold text-xs" style="color: var(--text-main);">${spell.title}</span>
+                    <span class="text-[10px] opacity-75 italic leading-tight">Accendi il rituale</span>
+                `;
+                container.appendChild(button);
+            });
+        }
+
+        function openRitual(spell) {
+            currentActiveSpell = spell;
+            document.getElementById('active-spell-emoji').textContent = spell.emoji;
+            document.getElementById('active-spell-title').textContent = spell.title;
+            document.getElementById('active-spell-formula').textContent = spell.formula;
+            document.getElementById('ritual-intention').value = '';
+
+            // Reset UI respirazione
+            document.getElementById('ritual-intent-box').classList.remove('hidden');
+            document.getElementById('breathing-container').classList.add('hidden');
+            document.getElementById('btn-start-breath').disabled = false;
+
+            document.getElementById('ritual-active-screen').classList.remove('hidden');
+        }
+
+        function closeRitual() {
+            if (breathingTimer) clearInterval(breathingTimer);
+            document.getElementById('ritual-active-screen').classList.add('hidden');
+        }
+
+        function startBreathingExercise() {
+            const intention = document.getElementById('ritual-intention').value.trim();
+            if (!intention) {
+                showToast("Per favore, scrivi la tua intenzione nel box.", "text-amber-600");
+                return;
+            }
+
+            document.getElementById('ritual-intent-box').classList.add('hidden');
+            document.getElementById('breathing-container').classList.remove('hidden');
+
+            const statusTxt = document.getElementById('breathing-status');
+            
+            // Loop respirazione (12 secondi totali per ciclo: 4s Inala, 4s Trattieni, 4s Esala)
+            let seconds = 0;
+            statusTxt.textContent = "Inspira...";
+            
+            breathingTimer = setInterval(() => {
+                seconds = (seconds + 1) % 12;
+                if (seconds === 0) {
+                    statusTxt.textContent = "Inspira...";
+                } else if (seconds === 4) {
+                    statusTxt.textContent = "Trattieni...";
+                } else if (seconds === 8) {
+                    statusTxt.textContent = "Esala...";
+                }
+            }, 1000);
+
+            // Rituale dura 24 secondi (due respiri completi)
+            setTimeout(() => {
+                clearInterval(breathingTimer);
+                completeRitual();
+            }, 24000);
+        }
+
+        function completeRitual() {
+            appState.ritualsCompleted += 1;
+            saveData();
+            closeRitual();
+
+            // Sblocca pop-up finale
+            document.getElementById('ritual-complete-popup').classList.remove('hidden');
+        }
+
+        function closeRitualCompletePopup() {
+            document.getElementById('ritual-complete-popup').classList.add('hidden');
+        }
+
+        // --- SEZIONE: CALENDARIO ---
+        const MONTHS_ITA = [
+            "Gennaio", "Febbraio", "Marzo", "Aprile", "Maggio", "Giugno",
+            "Luglio", "Agosto", "Settembre", "Ottobre", "Novembre", "Dicembre"
+        ];
+
+        function renderCalendar() {
+            document.getElementById('calendar-month-year').textContent = `${MONTHS_ITA[calCurrentMonth]} ${calCurrentYear}`;
+            document.getElementById('calendar-current-month-lbl').textContent = `${MONTHS_ITA[calCurrentMonth]}`;
+
+            const daysContainer = document.getElementById('calendar-days');
+            daysContainer.innerHTML = '';
+
+            const firstDayIndex = new Date(calCurrentYear, calCurrentMonth, 1).getDay();
+            const totalDays = new Date(calCurrentYear, calCurrentMonth + 1, 0).getDate();
+
+            // Giorni vuoti prima del primo giorno del mese
+            for (let i = 0; i < firstDayIndex; i++) {
+                const emptyCell = document.createElement('div');
+                emptyCell.className = "py-3";
+                daysContainer.appendChild(emptyCell);
+            }
+
+            // Popola i giorni del mese
+            for (let day = 1; day <= totalDays; day++) {
+                const dayBtn = document.createElement('button');
+                dayBtn.className = "py-2.5 rounded-full btn-gummy transition-all flex flex-col items-center justify-center relative hover:bg-white/40";
+                dayBtn.style.backgroundColor = "rgba(255, 255, 255, 0.2)";
+                
+                const dayStr = `${calCurrentYear}-${String(calCurrentMonth + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+                
+                // Cerca se c'è un'entrata per questo giorno
+                const entry = appState.entries.find(e => e.date === dayStr);
+
+                if (entry) {
+                    dayBtn.innerHTML = `
+                        <span class="font-bold text-xs" style="color: var(--text-main);">${day}</span>
+                        <span class="text-[11px] leading-none">${entry.mood}</span>
+                    `;
+                    dayBtn.onclick = () => showDayDetail(entry);
+                } else {
+                    dayBtn.innerHTML = `
+                        <span class="font-bold text-xs" style="color: var(--text-muted); opacity: 0.8;">${day}</span>
+                        <span class="text-[6px] opacity-0">.</span>
+                    `;
+                    dayBtn.onclick = () => showEmptyDayMsg(dayStr);
+                }
+
+                daysContainer.appendChild(dayBtn);
+            }
+        }
+
+        function prevMonth() {
+            calCurrentMonth--;
+            if (calCurrentMonth < 0) {
+                calCurrentMonth = 11;
+                calCurrentYear--;
+            }
+            renderCalendar();
+        }
+
+        function nextMonth() {
+            calCurrentMonth++;
+            if (calCurrentMonth > 11) {
+                calCurrentMonth = 0;
+                calCurrentYear++;
+            }
+            renderCalendar();
+        }
+
+        function showDayDetail(entry) {
+            const detailBox = document.getElementById('day-detail-box');
+            const [y, m, d] = entry.date.split('-');
+            document.getElementById('detail-date').textContent = `Ricordi del ${d}/${m}/${y} ✨`;
+
+            let gratHtml = '';
+            if (entry.gratitude && entry.gratitude.length > 0) {
+                gratHtml = '<ul class="list-disc pl-4 space-y-0.5 mt-1">';
+                entry.gratitude.forEach(g => { gratHtml += `<li>${g}</li>`; });
+                gratHtml += '</ul>';
+            } else {
+                gratHtml = '<p class="opacity-60">Nessuna gratitudine registrata oggi.</p>';
+            }
+
+            document.getElementById('detail-content').innerHTML = `
+                <div class="grid grid-cols-2 gap-2 text-[11px]">
+                    <div><strong>Umore:</strong> ${entry.mood}</div>
+                    <div><strong>Stato Cuore:</strong> ${entry.heart}</div>
+                    <div><strong>Energia:</strong> ${entry.energy || 50}%</div>
+                    <div><strong>Stress:</strong> ${entry.stress || 20}%</div>
+                </div>
+                <div class="space-y-1.5 border-t pt-2 border-slate-300/30">
+                    <div><strong>Pensieri:</strong> <p class="italic font-light">${entry.thought || 'Nessuno'}</p></div>
+                    <div><strong>Vittoria:</strong> <p class="italic font-light">${entry.victory || 'Nessuna'}</p></div>
+                    <div><strong>Gesto Gentile:</strong> <p class="italic font-light">${entry.kindness || 'Nessuno'}</p></div>
+                    <div><strong>Gratitudine:</strong> ${gratHtml}</div>
+                </div>
+            `;
+            detailBox.classList.remove('hidden');
+        }
+
+        function showEmptyDayMsg(dayStr) {
+            const detailBox = document.getElementById('day-detail-box');
+            const [y, m, d] = dayStr.split('-');
+            document.getElementById('detail-date').textContent = `${d}/${m}/${y}`;
+            document.getElementById('detail-content').innerHTML = `
+                <p class="text-center py-2 opacity-75">Nessuna pagina registrata per questo giorno. Vuoi scriverne una adesso?</p>
+                <button onclick="navigateTo('new-page')" class="w-full py-1.5 bg-white/60 hover:bg-white/90 border rounded-xl font-bold btn-gummy">Scrivi Ora</button>
+            `;
+            detailBox.classList.remove('hidden');
+        }
+
+        function closeDetailBox() {
+            document.getElementById('day-detail-box').classList.add('hidden');
+        }
+
+        // --- SEZIONE: STATISTICHE & COLLEZIONE ---
+        function renderStatsAndCollection() {
+            // Calcola medie
+            const total = appState.entries.length;
+            let avgEnergy = 0;
+            let avgStress = 0;
+            let totalGratitude = 0;
+
+            appState.entries.forEach(e => {
+                avgEnergy += e.energy || 50;
+                avgStress += e.stress || 20;
+                if (e.gratitude) totalGratitude += e.gratitude.length;
+            });
+
+            const finalAvgEnergy = total > 0 ? Math.round(avgEnergy / total) : 0;
+            const finalAvgStress = total > 0 ? Math.round(avgStress / total) : 0;
+
+            const streak = calculateStreak();
+
+            // Aggiorna Numeri
+            document.getElementById('stat-streak').textContent = streak;
+            document.getElementById('stat-rituals').textContent = appState.ritualsCompleted || 0;
+            document.getElementById('stat-wishes').textContent = appState.wishes.length || 0;
+
+            // Aggiorna Grafici CSS
+            document.getElementById('bar-energy-text').textContent = `${finalAvgEnergy}%`;
+            document.getElementById('bar-energy-fill').style.width = `${finalAvgEnergy}%`;
+
+            document.getElementById('bar-stress-text').textContent = `${finalAvgStress}%`;
+            document.getElementById('bar-stress-fill').style.width = `${finalAvgStress}%`;
+
+            // Render Collezione Kawaii
+            renderCollectionGrid(streak, total);
+        }
+
+        function checkAndUnlockItems() {
+            const streak = calculateStreak();
+            const totalEntries = appState.entries.length;
+            const rituals = appState.ritualsCompleted;
+            const wishes = appState.wishes.length;
+
+            COLLECTION_ITEMS.forEach(item => {
+                let meetsReq = false;
+                if (item.reqType === 'streak' && streak >= item.reqValue) meetsReq = true;
+                if (item.reqType === 'entries' && totalEntries >= item.reqValue) meetsReq = true;
+                if (item.reqType === 'rituals' && rituals >= item.reqValue) meetsReq = true;
+                if (item.reqType === 'wishes' && wishes >= item.reqValue) meetsReq = true;
+
+                if (meetsReq && !appState.unlockedItems.includes(item.key)) {
+                    appState.unlockedItems.push(item.key);
+                }
+            });
+        }
+
+        function renderCollectionGrid(streak, totalEntries) {
+            const grid = document.getElementById('collection-grid');
+            grid.innerHTML = '';
+
+            COLLECTION_ITEMS.forEach(item => {
+                const isUnlocked = appState.unlockedItems.includes(item.key);
+                const el = document.createElement('div');
+                el.className = `p-2.5 rounded-2xl flex flex-col items-center justify-center border text-center ${isUnlocked ? 'border-white/40 magic-glow' : 'opacity-40 border-dashed border-slate-300'}`;
+                el.style.backgroundColor = "var(--card-bg)";
+
+                el.innerHTML = `
+                    <span class="text-3xl filter ${isUnlocked ? '' : 'grayscale'}">${item.emoji}</span>
+                    <span class="text-[9px] font-bold block leading-tight mt-1" style="color: var(--text-main);">${item.name}</span>
+                    <span class="text-[7px] block opacity-75 mt-0.5 leading-none">${isUnlocked ? 'Sbloccato!' : item.desc}</span>
+                `;
+                grid.appendChild(el);
+            });
+        }
+
+        // --- PERSONALIZZAZIONE (TEMI) ---
+        function applyTheme(themeName) {
+            const theme = THEMES_CONFIG[themeName] || THEMES_CONFIG['dream-sky'];
+            const root = document.documentElement;
+
+            for (const [property, value] of Object.entries(theme)) {
+                root.style.setProperty(property, value);
+            }
+        }
+
+        function changeTheme(themeName) {
+            appState.activeTheme = themeName;
+            applyTheme(themeName);
+            saveData();
+            showToast("🎨 Palette magica aggiornata!", "text-indigo-600");
+        }
+
+        // --- EXPORT / IMPORT / RESET ---
+        function exportJSON() {
+            const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(appState, null, 2));
+            const downloadAnchor = document.createElement('a');
+            downloadAnchor.setAttribute("href", dataStr);
+            downloadAnchor.setAttribute("download", "MyMysticalJournal_Grimorio.json");
+            document.body.appendChild(downloadAnchor);
+            downloadAnchor.click();
+            downloadAnchor.remove();
+        }
+
+        function clearAllDataPrompt() {
+            const isConfirmed = confirm("⚠️ Sei sicura di voler cancellare tutta la memoria del tuo diario? Questa azione eliminerà per sempre le tue pagine, desideri e collezione.");
+            if (isConfirmed) {
+                localStorage.removeItem('my_mystical_journal_data');
+                appState = {
+                    entries: [],
+                    wishes: [],
+                    ritualsCompleted: 0,
+                    activeTheme: 'dream-sky',
+                    unlockedItems: []
+                };
+                applyTheme('dream-sky');
+                showToast("Il grimorio è stato purificato. Tutti i dati sono stati cancellati.", "text-rose-600");
+                navigateTo('home');
+            }
+        }
+    </script>
+</body>
+</html>
