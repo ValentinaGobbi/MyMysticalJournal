@@ -529,43 +529,48 @@
             </div>
 
             <div id="section-settings" class="hidden space-y-5">
-                <div class="flex items-center justify-between mb-2">
-                    <button onclick="navigateTo('home')" class="text-xs bg-white/40 px-3 py-1.5 rounded-full font-bold btn-gummy">⬅️ Indietro</button>
-                    <h2 class="text-md font-bold font-kawaii">Personalizza</h2>
-                    <span>🎨</span>
+                <div class="grid grid-cols-3 items-center mb-2">
+                    <button onclick="navigateTo('home')" class="text-xs bg-white/40 px-3 py-1.5 rounded-full font-bold btn-gummy justify-self-start">⬅️ Indietro</button>
+                    <h2 class="text-md font-bold font-kawaii text-center">Personalizza</h2>
+                    <span class="justify-self-end text-lg">🎨</span>
                 </div>
 
                 <div class="p-4 rounded-3xl space-y-3" style="background-color: var(--card-bg); border: 2px solid var(--border-color);">
                     <h3 class="text-xs font-bold border-b pb-1.5">Scegli la tua Palette</h3>
                     
                     <div class="space-y-2">
-                        <button onclick="changeTheme('dream-sky')" class="w-full p-2.5 rounded-2xl flex justify-between items-center text-[11px] font-bold border btn-gummy" style="background: linear-gradient(90deg, #e0c3fc, #8ec5fc); color: #4a3f75;">
+                        <button onclick="changeTheme('dream-sky')" class="w-full p-2.5 rounded-2xl flex justify-between items-center text-[11px] font-bold border btn-gummy" style="background: linear-gradient(90deg, #e0c3fc, #8ec5fc); color: #4a3f75; border-color: rgba(177, 159, 251, 0.3);">
                             <span>Dream Sky 🌌 (Cielo Pastello)</span>
-                            <span>✨ Attivo</span>
+                            <span>✨ Scegli</span>
                         </button>
-                        <button onclick="changeTheme('sakura')" class="w-full p-2.5 rounded-2xl flex justify-between items-center text-[11px] font-bold border btn-gummy" style="background: linear-gradient(90deg, #ffd1ff, #fbd0c6); color: #6c3f4e;">
+                        <button onclick="changeTheme('sakura')" class="w-full p-2.5 rounded-2xl flex justify-between items-center text-[11px] font-bold border btn-gummy" style="background: linear-gradient(90deg, #ffd1ff, #fbd0c6); color: #6c3f4e; border-color: rgba(255, 158, 187, 0.3);">
                             <span>Sakura 🌸 (Petali di Ciliegio)</span>
                             <span>🌸 Scegli</span>
                         </button>
-                        <button onclick="changeTheme('moon-garden')" class="w-full p-2.5 rounded-2xl flex justify-between items-center text-[11px] font-bold border btn-gummy" style="background: linear-gradient(90deg, #1e1e38, #3b3b6d); color: #f5f3f7;">
+                        <button onclick="changeTheme('moon-garden')" class="w-full p-2.5 rounded-2xl flex justify-between items-center text-[11px] font-bold border btn-gummy" style="background: linear-gradient(90deg, #1e1e38, #3b3b6d); color: #f5f3f7; border-color: rgba(179, 157, 219, 0.2);">
                             <span>Moon Garden 🌙 (Giardino Lunare)</span>
                             <span>🌙 Scegli</span>
                         </button>
-                        <button onclick="changeTheme('magic-library')" class="w-full p-2.5 rounded-2xl flex justify-between items-center text-[11px] font-bold border btn-gummy" style="background: linear-gradient(90deg, #fbf5eb, #e8d8c8); color: #5c4033;">
+                        <button onclick="changeTheme('magic-library')" class="w-full p-2.5 rounded-2xl flex justify-between items-center text-[11px] font-bold border btn-gummy" style="background: linear-gradient(90deg, #fbf5eb, #e8d8c8); color: #5c4033; border-color: rgba(212, 163, 115, 0.3);">
                             <span>Magic Library 📚 (Grimorio Antico)</span>
                             <span>📚 Scegli</span>
                         </button>
-                        <button onclick="changeTheme('candy-clouds')" class="w-full p-2.5 rounded-2xl flex justify-between items-center text-[11px] font-bold border btn-gummy" style="background: linear-gradient(90deg, #ffc6ff, #bdb2ff); color: #543d75;">
+                        <button onclick="changeTheme('candy-clouds')" class="w-full p-2.5 rounded-2xl flex justify-between items-center text-[11px] font-bold border btn-gummy" style="background: linear-gradient(90deg, #ffc6ff, #bdb2ff); color: #543d75; border-color: rgba(255, 173, 173, 0.3);">
                             <span>Candy Clouds 🍬 (Nuvole Dolci)</span>
                             <span>🍬 Scegli</span>
                         </button>
-                        <button onclick="changeTheme('lavender-night')" class="w-full p-2.5 rounded-2xl flex justify-between items-center text-[11px] font-bold border btn-gummy" style="background: linear-gradient(90deg, #2c1a4d, #513b8c); color: #f0e6ff;">
+                        <button onclick="changeTheme('lavender-night')" class="w-full p-2.5 rounded-2xl flex justify-between items-center text-[11px] font-bold border btn-gummy" style="background: linear-gradient(90deg, #2c1a4d, #513b8c); color: #f0e6ff; border-color: rgba(209, 179, 255, 0.2);">
                             <span>Lavender Night 🪻 (Sogno Viola)</span>
                             <span>🪻 Scegli</span>
                         </button>
-                        <button onclick="changeTheme('mint-leaves')" class="w-full p-2.5 rounded-2xl flex justify-between items-center text-[11px] font-bold border btn-gummy" style="background: linear-gradient(90deg, #e8f5e9, #c8e6c9); color: #2e7d32;">
+                        <button onclick="changeTheme('mint-leaves')" class="w-full p-2.5 rounded-2xl flex justify-between items-center text-[11px] font-bold border btn-gummy" style="background: linear-gradient(90deg, #e8f5e9, #c8e6c9); color: #2e7d32; border-color: rgba(129, 199, 132, 0.3);">
                             <span>Mint Leaves 🌿 (Menta Fresca)</span>
                             <span>🌿 Scegli</span>
+                        </button>
+                        <!-- Tema Fresh Watermelon spostato in fondo alla lista -->
+                        <button onclick="changeTheme('fresh-watermelon')" class="w-full p-2.5 rounded-2xl flex justify-between items-center text-[11px] font-bold border btn-gummy" style="background: linear-gradient(90deg, #FFD6D6, #C8E6C9); color: #1B4D2E; border-color: rgba(108, 175, 123, 0.4);">
+                            <span>Fresh Watermelon 🍉 (Novità!)</span>
+                            <span>🍉 Scegli</span>
                         </button>
                     </div>
                 </div>
@@ -695,6 +700,17 @@
         ];
 
         const THEMES_CONFIG = {
+            'fresh-watermelon': {
+                '--bg-start': '#FFD6D6',
+                '--bg-end': '#C8E6C9',
+                '--card-bg': 'rgba(255, 255, 255, 0.85)',
+                '--accent': '#FF3B4D',
+                '--accent-glow': 'rgba(255, 59, 77, 0.4)',
+                '--text-main': '#1B4D2E',
+                '--text-muted': '#2E7D32',
+                '--border-color': 'rgba(108, 175, 123, 0.4)',
+                '--input-bg': 'rgba(242, 247, 233, 0.9)'
+            },
             'dream-sky': {
                 '--bg-start': '#e0c3fc',
                 '--bg-end': '#8ec5fc',
