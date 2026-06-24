@@ -133,7 +133,7 @@
                 </div>
             </div>
             <div class="flex space-x-2">
-                <!-- Bottone Impostazioni / Temi con Rotellina Doodle SVG -->
+                <!-- Bottone Impostazioni / Temi -->
                 <button onclick="navigateTo('settings')" class="p-2.5 rounded-full bg-white/60 hover:bg-white/90 transition-all btn-gummy shadow-sm flex items-center justify-center" title="Personalizzazione">
                     <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--text-main);">
                         <circle cx="12" cy="12" r="3" />
@@ -154,7 +154,7 @@
                     <p class="text-xs opacity-90">Cosa realizzeremo oggi di magico?</p>
                 </div>
 
-                <!-- Griglia dei Pulsanti Principali con SVG Doodle Extra-Compatti -->
+                <!-- Griglia dei Pulsanti Principali -->
                 <div class="grid grid-cols-2 gap-2">
                     <!-- Nuova Pagina -->
                     <button onclick="startNewPageOrEditToday()" class="p-2.5 rounded-2xl flex flex-col items-center justify-center space-y-1 text-center btn-gummy magic-glow-hover border-2 border-transparent" style="background-color: var(--card-bg); border-color: var(--border-color);">
@@ -390,10 +390,14 @@
             </div>
 
             <!-- MODALE / SCREEN RITUALE ATTIVO -->
-            <div id="ritual-active-screen" class="hidden fixed inset-0 z-50 flex flex-col justify-between p-6 overflow-y-auto" style="background: linear-gradient(135deg, var(--bg-start), var(--bg-end));">
-                <div class="flex justify-between items-center">
+            <!-- Convertito da fixed ad absolute per una perfetta compatibilità con il mockup -->
+            <div id="ritual-active-screen" class="hidden absolute inset-0 z-50 flex flex-col justify-between p-6 overflow-y-auto" style="background: linear-gradient(135deg, var(--bg-start), var(--bg-end));">
+                <div class="flex items-center justify-between w-full mb-2">
+                    <button onclick="closeRitual()" class="text-[11px] bg-white/40 px-3.5 py-1.5 rounded-full font-bold btn-gummy flex items-center gap-1">
+                        <span>⬅️</span> <span>Indietro</span>
+                    </button>
                     <span class="text-xs font-semibold opacity-75">Rituale in corso... ✨</span>
-                    <button onclick="closeRitual()" class="text-xs bg-white/40 px-3 py-1.5 rounded-full font-bold btn-gummy">Chiudi</button>
+                    <span class="w-14"></span> <!-- Spacer per centrare il titolo -->
                 </div>
 
                 <div class="flex-1 flex flex-col items-center justify-center space-y-6 my-4 text-center">
@@ -538,40 +542,8 @@
                 <div class="p-4 rounded-3xl space-y-3" style="background-color: var(--card-bg); border: 2px solid var(--border-color);">
                     <h3 class="text-xs font-bold border-b pb-1.5">Scegli la tua Palette</h3>
                     
-                    <div class="space-y-2">
-                        <button onclick="changeTheme('dream-sky')" class="w-full p-2.5 rounded-2xl flex justify-between items-center text-[11px] font-bold border btn-gummy" style="background: linear-gradient(90deg, #e0c3fc, #8ec5fc); color: #4a3f75; border-color: rgba(177, 159, 251, 0.3);">
-                            <span>Dream Sky 🌌 (Cielo Pastello)</span>
-                            <span>✨ Scegli</span>
-                        </button>
-                        <button onclick="changeTheme('sakura')" class="w-full p-2.5 rounded-2xl flex justify-between items-center text-[11px] font-bold border btn-gummy" style="background: linear-gradient(90deg, #ffd1ff, #fbd0c6); color: #6c3f4e; border-color: rgba(255, 158, 187, 0.3);">
-                            <span>Sakura 🌸 (Petali di Ciliegio)</span>
-                            <span>🌸 Scegli</span>
-                        </button>
-                        <button onclick="changeTheme('moon-garden')" class="w-full p-2.5 rounded-2xl flex justify-between items-center text-[11px] font-bold border btn-gummy" style="background: linear-gradient(90deg, #1e1e38, #3b3b6d); color: #f5f3f7; border-color: rgba(179, 157, 219, 0.2);">
-                            <span>Moon Garden 🌙 (Giardino Lunare)</span>
-                            <span>🌙 Scegli</span>
-                        </button>
-                        <button onclick="changeTheme('magic-library')" class="w-full p-2.5 rounded-2xl flex justify-between items-center text-[11px] font-bold border btn-gummy" style="background: linear-gradient(90deg, #fbf5eb, #e8d8c8); color: #5c4033; border-color: rgba(212, 163, 115, 0.3);">
-                            <span>Magic Library 📚 (Grimorio Antico)</span>
-                            <span>📚 Scegli</span>
-                        </button>
-                        <button onclick="changeTheme('candy-clouds')" class="w-full p-2.5 rounded-2xl flex justify-between items-center text-[11px] font-bold border btn-gummy" style="background: linear-gradient(90deg, #ffc6ff, #bdb2ff); color: #543d75; border-color: rgba(255, 173, 173, 0.3);">
-                            <span>Candy Clouds 🍬 (Nuvole Dolci)</span>
-                            <span>🍬 Scegli</span>
-                        </button>
-                        <button onclick="changeTheme('lavender-night')" class="w-full p-2.5 rounded-2xl flex justify-between items-center text-[11px] font-bold border btn-gummy" style="background: linear-gradient(90deg, #2c1a4d, #513b8c); color: #f0e6ff; border-color: rgba(209, 179, 255, 0.2);">
-                            <span>Lavender Night 🪻 (Sogno Viola)</span>
-                            <span>🪻 Scegli</span>
-                        </button>
-                        <button onclick="changeTheme('mint-leaves')" class="w-full p-2.5 rounded-2xl flex justify-between items-center text-[11px] font-bold border btn-gummy" style="background: linear-gradient(90deg, #e8f5e9, #c8e6c9); color: #2e7d32; border-color: rgba(129, 199, 132, 0.3);">
-                            <span>Mint Leaves 🌿 (Menta Fresca)</span>
-                            <span>🌿 Scegli</span>
-                        </button>
-                        <!-- Tema Fresh Watermelon spostato in fondo alla lista -->
-                        <button onclick="changeTheme('fresh-watermelon')" class="w-full p-2.5 rounded-2xl flex justify-between items-center text-[11px] font-bold border btn-gummy" style="background: linear-gradient(90deg, #FFD6D6, #C8E6C9); color: #1B4D2E; border-color: rgba(108, 175, 123, 0.4);">
-                            <span>Fresh Watermelon 🍉 (Novità!)</span>
-                            <span>🍉 Scegli</span>
-                        </button>
+                    <div id="themes-list-container" class="space-y-2">
+                        <!-- Generato dinamicamente con JS -->
                     </div>
                 </div>
 
@@ -638,7 +610,7 @@
         </div>
 
         <!-- POPUP COMPLETAMENTO RITUALE -->
-        <div id="ritual-complete-popup" class="hidden fixed inset-0 z-50 flex items-center justify-center p-6 bg-slate-900/40 backdrop-blur-sm">
+        <div id="ritual-complete-popup" class="hidden absolute inset-0 z-50 flex items-center justify-center p-6 bg-slate-900/40 backdrop-blur-sm">
             <div class="w-full max-w-xs p-6 rounded-[32px] text-center space-y-4 border-2 shadow-2xl animate-bounce" style="background-color: var(--card-bg); border-color: var(--accent);">
                 <span class="text-5xl block animate-pulse">🌟</span>
                 <h3 class="font-bold text-lg font-kawaii">Rituale Concluso</h3>
@@ -652,7 +624,7 @@
         </div>
 
         <!-- MODALE DI CONFERMA CANCELLAZIONE CUSTODIA -->
-        <div id="custom-confirm-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-6 bg-slate-900/40 backdrop-blur-sm">
+        <div id="custom-confirm-modal" class="hidden absolute inset-0 z-50 flex items-center justify-center p-6 bg-slate-900/40 backdrop-blur-sm">
             <div class="w-full max-w-xs p-5 rounded-[32px] text-center space-y-3.5 border-2 shadow-2xl bg-white/95 border-rose-300" style="background-color: var(--card-bg); border-color: var(--border-color);">
                 <span class="text-4xl block">⚠️</span>
                 <h3 class="font-bold text-md font-kawaii text-rose-500">Purificare il grimorio?</h3>
@@ -697,6 +669,17 @@
             { id: 'gratitudine', title: 'Stella Grata', emoji: '⭐', formula: '"Riconosco le cose brillanti e vicine, sono farfalle che volano in rime."' },
             { id: 'cuore', title: 'Cuore Aperto', emoji: '💖', formula: '"Lascio fluire il calore che porto, guarisco il buio trovando conforto."' },
             { id: 'fortuna', title: 'Piccola Fortuna', emoji: '🍀', formula: '"Attiro sorrisi, abbraccio la via, sblocco nei passi la mia allegria."' }
+        ];
+
+        const THEMES_METADATA = [
+            { key: 'dream-sky', name: 'Dream Sky 🌌', desc: '(Cielo Pastello)', bg: 'linear-gradient(90deg, #e0c3fc, #8ec5fc)', color: '#4a3f75', border: 'rgba(177, 159, 251, 0.3)', icon: '✨' },
+            { key: 'sakura', name: 'Sakura 🌸', desc: '(Petali di Ciliegio)', bg: 'linear-gradient(90deg, #ffd1ff, #fbd0c6)', color: '#6c3f4e', border: 'rgba(255, 158, 187, 0.3)', icon: '🌸' },
+            { key: 'moon-garden', name: 'Moon Garden 🌙', desc: '(Giardino Lunare)', bg: 'linear-gradient(90deg, #1e1e38, #3b3b6d)', color: '#f5f3f7', border: 'rgba(179, 157, 219, 0.2)', icon: '🌙' },
+            { key: 'magic-library', name: 'Magic Library 📚', desc: '(Grimorio Antico)', bg: 'linear-gradient(90deg, #fbf5eb, #e8d8c8)', color: '#5c4033', border: 'rgba(212, 163, 115, 0.3)', icon: '📚' },
+            { key: 'candy-clouds', name: 'Candy Clouds 🍬', desc: '(Nuvole Dolci)', bg: 'linear-gradient(90deg, #ffc6ff, #bdb2ff)', color: '#543d75', border: 'rgba(255, 173, 173, 0.3)', icon: '🍬' },
+            { key: 'lavender-night', name: 'Lavender Night 🪻', desc: '(Sogno Viola)', bg: 'linear-gradient(90deg, #2c1a4d, #513b8c)', color: '#f0e6ff', border: 'rgba(209, 179, 255, 0.2)', icon: '🪻' },
+            { key: 'mint-leaves', name: 'Mint Leaves 🌿', desc: '(Menta Fresca)', bg: 'linear-gradient(90deg, #e8f5e9, #c8e6c9)', color: '#2e7d32', border: 'rgba(129, 199, 132, 0.3)', icon: '🌿' },
+            { key: 'fresh-watermelon', name: 'Fresh Watermelon 🍉', desc: '(Novità!)', bg: 'linear-gradient(90deg, #FFD6D6, #C8E6C9)', color: '#1B4D2E', border: 'rgba(108, 175, 123, 0.4)', icon: '🍉' }
         ];
 
         const THEMES_CONFIG = {
@@ -799,6 +782,7 @@
             setWelcomeMessage();
             renderSpells();
             checkAndUnlockItems();
+            renderThemesList();
             
             const today = new Date().toLocaleDateString('it-IT');
             document.getElementById('current-date-display').textContent = today;
@@ -1387,6 +1371,7 @@
             document.getElementById('bar-energy-text').textContent = `${finalAvgEnergy}%`;
             document.getElementById('bar-energy-fill').style.width = `${finalAvgEnergy}%`;
 
+            document.getElementById('bar-indigo-stress-text'); 
             document.getElementById('bar-stress-text').textContent = `${finalAvgStress}%`;
             document.getElementById('bar-stress-fill').style.width = `${finalAvgStress}%`;
 
@@ -1439,10 +1424,35 @@
             }
         }
 
+        function renderThemesList() {
+            const container = document.getElementById('themes-list-container');
+            if (!container) return;
+            container.innerHTML = '';
+
+            THEMES_METADATA.forEach(theme => {
+                const isActive = appState.activeTheme === theme.key;
+                const button = document.createElement('button');
+                button.onclick = () => changeTheme(theme.key);
+                button.className = "w-full p-2.5 rounded-2xl flex justify-between items-center text-[11px] font-bold border btn-gummy";
+                button.style.background = theme.bg;
+                button.style.color = theme.color;
+                button.style.borderColor = theme.border;
+
+                const labelText = isActive ? "In uso 💖" : `${theme.icon} Scegli`;
+                
+                button.innerHTML = `
+                    <span>${theme.name} ${theme.desc}</span>
+                    <span class="${isActive ? 'underline decoration-2' : ''}">${labelText}</span>
+                `;
+                container.appendChild(button);
+            });
+        }
+
         function changeTheme(themeName) {
             appState.activeTheme = themeName;
             applyTheme(themeName);
             saveData();
+            renderThemesList();
             showToast("🎨 Palette magica aggiornata!", "text-indigo-600");
         }
 
@@ -1474,6 +1484,7 @@
                 unlockedItems: []
             };
             applyTheme('dream-sky');
+            renderThemesList();
             closeConfirmModal();
             showToast("Il grimorio è stato purificato. Tutti i dati sono stati cancellati.", "text-rose-600");
             navigateTo('home');
