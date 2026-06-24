@@ -12,7 +12,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
     
     <style>
-        /* Variabili personalizzate dei temi (Default: Dream Sky) */
         :root {
             --bg-start: #e0c3fc;
             --bg-end: #8ec5fc;
@@ -38,7 +37,6 @@
             font-family: 'Fredoka', sans-serif;
         }
 
-        /* Effetto pulsante gommoso potenziato */
         .btn-gummy {
             transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.45), box-shadow 0.3s ease, border-color 0.3s ease;
         }
@@ -49,17 +47,23 @@
             transform: translateY(2px) scale(0.90);
         }
 
-        /* Animazione fluttuante per stelline */
         @keyframes float {
-            0% { transform: translateY(0px) rotate(0deg); opacity: 0.8; }
-            50% { transform: translateY(-10px) rotate(10deg); opacity: 1; }
-            100% { transform: translateY(0px) rotate(0deg); opacity: 0.8; }
+            0% { transform: translateY(0px) rotate(0deg); opacity: 0.6; }
+            50% { transform: translateY(-12px) rotate(8deg); opacity: 0.9; }
+            100% { transform: translateY(0px) rotate(0deg); opacity: 0.6; }
+        }
+        @keyframes float-slow {
+            0% { transform: translateY(0px) rotate(0deg); opacity: 0.5; }
+            50% { transform: translateY(-8px) rotate(-12deg); opacity: 0.8; }
+            100% { transform: translateY(0px) rotate(0deg); opacity: 0.5; }
         }
         .floating-sparkle {
             animation: float 4s ease-in-out infinite;
         }
+        .floating-sparkle-slow {
+            animation: float-slow 7s ease-in-out infinite;
+        }
 
-        /* Glow Magico */
         .magic-glow {
             box-shadow: 0 0 15px var(--accent-glow);
         }
@@ -67,7 +71,6 @@
             box-shadow: 0 0 20px var(--accent-glow);
         }
 
-        /* Scrollbar personalizzata stile Kawaii */
         ::-webkit-scrollbar {
             width: 8px;
         }
@@ -80,7 +83,6 @@
             border-radius: 10px;
         }
 
-        /* Animazione del cerchio di respirazione */
         @keyframes breathe {
             0%, 100% { transform: scale(1); background-color: rgba(177, 159, 251, 0.2); }
             40% { transform: scale(1.6); background-color: rgba(177, 159, 251, 0.5); }
@@ -93,17 +95,32 @@
 </head>
 <body class="p-0 m-0 overflow-x-hidden flex justify-center items-start md:py-8">
 
-    <!-- Container Smartphone Mockup per Desktop, Fluid su Mobile con altezza dinamica 100dvh -->
+    <!-- Container Smartphone Mockup -->
     <div id="app-container" class="w-full max-w-md h-[100dvh] md:h-[850px] md:rounded-[40px] md:shadow-2xl overflow-hidden flex flex-col relative border-4 border-white/40 backdrop-blur-md" style="background: linear-gradient(180deg, var(--bg-start), var(--bg-end));">
         
-        <!-- Sfondo con Stelline Decorative -->
         <div class="absolute inset-0 pointer-events-none overflow-hidden z-0 opacity-40">
-            <svg class="absolute top-12 left-8 w-6 h-6 floating-sparkle" viewBox="0 0 24 24" fill="currentColor" style="color: var(--accent);"><path d="M12 2l2.4 7.2L22 12l-7.6 2.8L12 22l-2.4-7.2L2 12l7.6-2.8z"/></svg>
-            <svg class="absolute top-48 right-12 w-8 h-8 floating-sparkle" style="animation-delay: 1s; color: var(--accent);" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 7.2L22 12l-7.6 2.8L12 22l-2.4-7.2L2 12l7.6-2.8z"/></svg>
-            <svg class="absolute bottom-32 left-16 w-5 h-5 floating-sparkle" style="animation-delay: 2s; color: var(--accent);" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 7.2L22 12l-7.6 2.8L12 22l-2.4-7.2L2 12l7.6-2.8z"/></svg>
-            <svg class="absolute bottom-64 right-10 w-7 h-7 floating-sparkle" style="animation-delay: 1.5s; color: var(--accent);" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 7.2L22 12l-7.6 2.8L12 22l-2.4-7.2L2 12l7.6-2.8z"/></svg>
-            <span class="absolute top-1/3 left-4 text-2xl floating-sparkle" style="animation-delay: 0.5s;">☁️</span>
-            <span class="absolute bottom-1/4 right-4 text-2xl floating-sparkle" style="animation-delay: 2.5s;">🌙</span>
+            <!-- Nuvole Morbide Kawaii -->
+            <span class="absolute top-[8%] left-[6%] text-xl floating-sparkle" style="animation-delay: 0.2s;">☁️</span>
+            <span class="absolute top-[28%] right-[8%] text-2xl floating-sparkle-slow" style="animation-delay: 1.8s;">☁️</span>
+            <span class="absolute top-[48%] left-[10%] text-xl floating-sparkle" style="animation-delay: 3.2s;">☁️</span>
+            <span class="absolute bottom-[32%] right-[12%] text-2xl floating-sparkle-slow" style="animation-delay: 0.7s;">☁️</span>
+            <span class="absolute bottom-[10%] left-[8%] text-lg floating-sparkle" style="animation-delay: 2.3s;">☁️</span>
+
+            <!-- Lune e Mezzelune Arcane -->
+            <span class="absolute top-[18%] right-[24%] text-lg floating-sparkle" style="animation-delay: 1.1s;">🌙</span>
+            <span class="absolute top-[58%] left-[22%] text-xl floating-sparkle-slow" style="animation-delay: 2.9s;">🌙</span>
+            <span class="absolute bottom-[22%] right-[6%] text-lg floating-sparkle" style="animation-delay: 0.4s;">🌙</span>
+            <span class="absolute bottom-[42%] left-[4%] text-sm floating-sparkle-slow" style="animation-delay: 3.5s;">🌙</span>
+
+            <!-- Stelle Scintillanti e Scintille Magiche (SVG) -->
+            <svg class="absolute top-[4%] left-[25%] w-5 h-5 floating-sparkle" viewBox="0 0 24 24" fill="currentColor" style="color: var(--accent); animation-delay: 0.5s;"><path d="M12 2l2.4 7.2L22 12l-7.6 2.8L12 22l-2.4-7.2L2 12l7.6-2.8z"/></svg>
+            <svg class="absolute top-[13%] right-[10%] w-6 h-6 floating-sparkle-slow" viewBox="0 0 24 24" fill="currentColor" style="color: var(--accent); animation-delay: 1.2s;"><path d="M12 2l2.4 7.2L22 12l-7.6 2.8L12 22l-2.4-7.2L2 12l7.6-2.8z"/></svg>
+            <svg class="absolute top-[35%] left-[12%] w-4 h-4 floating-sparkle" viewBox="0 0 24 24" fill="currentColor" style="color: var(--accent); animation-delay: 2.1s;"><path d="M12 2l2.4 7.2L22 12l-7.6 2.8L12 22l-2.4-7.2L2 12l7.6-2.8z"/></svg>
+            <svg class="absolute top-[42%] right-[28%] w-5 h-5 floating-sparkle-slow" viewBox="0 0 24 24" fill="currentColor" style="color: var(--accent); animation-delay: 0.9s;"><path d="M12 2l2.4 7.2L22 12l-7.6 2.8L12 22l-2.4-7.2L2 12l7.6-2.8z"/></svg>
+            <svg class="absolute top-[68%] right-[14%] w-6 h-6 floating-sparkle" viewBox="0 0 24 24" fill="currentColor" style="color: var(--accent); animation-delay: 2.7s;"><path d="M12 2l2.4 7.2L22 12l-7.6 2.8L12 22l-2.4-7.2L2 12l7.6-2.8z"/></svg>
+            <svg class="absolute bottom-[28%] left-[26%] w-4 h-4 floating-sparkle-slow" viewBox="0 0 24 24" fill="currentColor" style="color: var(--accent); animation-delay: 1.5s;"><path d="M12 2l2.4 7.2L22 12l-7.6 2.8L12 22l-2.4-7.2L2 12l7.6-2.8z"/></svg>
+            <svg class="absolute bottom-[14%] right-[22%] w-5 h-5 floating-sparkle" viewBox="0 0 24 24" fill="currentColor" style="color: var(--accent); animation-delay: 3.1s;"><path d="M12 2l2.4 7.2L22 12l-7.6 2.8L12 22l-2.4-7.2L2 12l7.6-2.8z"/></svg>
+            <svg class="absolute bottom-[4%] left-[45%] w-4 h-4 floating-sparkle-slow" viewBox="0 0 24 24" fill="currentColor" style="color: var(--accent); animation-delay: 0.3s;"><path d="M12 2l2.4 7.2L22 12l-7.6 2.8L12 22l-2.4-7.2L2 12l7.6-2.8z"/></svg>
         </div>
 
         <!-- HEADER MAGICO -->
@@ -126,7 +143,6 @@
             </div>
         </header>
 
-        <!-- AREA CONTENUTO PRINCIPALE (Scorrevole con padding ottimizzato per il footer fluttuante) -->
         <main class="flex-1 overflow-y-auto px-5 py-6 relative z-10" style="padding-bottom: calc(86px + env(safe-area-inset-bottom, 16px));">
             
             <!-- SEZIONE: HOME -->
@@ -140,7 +156,7 @@
 
                 <!-- Griglia dei Pulsanti Principali con SVG Doodle Extra-Compatti -->
                 <div class="grid grid-cols-2 gap-2">
-                    <!-- Nuova Pagina (Richiama startNewPageOrEditToday) -->
+                    <!-- Nuova Pagina -->
                     <button onclick="startNewPageOrEditToday()" class="p-2.5 rounded-2xl flex flex-col items-center justify-center space-y-1 text-center btn-gummy magic-glow-hover border-2 border-transparent" style="background-color: var(--card-bg); border-color: var(--border-color);">
                         <svg class="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--text-main);">
                             <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
@@ -206,7 +222,6 @@
                 </div>
             </div>
 
-            <!-- SEZIONE: NUOVA PAGINA DEL CUORE -->
             <div id="section-new-page" class="hidden space-y-5">
                 <div class="flex items-center justify-between mb-2">
                     <button onclick="navigateTo('home')" class="text-xs bg-white/40 px-3 py-1.5 rounded-full font-bold btn-gummy">⬅️ Indietro</button>
@@ -301,7 +316,6 @@
                 </div>
             </div>
 
-            <!-- SEZIONE: DIARIO DEI DESIDERI -->
             <div id="section-diary" class="hidden space-y-5">
                 <div class="flex items-center justify-between mb-2">
                     <button onclick="navigateTo('home')" class="text-xs bg-white/40 px-3 py-1.5 rounded-full font-bold btn-gummy">⬅️ Indietro</button>
@@ -309,7 +323,7 @@
                     <button onclick="toggleNewWishForm()" class="text-[10px] bg-white/60 p-2 rounded-xl btn-gummy font-bold">⭐ Nuovo</button>
                 </div>
 
-                <!-- Form Nuovo Desiderio (Nascosto di default) -->
+                <!-- Form Nuovo Desiderio -->
                 <div id="new-wish-form" class="hidden p-4 rounded-3xl space-y-3.5 border-2" style="background-color: var(--card-bg); border-color: var(--border-color);">
                     <h3 class="font-bold text-xs">Affida un nuovo desiderio alle stelle 🌌</h3>
                     <div class="space-y-1">
@@ -352,14 +366,13 @@
 
                 <!-- Lista dei Desideri / Costellazione Stellare -->
                 <div class="space-y-3">
-                    <p class="text-[10px] text-center opacity-75">Tocca una stella per visualizzare, modificare o realizzare i desideri del tuo cuore.</p>
-                    <div id="wishes-grid" class="grid grid-cols-2 gap-2.5">
+                    <p class="text-[10px] text-center opacity-75">Tocca una stella per visualizzare o realizzare i desideri del tuo cuore.</p>
+                    <div id="wishes-grid" class="grid grid-cols-2 gap-2">
                         <!-- Generato dinamicamente con JS -->
                     </div>
                 </div>
             </div>
 
-            <!-- SEZIONE: GLI INCANTESIMI (RITUALI MINDFULNESS) -->
             <div id="section-spells" class="hidden space-y-5">
                 <div class="flex items-center justify-between mb-2">
                     <button onclick="navigateTo('home')" class="text-xs bg-white/40 px-3 py-1.5 rounded-full font-bold btn-gummy">⬅️ Indietro</button>
@@ -367,12 +380,10 @@
                     <span>🧘‍♀️</span>
                 </div>
 
-                <!-- Descrizione -->
                 <div class="p-4 rounded-2xl bg-white/40 border border-white/20 text-[11px] text-center leading-relaxed">
                     Gli incantesimi sono piccoli rituali di <strong>mindfulness e crescita personale</strong>. Ti aiutano a staccare dalla routine quotidiana e a ritrovare il tuo centro.
                 </div>
 
-                <!-- Lista di Incantesimi -->
                 <div class="grid grid-cols-2 gap-2.5" id="spells-list">
                     <!-- Spells generati tramite JS -->
                 </div>
@@ -390,7 +401,6 @@
                     <h2 id="active-spell-title" class="text-xl font-bold font-kawaii">Semi di Fiducia</h2>
                     <p id="active-spell-formula" class="text-xs italic opacity-90 px-4">"Nel silenzio pianto un seme speciale, crescerà forte per non farsi del male."</p>
                     
-                    <!-- Box Scrittura Intenzione -->
                     <div id="ritual-intent-box" class="w-full max-w-sm p-4 rounded-3xl space-y-3" style="background-color: var(--card-bg); border: 2px solid var(--border-color);">
                         <label class="text-[10px] font-bold block text-left">Fissa un'intenzione positiva prima di iniziare il respiro:</label>
                         <input type="text" id="ritual-intention" placeholder="Cosa desideri coltivare in questo momento?" class="w-full p-2.5 rounded-xl border text-xs" style="background-color: var(--input-bg); border-color: var(--border-color);">
@@ -399,7 +409,6 @@
                         </button>
                     </div>
 
-                    <!-- Cerchio di Respirazione (Invisibile finché non si avvia) -->
                     <div id="breathing-container" class="hidden flex flex-col items-center space-y-4">
                         <div class="w-28 h-28 rounded-full border-4 border-white/50 flex items-center justify-center relative">
                             <div class="absolute inset-0 rounded-full breathing-core"></div>
@@ -414,7 +423,6 @@
                 </div>
             </div>
 
-            <!-- SEZIONE: CALENDARIO -->
             <div id="section-calendar" class="hidden space-y-4">
                 <div class="flex items-center justify-between">
                     <button onclick="navigateTo('home')" class="text-xs bg-white/40 px-3 py-1.5 rounded-full font-bold btn-gummy">⬅️ Indietro</button>
@@ -422,9 +430,7 @@
                     <span class="text-[10px] bg-white/50 px-2 py-1 rounded-lg" id="calendar-month-year">Mese Anno</span>
                 </div>
 
-                <!-- Griglia del Calendario -->
                 <div class="p-3.5 rounded-3xl space-y-2.5" style="background-color: var(--card-bg); border: 2px solid var(--border-color);">
-                    <!-- Navigazione Mese -->
                     <div class="flex justify-between items-center text-[10px] font-bold px-1">
                         <button onclick="prevMonth()" class="btn-gummy p-1">◀️ Prec.</button>
                         <span id="calendar-current-month-lbl" class="text-xs font-kawaii">Novembre</span>
@@ -444,7 +450,6 @@
                     <div class="flex justify-between items-center border-b pb-1.5">
                         <div class="flex items-center space-x-2">
                             <h3 id="detail-date" class="font-bold text-xs">Ricordi del --/--/----</h3>
-                            <!-- Tasto matita doodle per la modifica diretta -->
                             <button id="detail-edit-btn" onclick="" class="btn-gummy p-1 rounded-lg bg-white/40 hover:bg-white/80 transition-all flex items-center justify-center" title="Modifica questa pagina">
                                 <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--text-main);">
                                     <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
@@ -460,7 +465,6 @@
                 </div>
             </div>
 
-            <!-- SEZIONE: BENESSERE & COLLEZIONE -->
             <div id="section-stats" class="hidden space-y-5">
                 <div class="flex items-center justify-between mb-2">
                     <button onclick="navigateTo('home')" class="text-xs bg-white/40 px-3 py-1.5 rounded-full font-bold btn-gummy">⬅️ Indietro</button>
@@ -468,7 +472,6 @@
                     <span>🔮</span>
                 </div>
 
-                <!-- Stats Principali -->
                 <div class="p-4 rounded-3xl space-y-3.5" style="background-color: var(--card-bg); border: 2px solid var(--border-color);">
                     <h3 class="text-xs font-bold border-b pb-1.5">I Numeri del Cuore</h3>
                     
@@ -490,7 +493,6 @@
                         </div>
                     </div>
 
-                    <!-- Bar Chart CSS per Medie -->
                     <div class="space-y-2 pt-1">
                         <div class="space-y-0.5">
                             <div class="flex justify-between text-[10px] font-bold">
@@ -514,7 +516,6 @@
                     </div>
                 </div>
 
-                <!-- Collezione Kawaii -->
                 <div class="p-4 rounded-3xl space-y-3" style="background-color: var(--card-bg); border: 2px solid var(--border-color);">
                     <div class="border-b pb-1.5">
                         <h3 class="text-xs font-bold">Collezione degli Oggetti Kawaii</h3>
@@ -527,7 +528,6 @@
                 </div>
             </div>
 
-            <!-- SEZIONE: IMPOSTAZIONI & PERSONALIZZAZIONE -->
             <div id="section-settings" class="hidden space-y-5">
                 <div class="flex items-center justify-between mb-2">
                     <button onclick="navigateTo('home')" class="text-xs bg-white/40 px-3 py-1.5 rounded-full font-bold btn-gummy">⬅️ Indietro</button>
@@ -535,7 +535,6 @@
                     <span>🎨</span>
                 </div>
 
-                <!-- Selettore Temi -->
                 <div class="p-4 rounded-3xl space-y-3" style="background-color: var(--card-bg); border: 2px solid var(--border-color);">
                     <h3 class="text-xs font-bold border-b pb-1.5">Scegli la tua Palette</h3>
                     
@@ -571,7 +570,6 @@
                     </div>
                 </div>
 
-                <!-- Gestione Dati -->
                 <div class="p-4 rounded-3xl space-y-3.5" style="background-color: var(--card-bg); border: 2px solid var(--border-color);">
                     <h3 class="text-xs font-bold border-b pb-1.5 text-rose-500">Custodia della Memoria</h3>
                     <p class="text-[10px] opacity-75 leading-relaxed">I tuoi dati vengono custoditi solo all'interno del tuo dispositivo in modo sicuro e anonimo.</p>
@@ -589,7 +587,7 @@
 
         </main>
 
-        <!-- FOOTER DI NAVIGAZIONE COMPATTO (Ancorato in modo assoluto/adattivo al fondo del contenitore principale, con gestione safe-area) -->
+        <!-- FOOTER DI NAVIGAZIONE COMPATTO -->
         <footer class="absolute bottom-0 left-0 right-0 z-30 bg-white/20 backdrop-blur-md border-t border-white/20 flex justify-around items-center flex-none" style="padding-top: 10px; padding-bottom: calc(12px + env(safe-area-inset-bottom, 12px));">
             <button onclick="navigateTo('home')" class="flex flex-col items-center justify-center p-1.5 btn-gummy opacity-70 hover:opacity-100 focus:opacity-100 transition-opacity">
                 <svg class="w-6 h-6 mb-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--text-main);">
@@ -629,7 +627,7 @@
             </button>
         </footer>
 
-        <!-- POPUP DI NOTIFICA PERSONALIZZATO (Sostituto di alert) -->
+        <!-- POPUP DI NOTIFICA PERSONALIZZATO -->
         <div id="mystical-toast" class="hidden fixed bottom-24 left-1/2 transform -translate-x-1/2 z-50 w-11/12 max-w-sm p-4 rounded-3xl shadow-xl text-center border-2 transition-all duration-300" style="background-color: var(--card-bg); border-color: var(--accent);">
             <p id="toast-message" class="text-xs font-semibold"></p>
         </div>
@@ -648,7 +646,7 @@
             </div>
         </div>
 
-        <!-- MODALE DI CONFERMA CANCELLAZIONE CUSTODIA (Sostituisce il confirm nativo di sistema) -->
+        <!-- MODALE DI CONFERMA CANCELLAZIONE CUSTODIA -->
         <div id="custom-confirm-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-6 bg-slate-900/40 backdrop-blur-sm">
             <div class="w-full max-w-xs p-5 rounded-[32px] text-center space-y-3.5 border-2 shadow-2xl bg-white/95 border-rose-300" style="background-color: var(--card-bg); border-color: var(--border-color);">
                 <span class="text-4xl block">⚠️</span>
@@ -666,7 +664,6 @@
 
     <!-- SCRIPT APPLICAZIONE -->
     <script>
-        // --- STATO DELL'APPLICAZIONE (IN-MEMORY + LOCALSTORAGE) ---
         let appState = {
             entries: [],
             wishes: [],
@@ -675,10 +672,8 @@
             unlockedItems: []
         };
 
-        // Traccia quale data stiamo compilando o modificando
         let currentEditingDate = null;
 
-        // --- OGGETTI DA COLLEZIONE DISPONIBILI ---
         const COLLECTION_ITEMS = [
             { key: 'star_1', name: 'Stella Scintillante', emoji: '⭐', desc: 'Raggiungi 1 giorno di fila.', reqType: 'streak', reqValue: 1 },
             { key: 'crystal_1', name: 'Cristallo di Luna', emoji: '🔮', desc: 'Registra 1 pagina del cuore.', reqType: 'entries', reqValue: 1 },
@@ -690,7 +685,6 @@
             { key: 'constellation', name: 'Costellazione Magica', emoji: '✨', desc: 'Completa 5 rituali in totale.', reqType: 'rituals', reqValue: 5 }
         ];
 
-        // --- INCANTESIMI (MINDFULNESS) ---
         const MINDFUL_SPELLS = [
             { id: 'fiducia', title: 'Semi di Fiducia', emoji: '🌱', formula: '"Nel silenzio pianto un seme speciale, crescerà forte per non farsi del male."' },
             { id: 'coraggio', title: 'Fiore del Coraggio', emoji: '🌸', formula: '"Apro i petali davanti al timore, trovo risorsa dentro al mio cuore."' },
@@ -700,7 +694,6 @@
             { id: 'fortuna', title: 'Piccola Fortuna', emoji: '🍀', formula: '"Attiro sorrisi, abbraccio la via, sblocco nei passi la mia allegria."' }
         ];
 
-        // --- PALETTE DEI TEMI CONFIGURATI ---
         const THEMES_CONFIG = {
             'dream-sky': {
                 '--bg-start': '#e0c3fc',
@@ -781,11 +774,9 @@
             }
         };
 
-        // --- STATO CALENDARIO ATTIVO ---
         let calCurrentYear = new Date().getFullYear();
-        let calCurrentMonth = new Date().getMonth(); // 0-11
+        let calCurrentMonth = new Date().getMonth();
 
-        // --- INIZIALIZZAZIONE ---
         window.addEventListener('DOMContentLoaded', () => {
             loadSavedData();
             applyTheme(appState.activeTheme);
@@ -793,12 +784,10 @@
             renderSpells();
             checkAndUnlockItems();
             
-            // Imposta data odierna come default iniziale
             const today = new Date().toLocaleDateString('it-IT');
             document.getElementById('current-date-display').textContent = today;
         });
 
-        // --- SALVATAGGIO / CARICAMENTO DATI ---
         function loadSavedData() {
             const saved = localStorage.getItem('my_mystical_journal_data');
             if (saved) {
@@ -810,29 +799,24 @@
                     if (!appState.ritualsCompleted) appState.ritualsCompleted = 0;
                     if (!appState.activeTheme) appState.activeTheme = 'dream-sky';
                 } catch (e) {
-                    console.error("Errore di parsing dei dati salvati, resetto lo stato.", e);
+                    console.error("Errore di caricamento:", e);
                 }
             }
         }
 
-        // --- FUNZIONE SALVATAGGIO ---
         function saveData() {
             localStorage.setItem('my_mystical_journal_data', JSON.stringify(appState));
             checkAndUnlockItems();
         }
 
-        // --- NAVIGAZIONE PAGINE (SPA) ---
         function navigateTo(sectionId) {
             const sections = ['home', 'new-page', 'diary', 'spells', 'calendar', 'stats', 'settings'];
             sections.forEach(s => {
                 document.getElementById(`section-${s}`).classList.add('hidden');
             });
             document.getElementById(`section-${sectionId}`).classList.remove('hidden');
-
-            // Riporta lo scroll in cima
             document.querySelector('main').scrollTop = 0;
 
-            // Logica specifica per ciascuna sezione
             if (sectionId === 'diary') {
                 renderWishes();
             } else if (sectionId === 'calendar') {
@@ -842,7 +826,6 @@
             }
         }
 
-        // --- WELCOME MESSAGGIO DINAMICO ---
         function setWelcomeMessage() {
             const hrs = new Date().getHours();
             const el = document.getElementById('welcome-message');
@@ -855,7 +838,6 @@
             }
         }
 
-        // --- NOTIFICHE TOAST ---
         function showToast(message, colorClass = '') {
             const toast = document.getElementById('mystical-toast');
             const toastMsg = document.getElementById('toast-message');
@@ -869,18 +851,15 @@
             }, 3000);
         }
 
-        // --- TRACCIAMENTO STREAK ---
         function calculateStreak() {
             if (appState.entries.length === 0) return 0;
-            
             const dates = appState.entries.map(e => e.date).sort().reverse();
             let streak = 0;
-            let expectedDate = new Date(); // Oggi
+            let expectedDate = new Date();
             
             for (let i = 0; i < dates.length; i++) {
                 const entryDateStr = dates[i];
                 const expectedDateStr = formatDateKey(expectedDate);
-                
                 const yesterday = new Date(expectedDate);
                 yesterday.setDate(yesterday.getDate() - 1);
                 const yesterdayStr = formatDateKey(yesterday);
@@ -896,9 +875,7 @@
                     const lastEntryDate = new Date(dates[0]);
                     const differenceInTime = new Date().getTime() - lastEntryDate.getTime();
                     const differenceInDays = differenceInTime / (1000 * 3600 * 24);
-                    if (differenceInDays > 1.5) {
-                        return 0; // Streak interrotto
-                    }
+                    if (differenceInDays > 1.5) return 0;
                 } else {
                     break;
                 }
@@ -913,7 +890,6 @@
             return `${y}-${m}-${d}`;
         }
 
-        // --- LOGICA DI ACCESSO / INIZIALIZZAZIONE FORM SCRITTURA ---
         function startNewPageOrEditToday() {
             const todayStr = formatDateKey(new Date());
             const existingEntry = appState.entries.find(e => e.date === todayStr);
@@ -961,14 +937,11 @@
             document.getElementById('input-kindness').value = '';
         }
 
-        // Carica un'entrata esistente e avvia la schermata di editing
         function editHeartPage(dateStr) {
             const entry = appState.entries.find(e => e.date === dateStr);
             if (!entry) return;
 
             currentEditingDate = dateStr;
-
-            // Carica l'umore
             document.getElementById('input-mood-val').value = entry.mood;
             document.querySelectorAll('.mood-btn').forEach(btn => {
                 if (btn.textContent === entry.mood) {
@@ -980,31 +953,25 @@
                 }
             });
 
-            // Carica energia
             const energyVal = entry.energy !== undefined ? entry.energy : 50;
             document.getElementById('input-energy').value = energyVal;
             updateEnergyDisplay(energyVal);
 
-            // Carica lo stato del cuore
             document.getElementById('input-heart-state').value = entry.heart || '❤️ Leggero';
 
-            // Carica lo stress
             const stressVal = entry.stress !== undefined ? entry.stress : 20;
             document.getElementById('input-stress').value = stressVal;
             updateStressDisplay(stressVal);
 
-            // Carica le tre cose belle (con tutele se l'array è vuoto o incompleto)
             const grat = entry.gratitude || [];
             document.getElementById('gratitude-1').value = grat[0] || '';
             document.getElementById('gratitude-2').value = grat[1] || '';
             document.getElementById('gratitude-3').value = grat[2] || '';
 
-            // Carica il pensiero libero, la piccola vittoria e il gesto gentile
             document.getElementById('input-thought').value = entry.thought || '';
             document.getElementById('input-victory').value = entry.victory || '';
             document.getElementById('input-kindness').value = entry.kindness || '';
 
-            // Aggiorna la data mostrata a schermo
             const [y, m, d] = dateStr.split('-');
             document.getElementById('current-date-display').textContent = `${d}/${m}/${y}`;
 
@@ -1012,7 +979,6 @@
             closeDetailBox();
         }
 
-        // --- SEZIONE: NUOVA PAGINA DEL CUORE ---
         function selectMood(num, emoji) {
             document.querySelectorAll('.mood-btn').forEach(btn => {
                 btn.classList.remove('border-pink-400', 'bg-white/95');
@@ -1066,12 +1032,10 @@
 
             saveData();
             showToast("✨ La pagina del tuo cuore è stata sigillata con affetto nel grimorio. ✨", "text-pink-600");
-            
             resetNewPageFields();
             navigateTo('home');
         }
 
-        // --- SEZIONE: DIARIO DEI DESIDERI ---
         function toggleNewWishForm() {
             const form = document.getElementById('new-wish-form');
             form.classList.toggle('hidden');
@@ -1098,7 +1062,7 @@
                 priority: priority,
                 emoji: emoji,
                 date: new Date().toLocaleDateString('it-IT'),
-                status: 'attivo' // attivo, realizzato
+                status: 'attivo'
             };
 
             appState.wishes.push(newWish);
@@ -1108,7 +1072,7 @@
             document.getElementById('wish-title').value = '';
             document.getElementById('wish-description').value = '';
             document.getElementById('new-wish-form').classList.add('hidden');
-            showToast("⭐ Il tuo desiderio fluttua nel cielo del tuo diari! ⭐", "text-purple-600");
+            showToast("⭐ Il tuo desiderio fluttua nel cielo del tuo diario! ⭐", "text-purple-600");
         }
 
         function realizeWish(wishId) {
@@ -1144,23 +1108,37 @@
             appState.wishes.forEach(wish => {
                 const isRealized = wish.status === 'realizzato';
                 const card = document.createElement('div');
-                card.className = `p-4 rounded-3xl relative flex flex-col justify-between space-y-2 transition-all border ${isRealized ? 'opacity-65 scale-95 border-emerald-300' : 'border-white/40 magic-glow-hover'}`;
-                card.style.backgroundColor = "var(--card-bg)";
+                const isDarkTheme = appState.activeTheme === 'moon-garden' || appState.activeTheme === 'lavender-night';
+                const bgTransparency = isDarkTheme ? 'rgba(255, 255, 255, 0.08)' : 'rgba(255, 255, 255, 0.35)';
+                card.style.backgroundColor = bgTransparency;
+                
+                card.className = `p-2.5 rounded-2xl relative flex flex-col justify-between min-h-[135px] transition-all border ${isRealized ? 'opacity-55 scale-95 border-emerald-300' : 'border-white/20 magic-glow-hover'}`;
                 
                 card.innerHTML = `
-                    <div class="space-y-1">
-                        <div class="flex justify-between items-start">
-                            <span class="text-2xl">${wish.emoji}</span>
-                            <span class="text-[10px] uppercase font-bold opacity-75">${wish.priority.split(' ')[0]}</span>
+                    <div class="space-y-1.5 flex-1 flex flex-col justify-start">
+                        <div class="flex justify-between items-start gap-1">
+                            <span class="text-xl shrink-0">${wish.emoji}</span>
+                            <span class="text-[8px] uppercase font-black px-1.5 py-0.5 rounded-full bg-white/30 border border-white/10 whitespace-nowrap truncate max-w-[55px]" style="color: var(--text-main);">${wish.priority.split(' ')[0]}</span>
                         </div>
-                        <h4 class="font-bold text-sm leading-tight ${isRealized ? 'line-through text-emerald-800' : ''}" style="color: var(--text-main);">${wish.title}</h4>
-                        <p class="text-[11px] opacity-80 line-clamp-3">${wish.description || 'Nessuna descrizione'}</p>
+                        <h4 class="font-bold text-[11px] leading-snug break-words ${isRealized ? 'line-through text-emerald-800' : ''}" style="color: var(--text-main);">${wish.title}</h4>
+                        <p class="text-[9.5px] opacity-85 leading-normal line-clamp-2 break-words">${wish.description || 'Nessuna descrizione'}</p>
                     </div>
-                    <div class="pt-2 border-t border-dashed border-slate-300/40 flex justify-between items-center text-[10px] opacity-70">
-                        <span>${wish.date}</span>
-                        <div class="flex space-x-1.5">
-                            ${!isRealized ? `<button onclick="realizeWish('${wish.id}')" class="text-xs bg-emerald-100 hover:bg-emerald-200 text-emerald-800 p-1 rounded-lg font-bold" title="Realizzato">💖 Realizza</button>` : '<span class="text-emerald-600 font-bold">✨ Realizzato</span>'}
-                            <button onclick="deleteWish('${wish.id}')" class="text-xs bg-rose-100 hover:bg-rose-200 text-rose-800 p-1 rounded-lg" title="Rimuovi">🗑️</button>
+                    
+                    <div class="pt-1.5 mt-1.5 border-t border-dashed border-slate-300/30 flex items-center justify-between gap-1 shrink-0">
+                        <span class="text-[8px] opacity-60 font-semibold whitespace-nowrap truncate max-w-[50px]">${wish.date}</span>
+                        <div class="flex items-center gap-1 shrink-0">
+                            ${!isRealized ? `
+                                <button onclick="realizeWish('${wish.id}')" class="text-[10px] bg-emerald-100/80 hover:bg-emerald-200 text-emerald-800 w-6 h-6 rounded-lg font-extrabold flex items-center justify-center btn-gummy shrink-0" title="Realizzato">
+                                    💖
+                                </button>
+                            ` : `
+                                <span class="text-[10px] text-emerald-700 font-extrabold w-6 h-6 flex items-center justify-center shrink-0">
+                                    ✨
+                                </span>
+                            `}
+                            <button onclick="deleteWish('${wish.id}')" class="text-[10px] bg-rose-100/80 hover:bg-rose-200 text-rose-800 w-6 h-6 rounded-lg btn-gummy flex items-center justify-center shrink-0" title="Rimuovi">
+                                🗑️
+                            </button>
                         </div>
                     </div>
                 `;
@@ -1168,7 +1146,6 @@
             });
         }
 
-        // --- SEZIONE: INCANTESIMI ---
         let currentActiveSpell = null;
         let breathingTimer = null;
 
@@ -1247,7 +1224,6 @@
             appState.ritualsCompleted += 1;
             saveData();
             closeRitual();
-
             document.getElementById('ritual-complete-popup').classList.remove('hidden');
         }
 
@@ -1255,7 +1231,6 @@
             document.getElementById('ritual-complete-popup').classList.add('hidden');
         }
 
-        // --- SEZIONE: CALENDARIO ---
         const MONTHS_ITA = [
             "Gennaio", "Febbraio", "Marzo", "Aprile", "Maggio", "Giugno",
             "Luglio", "Agosto", "Settembre", "Ottobre", "Novembre", "Dicembre"
@@ -1283,7 +1258,6 @@
                 dayBtn.style.backgroundColor = "rgba(255, 255, 255, 0.2)";
                 
                 const dayStr = `${calCurrentYear}-${String(calCurrentMonth + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
-                
                 const entry = appState.entries.find(e => e.date === dayStr);
 
                 if (entry) {
@@ -1327,7 +1301,6 @@
             const [y, m, d] = entry.date.split('-');
             document.getElementById('detail-date').textContent = `Ricordi del ${d}/${m}/${y} ✨`;
 
-            // Configura il tasto modifica matita per questo giorno
             const editBtn = document.getElementById('detail-edit-btn');
             editBtn.classList.remove('hidden');
             editBtn.onclick = () => editHeartPage(entry.date);
@@ -1362,8 +1335,6 @@
             const detailBox = document.getElementById('day-detail-box');
             const [y, m, d] = dayStr.split('-');
             document.getElementById('detail-date').textContent = `${d}/${m}/${y}`;
-            
-            // Nasconde il tasto matita perché la pagina non è ancora stata creata
             document.getElementById('detail-edit-btn').classList.add('hidden');
 
             document.getElementById('detail-content').innerHTML = `
@@ -1377,7 +1348,6 @@
             document.getElementById('day-detail-box').classList.add('hidden');
         }
 
-        // --- SEZIONE: STATISTICHE & COLLEZIONE ---
         function renderStatsAndCollection() {
             const total = appState.entries.length;
             let avgEnergy = 0;
@@ -1392,7 +1362,6 @@
 
             const finalAvgEnergy = total > 0 ? Math.round(avgEnergy / total) : 0;
             const finalAvgStress = total > 0 ? Math.round(avgStress / total) : 0;
-
             const streak = calculateStreak();
 
             document.getElementById('stat-streak').textContent = streak;
@@ -1446,17 +1415,14 @@
             });
         }
 
-        // --- PERSONALIZZAZIONE (TEMI) ---
         function applyTheme(themeName) {
             const theme = THEMES_CONFIG[themeName] || THEMES_CONFIG['dream-sky'];
             const root = document.documentElement;
-
             for (const [property, value] of Object.entries(theme)) {
                 root.style.setProperty(property, value);
             }
         }
 
-        // Modifica del tema
         function changeTheme(themeName) {
             appState.activeTheme = themeName;
             applyTheme(themeName);
@@ -1464,7 +1430,6 @@
             showToast("🎨 Palette magica aggiornata!", "text-indigo-600");
         }
 
-        // --- ESPORTAZIONE / IMPORTAZIONE / RESET ---
         function exportJSON() {
             const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(appState, null, 2));
             const downloadAnchor = document.createElement('a');
