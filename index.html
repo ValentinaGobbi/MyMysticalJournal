@@ -91,6 +91,19 @@
         .breathing-core {
             animation: breathe 12s ease-in-out infinite;
         }
+
+        /* Animazione Sfera dell'Oracolo */
+        @keyframes ball-consult {
+            0% { transform: scale(1) rotate(0deg); }
+            20% { transform: scale(1.15) rotate(10deg); }
+            40% { transform: scale(1.05) rotate(-15deg); }
+            60% { transform: scale(1.15) rotate(15deg); }
+            80% { transform: scale(1.05) rotate(-10deg); }
+            100% { transform: scale(1) rotate(0deg); }
+        }
+        .oracle-active {
+            animation: ball-consult 0.8s ease-in-out infinite;
+        }
     </style>
 </head>
 <body class="p-0 m-0 overflow-x-hidden flex justify-center items-start md:py-8">
@@ -154,7 +167,7 @@
                     <p class="text-xs opacity-90">Cosa realizzeremo oggi di magico?</p>
                 </div>
 
-                <!-- Griglia dei Pulsanti Principali -->
+                <!-- Griglia dei Pulsanti Principali (Sotto-griglia 2x3 simmetrica) -->
                 <div class="grid grid-cols-2 gap-2">
                     <!-- Nuova Pagina -->
                     <button onclick="startNewPageOrEditToday()" class="p-2.5 rounded-2xl flex flex-col items-center justify-center space-y-1 text-center btn-gummy magic-glow-hover border-2 border-transparent" style="background-color: var(--card-bg); border-color: var(--border-color);">
@@ -199,20 +212,22 @@
                         <span class="text-sm text-indigo-300 leading-none">✦</span>
                     </button>
                     <!-- Benessere & Statistiche -->
-                    <button onclick="navigateTo('stats')" class="p-2.5 rounded-2xl flex flex-col items-center justify-center space-y-1 text-center btn-gummy magic-glow-hover col-span-2 border-2 border-transparent animate-pulse-slow" style="background-color: var(--card-bg); border-color: var(--border-color);">
-                        <div class="flex items-center space-x-2.5 w-full justify-center">
-                            <svg class="w-8 h-8 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--text-main);">
-                                <path d="M4 17c4-4 8-6 13-3" opacity="0.6" stroke-dasharray="2 2" />
-                                <rect x="4" y="13" width="3" height="7" rx="1.5" />
-                                <rect x="9.5" y="8" width="3" height="12" rx="1.5" />
-                                <rect x="15" y="11" width="3" height="9" rx="1.5" />
-                                <path d="M17 3l1 1.5 1.5.5-1.1.9.3 1.6-1.7-.8-1.7.8.3-1.6-1.1-.9 1.5-.5z" fill="currentColor" stroke="none" />
-                            </svg>
-                            <div class="text-left overflow-hidden">
-                                <span class="block font-bold text-[10.5px] tracking-tight whitespace-nowrap overflow-hidden text-ellipsis" style="color: var(--text-main);">Benessere & Collezione</span>
-                                <span class="text-[8.5px] opacity-75 block whitespace-nowrap overflow-hidden text-ellipsis">Statistiche e oggetti sbloccati</span>
-                            </div>
-                        </div>
+                    <button onclick="navigateTo('stats')" class="p-2.5 rounded-2xl flex flex-col items-center justify-center space-y-1 text-center btn-gummy magic-glow-hover border-2 border-transparent" style="background-color: var(--card-bg); border-color: var(--border-color);">
+                        <svg class="w-8 h-8 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--text-main);">
+                            <path d="M4 17c4-4 8-6 13-3" opacity="0.6" stroke-dasharray="2 2" />
+                            <rect x="4" y="13" width="3" height="7" rx="1.5" />
+                            <rect x="9.5" y="8" width="3" height="12" rx="1.5" />
+                            <rect x="15" y="11" width="3" height="9" rx="1.5" />
+                            <path d="M17 3l1 1.5 1.5.5-1.1.9.3 1.6-1.7-.8-1.7.8.3-1.6-1.1-.9 1.5-.5z" fill="currentColor" stroke="none" />
+                        </svg>
+                        <span class="font-bold text-[10.5px] tracking-tight whitespace-nowrap overflow-hidden text-ellipsis w-full" style="color: var(--text-main);">Il Mio Benessere</span>
+                        <span class="text-[8.5px] opacity-75 block whitespace-nowrap overflow-hidden text-ellipsis">Statistiche</span>
+                    </button>
+                    <!-- Oracolo (Nuova Sezione Cosmica) -->
+                    <button onclick="navigateTo('oracle')" class="p-2.5 rounded-2xl flex flex-col items-center justify-center space-y-1 text-center btn-gummy magic-glow-hover border-2 border-transparent animate-pulse-slow" style="background-color: var(--card-bg); border-color: var(--border-color);">
+                        <span class="text-3xl">🔮</span>
+                        <span class="font-bold text-[10.5px] tracking-tight whitespace-nowrap overflow-hidden text-ellipsis w-full" style="color: var(--text-main);">L'Oracolo</span>
+                        <span class="text-[8.5px] opacity-75 block whitespace-nowrap overflow-hidden text-ellipsis">Risposte Cosmiche</span>
                     </button>
                 </div>
 
@@ -390,7 +405,6 @@
             </div>
 
             <!-- MODALE / SCREEN RITUALE ATTIVO -->
-            <!-- Convertito da fixed ad absolute per una perfetta compatibilità con il mockup -->
             <div id="ritual-active-screen" class="hidden absolute inset-0 z-50 flex flex-col justify-between p-6 overflow-y-auto" style="background: linear-gradient(135deg, var(--bg-start), var(--bg-end));">
                 <div class="flex items-center justify-between w-full mb-2">
                     <button onclick="closeRitual()" class="text-[11px] bg-white/40 px-3.5 py-1.5 rounded-full font-bold btn-gummy flex items-center gap-1">
@@ -424,6 +438,41 @@
 
                 <div class="text-center pb-4 text-[11px] opacity-60">
                     Prenditi questo istante solo per te.
+                </div>
+            </div>
+
+            <!-- SEZIONE: ORACOLO DELLE STELLE -->
+            <div id="section-oracle" class="hidden space-y-5 animate-fade-in">
+                <div class="flex items-center justify-between mb-2">
+                    <button onclick="navigateTo('home')" class="text-xs bg-white/40 px-3 py-1.5 rounded-full font-bold btn-gummy">⬅️ Indietro</button>
+                    <h2 class="text-md font-bold font-kawaii">L'Oracolo delle Stelle</h2>
+                    <span>🔮</span>
+                </div>
+
+                <div class="p-5 rounded-3xl space-y-5 text-center" style="background-color: var(--card-bg); border: 2px solid var(--border-color);">
+                    <p class="text-xs opacity-90 leading-relaxed">Scrivi una domanda sincera che porti nel cuore, poi tocca la sfera di cristallo per interrogare l'Oracolo delle stelle.</p>
+                    
+                    <div class="space-y-1">
+                        <input type="text" id="oracle-question" placeholder="Esempio: Riceverò una buona notizia oggi? ✨" class="w-full p-3 rounded-xl border text-xs text-center font-medium" style="background-color: var(--input-bg); border-color: var(--border-color); color: var(--text-main);">
+                    </div>
+
+                    <!-- Sfera di Cristallo con alone di energia magico -->
+                    <div class="relative flex items-center justify-center py-6">
+                        <div id="oracle-glow" class="absolute w-24 h-24 rounded-full bg-purple-400/20 blur-xl transition-all duration-[1200ms]"></div>
+                        <button id="oracle-ball" onclick="consultOracle()" class="relative text-7xl select-none cursor-pointer transition-all duration-500 hover:scale-110 active:scale-90 focus:outline-none">
+                            🔮
+                        </button>
+                    </div>
+
+                    <button onclick="consultOracle()" id="oracle-btn" class="w-full py-3.5 rounded-2xl font-bold btn-gummy text-white text-xs magic-glow" style="background-color: var(--accent);">
+                        🔮 Interroga l'Oracolo 🔮
+                    </button>
+
+                    <!-- Box Risposta -->
+                    <div id="oracle-response-box" class="hidden p-4 rounded-2xl bg-white/30 border border-white/20 space-y-1.5">
+                        <p class="text-[9px] tracking-wider uppercase opacity-75 font-semibold">L'Oracolo dice...</p>
+                        <p id="oracle-response-text" class="text-xs font-bold font-kawaii italic leading-relaxed" style="color: var(--text-main);"></p>
+                    </div>
                 </div>
             </div>
 
@@ -671,6 +720,29 @@
             { id: 'fortuna', title: 'Piccola Fortuna', emoji: '🍀', formula: '"Attiro sorrisi, abbraccio la via, sblocco nei passi la mia allegria."' }
         ];
 
+        // Database delle risposte dell'Oracolo (Affermative, Negative e Neutrali/Mistiche)
+        const ORACLE_ANSWERS = [
+            // Positive
+            "Sì, le stelle brillano caldamente a tuo favore! ✨",
+            "I sussurri della luna dicono indubbiamente sì. 🌙",
+            "Senza alcun dubbio magico! La via è spianata. 🔮",
+            "Assolutamente sì, fidati del flusso energetico cosmico. 🌊",
+            "Il destino sorride caldamente a questo cammino. 🌸",
+            "Le nuvole si stanno diradando: la risposta è positiva! ☁️",
+            // Neutrali / Misteriose
+            "La nebbia cosmica avvolge questa risposta, medita ancora... 🧘‍♀️",
+            "I venti fatati sono temporaneamente incerti. Chiedi di nuovo più tardi. 🌪️",
+            "Le risposte sono già impresse nel profondo del tuo cuore. 🗝️",
+            "Le costellazioni sono insolitamente silenziose al momento... 🌌",
+            "Un prezioso segreto magico si rivelerà soltanto a tempo debito. ⏳",
+            // Negative
+            "I sussurri della notte indicano di no, proteggi i tuoi passi. 🖤",
+            "La luna consiglia viva prudenza, questa non è la via corretta. 🌙",
+            "Il flusso magico indica di no, ma un nuovo sentiero si aprirà presto. 🧭",
+            "Le stelle dicono che non è ancora la stagione giusta per questo. 🍂",
+            "I segni cosmici sconsigliano caldamente di procedere ora. Riposati. 🛑"
+        ];
+
         const THEMES_METADATA = [
             { key: 'dream-sky', name: 'Dream Sky 🌌', desc: '(Cielo Pastello)', bg: 'linear-gradient(90deg, #e0c3fc, #8ec5fc)', color: '#4a3f75', border: 'rgba(177, 159, 251, 0.3)', icon: '✨' },
             { key: 'sakura', name: 'Sakura 🌸', desc: '(Petali di Ciliegio)', bg: 'linear-gradient(90deg, #ffd1ff, #fbd0c6)', color: '#6c3f4e', border: 'rgba(255, 158, 187, 0.3)', icon: '🌸' },
@@ -810,7 +882,7 @@
         }
 
         function navigateTo(sectionId) {
-            const sections = ['home', 'new-page', 'diary', 'spells', 'calendar', 'stats', 'settings'];
+            const sections = ['home', 'new-page', 'diary', 'spells', 'calendar', 'stats', 'settings', 'oracle'];
             sections.forEach(s => {
                 document.getElementById(`section-${s}`).classList.add('hidden');
             });
@@ -1231,6 +1303,72 @@
             document.getElementById('ritual-complete-popup').classList.add('hidden');
         }
 
+        // --- FUNZIONE CONSULTAZIONE ORACOLO ---
+        function consultOracle() {
+            const questionInput = document.getElementById('oracle-question');
+            const questionText = questionInput.value.trim();
+            
+            if (!questionText) {
+                showToast("Scrivi una domanda sincera per l'Oracolo! ✨", "text-amber-600");
+                return;
+            }
+            
+            const ball = document.getElementById('oracle-ball');
+            const glow = document.getElementById('oracle-glow');
+            const btn = document.getElementById('oracle-btn');
+            const responseBox = document.getElementById('oracle-response-box');
+            const responseText = document.getElementById('oracle-response-text');
+            
+            // Disabilita tasti e moduli durante la canalizzazione
+            btn.disabled = true;
+            questionInput.disabled = true;
+            btn.textContent = "🔮 Interrogando il Cosmo...";
+            responseBox.classList.add('hidden');
+            
+            // Attiva l'animazione magica della sfera e l'alone di luce
+            ball.classList.add('oracle-active');
+            glow.classList.add('scale-150', 'bg-pink-500/40');
+            
+            // Fasi della meditazione / caricamento
+            let step = 0;
+            const steps = [
+                "Ascoltando il vento lunare... 🌬️",
+                "Mescolando la polvere cosmica... ✨",
+                "Interrogando le costellazioni... 🌌",
+                "Il destino si sta rivelando... 🔮"
+            ];
+            
+            const stepInterval = setInterval(() => {
+                if (step < steps.length) {
+                    btn.textContent = steps[step];
+                    step++;
+                }
+            }, 600);
+            
+            // Conclusione e svelamento della risposta dopo 2.8 secondi
+            setTimeout(() => {
+                clearInterval(stepInterval);
+                
+                // Seleziona una risposta casuale
+                const randomAnswer = ORACLE_ANSWERS[Math.floor(Math.random() * ORACLE_ANSWERS.length)];
+                
+                // Ferma l'animazione e ripristina la scala
+                ball.classList.remove('oracle-active');
+                glow.classList.remove('scale-150', 'bg-pink-500/40');
+                
+                // Popola il box di risposta e mostralo
+                responseText.textContent = `"${randomAnswer}"`;
+                responseBox.classList.remove('hidden');
+                
+                // Riabilita input e imposta testi originari
+                btn.disabled = false;
+                questionInput.disabled = false;
+                btn.textContent = "🔮 Interroga l'Oracolo 🔮";
+                
+                showToast("✨ L'Oracolo delle Stelle ha risposto! ✨", "text-purple-600");
+            }, 2800);
+        }
+
         const MONTHS_ITA = [
             "Gennaio", "Febbraio", "Marzo", "Aprile", "Maggio", "Giugno",
             "Luglio", "Agosto", "Settembre", "Ottobre", "Novembre", "Dicembre"
@@ -1371,7 +1509,6 @@
             document.getElementById('bar-energy-text').textContent = `${finalAvgEnergy}%`;
             document.getElementById('bar-energy-fill').style.width = `${finalAvgEnergy}%`;
 
-            document.getElementById('bar-indigo-stress-text'); 
             document.getElementById('bar-stress-text').textContent = `${finalAvgStress}%`;
             document.getElementById('bar-stress-fill').style.width = `${finalAvgStress}%`;
 
